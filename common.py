@@ -78,6 +78,7 @@ def footer_html(prefix=""):
           <p class="eyebrow footer__head" {ald_head}</p>
           <ul class="footer__list">
             <li><a href="{p}about.html" {about}</a></li>
+            <li><a href="{p}journal/acatenango.html" {journal}</a></li>
             <li><a href="{p}index.html#concierge" {concierge}</a></li>
             <li><a href="{p}index.html#contact" {contact}</a></li>
             <li><a href="{p}propietarios.html" rel="nofollow" {owners}</a></li>
@@ -102,6 +103,7 @@ def footer_html(prefix=""):
         dest_head=t("Destinations", "Destinos"),
         ald_head=t("Aldaba", "Aldaba"),
         about=t("About us", "Quiénes somos"),
+        journal=t("Journal", "Diario"),
         concierge=t("Concierge", "Concierge"),
         contact=t("Contact us", "Contáctenos"),
         owners=t("Property owners", "Propietarios"),

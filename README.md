@@ -30,6 +30,12 @@ No nightly rate appears on a house page. Budget is a field the guest fills in,
 never a number we publish, and services are named but never bundled into the
 house.
 
+## Journal
+
+`journal/*.html` comes from `build-journal.py`. Each piece ends the same way:
+what we arrange around it, then the houses it suits, pulled from the house
+list rather than restated.
+
 ## About page
 
 `about.html` comes from `build-about.py`. Same shell, same footer.
@@ -40,7 +46,7 @@ house.
 scripts, so the footer lists the whole collection and a new house appears
 everywhere at once. After adding a house, run all three builds:
 
-    python3 build-houses.py && python3 build-destinations.py && python3 build-about.py
+    python3 build-houses.py && python3 build-destinations.py && python3 build-about.py && python3 build-journal.py
 
 `index.html` and `propietarios.html` carry the same footer between
 `<!-- footer:start -->` and `<!-- footer:end -->`; paste a fresh
@@ -66,8 +72,8 @@ no commissions, no owner economics on any public URL.
 Tokens come from the wordmark files: paper `#F4F4E6`, ink `#272826`, sage
 `#D0DDD4`. The jade `#35564A` is a signature, not a palette, and appears in
 exactly four places: the chosen programme tab, whatever the cursor is over,
-the focus ring, and the section eyebrows. Nothing is filled with it. Adding a
-fifth use needs a reason.
+the focus ring, the section eyebrows, and the drop cap that opens a journal
+piece. Nothing is filled with it. Adding another use needs a reason.
 
 ## Brand
 

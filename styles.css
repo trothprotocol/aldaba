@@ -1472,3 +1472,53 @@ a.menu-trigger .menu-trigger__word { display: inline !important; }
 @media (max-width: 560px) {
   .footer__cols { grid-template-columns: 1fr; gap: 28px; }
 }
+
+/* ==========================================================================
+   Journal
+   Long-form, so the measure narrows and the type gets a little larger. One
+   piece for now, which is why the card runs wide.
+   ========================================================================== */
+
+/* The article keeps the site's left rag rather than centring itself, so it
+   lines up with the sections that follow it. */
+.prose {
+  max-width: 820px;
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.prose__p {
+  margin: 0;
+  font-size: 17.5px;
+  line-height: 1.72;
+  max-width: 66ch;
+}
+
+.prose__p:first-child::first-letter {
+  float: left;
+  font-family: var(--serif);
+  font-size: 58px;
+  line-height: 0.86;
+  padding: 4px 12px 0 0;
+  color: var(--jade);
+}
+
+.prose__note {
+  margin: 10px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  color: var(--ink-45);
+  max-width: 58ch;
+}
+
+.journal--pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+@media (max-width: 860px) {
+  .journal--pair { grid-template-columns: 1fr; max-width: 460px; }
+}
