@@ -1349,3 +1349,9 @@ a.menu-trigger .menu-trigger__word { display: inline !important; }
 .operated__names { justify-content: center; }
 
 .operated__note { margin: 0; max-width: 42ch; }
+
+/* Six services rather than three, so the rows want a little more air and a
+   serif title big enough to read as an offer rather than a feature. */
+.services .grid__item { padding-top: 22px; }
+.services .grid__title { font-size: 21px; margin-bottom: 12px; }
+.services .grid__text { max-width: 34ch; }
