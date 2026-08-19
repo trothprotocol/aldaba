@@ -27,6 +27,8 @@ OUT = os.path.join(ROOT, "houses")
 HOUSES = [
     {
         "slug": "choq",
+        "house_title_en": "Wake up on the water.",
+        "house_title_es": "Despertar sobre el agua.",
         "test": True,
         "name": "Aldaba Choq'",
         "destination_slug": "atitlan",
@@ -137,6 +139,8 @@ HOUSES = [
     },
     {
         "slug": "ja",
+        "house_title_en": "The doors open, and stay open.",
+        "house_title_es": "Las puertas se abren, y se quedan abiertas.",
         "test": True,
         "name": "Aldaba Ja'",
         "destination_slug": "antigua",
@@ -247,6 +251,8 @@ HOUSES = [
     },
     {
         "slug": "ki",
+        "house_title_en": "Under twenty feet of palm.",
+        "house_title_es": "Bajo seis metros de palma.",
         "test": True,
         "name": "Aldaba Ki'",
         "destination_slug": "rio-dulce",
@@ -357,6 +363,8 @@ HOUSES = [
     },
     {
         "slug": "tinamit",
+        "house_title_en": "The city, from above its own noise.",
+        "house_title_es": "La ciudad, por encima de su propio ruido.",
         "test": True,
         "name": "Aldaba Tinamit",
         "destination_slug": "ciudad",
@@ -593,7 +601,7 @@ def house(h):
     </section>
 """.format(
         eyebrow=t("The house", "La casa"),
-        title=t("Wake up on the water.", "Despertar sobre el agua."),
+        title=t(h["house_title_en"], h["house_title_es"]),
         paras=paras, stats=stats,
     )
 
