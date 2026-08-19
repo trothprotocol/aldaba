@@ -46,8 +46,8 @@ PAGE = {
         ("Un número", "Para el viaje desde el aeropuerto, la mesa que se le olvidó reservar, y todo lo que venga después."),
     ],
 
-    "partners_en": "We work with Carma Group, whose companies have moved travellers through this country for decades: Hertz Guatemala, Maya Trails and Trip18. The cars, the drivers and the days out are theirs, which is why we can promise them rather than recommend them.",
-    "partners_es": "Trabajamos con Carma Group, cuyas empresas llevan décadas moviendo viajeros por este país: Hertz Guatemala, Maya Trails y Trip18. Los carros, los choferes y los días de paseo son de ellos, y por eso los podemos prometer en lugar de recomendarlos.",
+    "partners_en": "We work with Carma Group, whose companies have moved travellers through this country for decades: Hertz Guatemala, Trasla, Maya Trails and Trip18. The cars, the drivers and the days out are theirs, which is why we can promise them rather than recommend them.",
+    "partners_es": "Trabajamos con Carma Group, cuyas empresas llevan décadas moviendo viajeros por este país: Hertz Guatemala, Trasla, Maya Trails y Trip18. Los carros, los choferes y los días de paseo son de ellos, y por eso los podemos prometer en lugar de recomendarlos.",
 }
 
 
@@ -123,6 +123,7 @@ def build():
             <li class="operated__name"><img class="logo" src="img/logos/carma-group.webp" alt="Carma Group" width="794" height="208" loading="lazy"></li>
             <li class="operated__name"><img class="logo" src="img/logos/hertz.webp" alt="Hertz Guatemala" width="761" height="267" loading="lazy"></li>
             <li class="operated__name"><img class="logo" src="img/logos/maya-trails.webp" alt="Maya Trails" width="794" height="140" loading="lazy"></li>
+            <li class="operated__name"><img class="logo" src="img/logos/trasla.webp" alt="Trasla" width="800" height="126" loading="lazy"></li>
             <li class="operated__name"><img class="logo logo--tall" src="img/logos/trip18.webp" alt="Trip18" width="1200" height="1107" loading="lazy"></li>
           </ul>
         </div>

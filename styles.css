@@ -1176,6 +1176,10 @@ a.menu-trigger .menu-trigger__word { display: inline !important; }
    height, so it is set one notch smaller to even the row out. */
 .logo[alt="Hertz Guatemala"] { height: 23px; }
 
+/* Trasla is a full-bleed wordmark with no icon, so it reads heavier than the
+   rest at the same height. */
+.logo[alt="Trasla"] { height: 19px; }
+
 @media (max-width: 560px) {
   .logo { height: 22px; }
   .logo--tall { height: 42px; }
