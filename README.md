@@ -16,6 +16,20 @@ lives in `build-destinations.py`. Edit that file and run:
 
 Never edit the built pages directly; the next run overwrites them.
 
+## House pages
+
+`houses/*.html` work the same way, from `build-houses.py`:
+
+    python3 build-houses.py
+
+`houses/choq.html` is a test listing. Aldaba does not manage that house, the
+photograph is stock, the name carries "(test)" and the page is noindexed.
+Delete the entry from `build-houses.py` when it has served its purpose.
+
+No nightly rate appears on a house page. Budget is a field the guest fills in,
+never a number we publish, and services are named but never bundled into the
+house.
+
 ## Languages
 
 English is primary. Both languages live in one document: every translatable

@@ -63,6 +63,12 @@ DESTINATIONS = [
     },
     {
         "slug": "atitlan",
+        "houses": [
+            {"slug": "choq", "name": "Aldaba Choq' (test)",
+             "image": "img/houses/choq-01.jpg", "image_pos": "center 55%",
+             "line_en": "A glass room on the water, with the deck running out over the lake.",
+             "line_es": "Una habitación de vidrio sobre el agua, con la terraza saliendo sobre el lago."},
+        ],
         "image": "img/lake.jpg",
         "image_pos": "center 52%",
         "alt_en": "Lake Atitlán with its volcanoes at dawn",
@@ -393,16 +399,48 @@ def facts(d):
 
 
 def houses(d):
+    """Houses we have here, or the plate that stands in until we do."""
+    listed = d.get("houses") or []
+
+    if not listed:
+        body = """        <div class="soon">
+          <p class="eyebrow soon__label" {soon}</p>
+          <p class="soon__text" {text}</p>
+        </div>""".format(
+            soon=t("Opening soon", "Muy pronto"),
+            text=t(
+                "The first houses in {} open later this year. Tell us when you are thinking of coming and we will write to you before they are listed anywhere.".format(d["name_en"]),
+                "Las primeras casas en {} abren este año. Díganos cuándo piensa venir y le escribimos antes de que aparezcan en ningún lado.".format(d["name_es"]),
+            ),
+        )
+    else:
+        cards = "\n".join(
+            '''          <li class="card">
+            <a class="card__link" href="../houses/{slug}.html">
+              <div class="card__media" style="background-image:url(\'../{img}\'); background-position:{pos};" aria-hidden="true"></div>
+              <h3 class="card__title">{name}</h3>
+              <p class="card__text" {line}</p>
+              <p class="card__more" {more}</p>
+            </a>
+          </li>'''.format(
+                slug=h["slug"], img=h["image"], pos=h["image_pos"],
+                name=html.escape(h["name"]),
+                line=t(h["line_en"], h["line_es"]),
+                more=t("See the house", "Ver la casa"),
+            )
+            for h in listed
+        )
+        body = '''        <ul class="journal">
+{cards}
+        </ul>'''.format(cards=cards)
+
     return """
     <section class="section section--alt">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" {eyebrow}</p>
         <h2 class="section__title" {title}</h2>
 
-        <div class="soon">
-          <p class="eyebrow soon__label" {soon}</p>
-          <p class="soon__text" {text}</p>
-        </div>
+{body}
 
         <p class="page-head__cta">
           <a class="btn-solid" href="../index.html#contact" {cta}</a>
@@ -415,11 +453,7 @@ def houses(d):
             "We are taking on very few houses here.",
             "Aquí estamos tomando muy pocas casas.",
         ),
-        soon=t("Opening soon", "Muy pronto"),
-        text=t(
-            "The first houses in {} open later this year. Tell us when you are thinking of coming and we will write to you before they are listed anywhere.".format(d["name_en"]),
-            "Las primeras casas en {} abren este año. Díganos cuándo piensa venir y le escribimos antes de que aparezcan en ningún lado.".format(d["name_es"]),
-        ),
+        body=body,
         cta=t("Tell us when you are coming", "Díganos cuándo viene"),
     )
 

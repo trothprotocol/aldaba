@@ -165,6 +165,14 @@
       ["dates", "Dates", "Fechas"],
       ["guests", "Guests", "Huéspedes"]
     ],
+    "house-enquiry": [
+      ["house", "House", "Casa"],
+      ["name", "Name", "Nombre"],
+      ["email", "Email", "Correo"],
+      ["dates", "Dates", "Fechas"],
+      ["guests", "Guests", "Huéspedes"],
+      ["budget", "Budget", "Presupuesto"]
+    ],
     "owner-enquiry": [
       ["name", "Name", "Nombre"],
       ["phone", "Phone", "Teléfono"],
