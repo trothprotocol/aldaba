@@ -1,0 +1,13 @@
+# Not for the public site. Owner pitch, full-resolution stock originals.
+_private/
+
+# macOS
+.DS_Store
+
+# Loose source files kept on the desktop, not part of the site
+/Trip18-*.webp
+/trip18-golf-travel-vacation-01.webp
+/trasla-logo.webp
+/hertz-logo-png_seeklogo-306649.png
+/maya-trails-vertical-verde-blanco.png
+/53e7d455ec8500a6d1cf4625a53c67cf.jpg

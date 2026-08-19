@@ -1,0 +1,1175 @@
+/* ==========================================================================
+   Aldaba
+   Neutral on purpose. Black, white and grey, no visual identity yet, so the
+   real brand can be applied later without touching the structure.
+   ========================================================================== */
+
+:root {
+  --bg: #FAF9F6;
+  --bg-alt: #F2F0EB;
+
+  --ink: #111111;
+  --ink-70: rgba(17, 17, 17, 0.68);
+  --ink-45: rgba(17, 17, 17, 0.45);
+  --rule: rgba(17, 17, 17, 0.14);
+  --rule-soft: rgba(17, 17, 17, 0.08);
+
+  --light: #FFFFFF;
+  --light-70: rgba(255, 255, 255, 0.72);
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+           Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica,
+          Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, "Roboto Mono", Menlo,
+          Consolas, monospace;
+
+  --header-h: 84px;
+  --gutter: clamp(20px, 4vw, 48px);
+  --max: 1440px;
+
+  /* Width of the page left visible at the right when the menu is open */
+  --sliver: 13vw;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 300;
+  background: var(--ink);
+  color: var(--light);
+  padding: 12px 18px;
+  font-size: 14px;
+}
+.skip:focus { left: 12px; top: 12px; }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Header
+   Three columns so the wordmark sits truly centred.
+   ========================================================================== */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 120;
+  color: var(--light);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: color 240ms ease, background-color 240ms ease, border-color 240ms ease;
+}
+
+.header.is-solid {
+  color: var(--ink);
+  background: var(--bg);
+  border-bottom-color: var(--rule-soft);
+}
+
+.header__bar {
+  height: var(--header-h);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 20px;
+}
+
+/* --- Left: menu trigger -------------------------------------------------- */
+
+.menu-trigger {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.menu-trigger__bars {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 9px;
+}
+.menu-trigger__bars::before,
+.menu-trigger__bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 260ms ease;
+}
+.menu-trigger__bars::before { top: 0; }
+.menu-trigger__bars::after  { bottom: 0; }
+
+.menu-trigger__word {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* --- Centre: wordmark ---------------------------------------------------- */
+
+.wordmark {
+  justify-self: center;
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.8vw, 23px);
+  line-height: 1;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em; /* balances the trailing letterspace */
+  text-transform: uppercase;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* --- Right: language and reserve ----------------------------------------- */
+
+.header__right {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.4vw, 34px);
+}
+
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lang__opt {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 2px 0 5px;
+  border-bottom: 1px solid transparent;
+  opacity: 0.55;
+  transition: opacity 180ms ease, border-color 180ms ease;
+}
+.lang__opt:hover { opacity: 1; }
+.lang__opt[aria-pressed="true"] {
+  opacity: 1;
+  border-bottom-color: currentColor;
+}
+
+.reserve {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 13px 24px;
+  border: 1px solid currentColor;
+  border-color: color-mix(in srgb, currentColor 45%, transparent);
+  white-space: nowrap;
+  transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease;
+}
+.header:not(.is-solid) .reserve:hover {
+  background: var(--light);
+  color: var(--ink);
+  border-color: var(--light);
+}
+.header.is-solid .reserve:hover {
+  background: var(--ink);
+  color: var(--light);
+  border-color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  :root { --header-h: 68px; --sliver: 44px; }
+  .menu-trigger__word { display: none; }
+  .lang { display: none; }
+  .reserve { padding: 11px 16px; font-size: 10px; }
+}
+
+/* ==========================================================================
+   Menu overlay
+   Slides from the left, leaves a sliver of the dimmed page at the right.
+   ========================================================================== */
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 130;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 320ms ease, visibility 320ms;
+}
+
+.menu-open .scrim { opacity: 1; visibility: visible; }
+
+.menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: var(--sliver);
+  z-index: 140;
+  background: var(--bg);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--header-h) + clamp(28px, 5vw, 64px)) var(--gutter) clamp(32px, 5vw, 56px);
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), visibility 420ms;
+  overflow-y: auto;
+}
+
+.menu-open .menu { transform: translateX(0); visibility: visible; }
+
+/* Wordmark left, close right, on the same line as the header bar */
+.menu__head {
+  position: absolute;
+  top: 0;
+  left: var(--gutter);
+  right: var(--gutter);
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu__wordmark {
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.8vw, 23px);
+  line-height: 1;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  text-transform: uppercase;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.menu__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+}
+.menu__close-mark {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+.menu__close-mark::before,
+.menu__close-mark::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+}
+.menu__close-mark::before { transform: rotate(45deg); }
+.menu__close-mark::after  { transform: rotate(-45deg); }
+
+/* Primary sections */
+.menu__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu__link {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(34px, 5.4vw, 68px);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  padding: clamp(6px, 0.8vw, 12px) 0;
+  opacity: 0.92;
+  transition: opacity 200ms ease;
+}
+.menu__link:hover { opacity: 0.5; }
+
+/* Quick access */
+.menu__quick {
+  margin-top: auto;
+  padding-top: clamp(32px, 5vw, 56px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px clamp(24px, 3vw, 44px);
+  border-top: 1px solid var(--rule-soft);
+}
+
+.menu__quick a {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-70);
+  transition: color 180ms ease;
+}
+.menu__quick a:hover { color: var(--ink); }
+
+/* Language inside the menu, for small screens */
+.menu__lang { display: none; margin-top: 26px; }
+@media (max-width: 900px) {
+  .menu__lang { display: flex; gap: 14px; }
+  .menu__lang .lang__opt { color: var(--ink); }
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  color: var(--light);
+  overflow: hidden;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,0.40) 0%, rgba(0,0,0,0.10) 38%, rgba(0,0,0,0.72) 100%),
+    url("img/hero-volcanoes.jpg");
+  background-size: cover, cover;
+  background-position: center, center 42%;
+  background-repeat: no-repeat;
+}
+
+.hero__body {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-bottom: clamp(52px, 8vw, 96px);
+  display: flex;
+  justify-content: center;
+}
+
+/* Historia destacada. Cambia cuando hay algo nuevo que contar. */
+.feature {
+  max-width: 46ch;
+  text-align: center;
+}
+
+.feature__eyebrow {
+  color: var(--light-70);
+  margin: 0 0 clamp(14px, 1.6vw, 20px);
+}
+
+.feature__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(26px, 3.1vw, 40px);
+  line-height: 1.24;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.feature__text {
+  font-size: 15px;
+  line-height: 1.62;
+  color: var(--light-70);
+  margin: 16px 0 0;
+}
+
+.feature__cta { margin-top: clamp(24px, 2.8vw, 34px); }
+
+/* Botón de contorno, mismo lenguaje que Reserve */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 14px 26px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: var(--light);
+  transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease;
+}
+.btn-outline:hover {
+  background: var(--light);
+  color: var(--ink);
+  border-color: var(--light);
+}
+
+/* Visible solo para lectores de pantalla */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+
+.section {
+  padding-top: clamp(72px, 10vw, 128px);
+  padding-bottom: clamp(72px, 10vw, 128px);
+  border-top: 1px solid var(--rule-soft);
+}
+
+.section--alt { background: var(--bg-alt); border-top-color: transparent; }
+
+.section__eyebrow { color: var(--ink-45); margin-bottom: clamp(22px, 3vw, 32px); }
+
+.section__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  margin: 0;
+  max-width: 24ch;
+}
+
+.section__lead {
+  max-width: 58ch;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-70);
+  margin: 22px 0 0;
+}
+
+/* Coming soon plate, for Destinations until there are houses */
+.soon {
+  margin-top: clamp(44px, 6vw, 72px);
+  border: 1px solid var(--rule);
+  padding: clamp(56px, 9vw, 104px) var(--gutter);
+  text-align: center;
+}
+
+.soon__label { color: var(--ink-45); margin: 0 0 14px; }
+
+.soon__text {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.35;
+  margin: 0 auto;
+  max-width: 26ch;
+}
+
+/* ==========================================================================
+   Journal
+   Editorial cards. Image, small category, serif title, short standfirst.
+   ========================================================================== */
+
+.journal {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(28px, 3.2vw, 48px);
+  margin: clamp(44px, 6vw, 72px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card { display: flex; flex-direction: column; }
+
+.card__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background-color: #d9d6cf;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.card__cat {
+  color: var(--ink-45);
+  margin: 22px 0 10px;
+}
+
+.card__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(21px, 1.9vw, 26px);
+  line-height: 1.28;
+  letter-spacing: -0.008em;
+  margin: 0 0 10px;
+}
+
+.card__text {
+  font-size: 15px;
+  line-height: 1.62;
+  color: var(--ink-70);
+  margin: 0 0 18px;
+}
+
+.card__more {
+  margin-top: auto;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--rule);
+  align-self: flex-start;
+  transition: border-color 200ms ease;
+}
+.card__more:hover { border-bottom-color: var(--ink); }
+
+@media (max-width: 860px) {
+  .journal { grid-template-columns: 1fr; max-width: 460px; }
+}
+
+/* ==========================================================================
+   Operated with
+   Quiet credit line for the companies behind the concierge.
+   ========================================================================== */
+
+.operated {
+  margin-top: clamp(52px, 6vw, 84px);
+  padding-top: clamp(24px, 3vw, 34px);
+  border-top: 1px solid var(--rule);
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 14px clamp(24px, 3.4vw, 48px);
+}
+
+.operated__label { color: var(--ink-45); flex: 0 0 auto; }
+
+.operated__names {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px clamp(20px, 2.6vw, 38px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.operated__name {
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.6vw, 20px);
+  white-space: nowrap;
+}
+
+.operated__note {
+  margin: 0 0 0 auto;
+  font-size: 14px;
+  color: var(--ink-45);
+}
+
+@media (max-width: 860px) {
+  .operated__note { margin-left: 0; flex-basis: 100%; }
+}
+
+/* ==========================================================================
+   Contact
+   ========================================================================== */
+
+.contact {
+  display: grid;
+  grid-template-columns: 1fr minmax(340px, 42%);
+  gap: clamp(36px, 5vw, 80px);
+  align-items: start;
+  margin-top: clamp(40px, 5vw, 64px);
+}
+
+.field { display: block; margin-bottom: 20px; }
+
+.field__label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-45);
+  margin-bottom: 8px;
+}
+
+.field__input,
+.field__area {
+  width: 100%;
+  font: inherit;
+  font-size: 16px;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  padding: 8px 0 10px;
+  border-radius: 0;
+  transition: border-color 200ms ease;
+}
+.field__input:focus,
+.field__area:focus {
+  outline: none;
+  border-bottom-color: var(--ink);
+}
+.field__area { resize: vertical; min-height: 92px; }
+
+.field--pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.btn-solid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 16px 30px;
+  border: 1px solid var(--ink);
+  margin-top: 12px;
+  transition: opacity 200ms ease;
+}
+.btn-solid:hover { opacity: 0.84; }
+
+.aside__row { padding: 18px 0; border-top: 1px solid var(--rule-soft); }
+.aside__row:first-child { border-top: 0; padding-top: 0; }
+
+.aside__label { color: var(--ink-45); margin: 0 0 6px; }
+
+.aside__value {
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.7vw, 21px);
+  margin: 0;
+}
+
+.aside__note {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-70);
+  margin: 6px 0 0;
+}
+
+@media (max-width: 860px) {
+  .contact { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   Owner page pieces
+   ========================================================================== */
+
+.page-head { padding-top: calc(var(--header-h) + clamp(48px, 7vw, 96px)); }
+
+.page-head__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(32px, 4.4vw, 56px);
+  line-height: 1.16;
+  letter-spacing: -0.015em;
+  margin: 18px 0 0;
+  max-width: 20ch;
+}
+
+.page-head__lead {
+  max-width: 56ch;
+  font-size: clamp(17px, 1.4vw, 19px);
+  line-height: 1.65;
+  color: var(--ink-70);
+  margin: 24px 0 0;
+}
+
+.page-head__cta { margin-top: clamp(28px, 3.4vw, 40px); }
+
+/* Steps */
+.steps { margin: clamp(44px, 5vw, 68px) 0 0; padding: 0; list-style: none; }
+
+.step {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 8px 24px;
+  padding: 24px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.step__num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ink-45);
+  padding-top: 5px;
+}
+
+.step__title { font-family: var(--serif); font-size: 20px; font-weight: 400; margin: 0 0 6px; }
+.step__text { font-size: 15px; line-height: 1.62; color: var(--ink-70); margin: 0; max-width: 62ch; }
+
+@media (max-width: 560px) {
+  .step { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* Notables */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 2.4vw, 36px);
+  margin: clamp(40px, 5vw, 64px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat { border-top: 1px solid var(--ink); padding-top: 18px; }
+
+.stat__value {
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.4vw, 44px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
+}
+
+.stat__label {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-70);
+  margin: 0;
+}
+
+@media (max-width: 860px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .stats { grid-template-columns: 1fr; } }
+
+/* Gráfico */
+.chart {
+  margin-top: clamp(40px, 5vw, 64px);
+  border: 1px solid var(--rule);
+  padding: clamp(26px, 3.4vw, 44px);
+  background: var(--bg);
+}
+
+.chart__title {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2vw, 25px);
+  font-weight: 400;
+  margin: 0;
+}
+
+.chart__sub {
+  font-size: 14px;
+  color: var(--ink-45);
+  margin: 8px 0 0;
+}
+
+.chart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chart__key {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  color: var(--ink-70);
+}
+
+.chart__swatch {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 auto;
+}
+
+.chart__figure { margin: 22px 0 0; }
+.chart__figure svg {
+  display: block;
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+}
+
+.chart__note {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-45);
+  margin: 20px 0 0;
+  max-width: 68ch;
+}
+
+/* Worked example */
+.example {
+  margin-top: clamp(40px, 5vw, 64px);
+  border: 1px solid var(--rule);
+  padding: clamp(26px, 3.4vw, 42px);
+  background: var(--bg);
+}
+
+.example__title {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2vw, 25px);
+  font-weight: 400;
+  margin: 0 0 6px;
+}
+
+.example__rows { margin: 22px 0 0; padding: 0; list-style: none; }
+
+.example__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  padding: 13px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.example__row--total { border-top: 1px solid var(--ink); }
+
+.example__key { font-size: 15px; color: var(--ink-70); }
+.example__val { font-family: var(--mono); font-size: 14px; white-space: nowrap; }
+.example__row--total .example__key,
+.example__row--total .example__val { color: var(--ink); font-weight: 500; }
+
+.example__note {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-45);
+  margin: 20px 0 0;
+}
+
+/* ==========================================================================
+   Grid of points
+   ========================================================================== */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(28px, 3vw, 40px);
+  margin: clamp(48px, 6vw, 76px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.grid--three { grid-template-columns: repeat(3, 1fr); }
+
+.grid__item { border-top: 1px solid var(--rule); padding-top: 20px; }
+
+.grid__num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ink-45);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.grid__title {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 400;
+  margin: 0 0 10px;
+}
+
+.grid__text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-70);
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .grid, .grid--three { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .grid, .grid--three { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; scroll-behavior: auto; }
+}
+
+/* ==========================================================================
+   Temporary
+   ========================================================================== */
+
+.placeholder {
+  padding: 84px 0;
+  text-align: center;
+  border-top: 1px solid var(--rule-soft);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-45);
+}
+
+/* ==========================================================================
+   Footer
+   Quiet on purpose. The owners entry lives here and nowhere else, so the
+   public site reads as a travel site and the owner conversation stays private.
+   ========================================================================== */
+
+.footer {
+  border-top: 1px solid var(--rule-soft);
+  padding: 40px 0 56px;
+}
+
+.footer__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px 32px;
+}
+
+.footer__mark {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 20px;
+  letter-spacing: 0.04em;
+}
+
+.footer__line {
+  margin: 0;
+  color: var(--ink-45);
+  font-size: 14px;
+}
+
+.footer__links {
+  margin-left: auto;
+  display: flex;
+  gap: 28px;
+}
+
+.footer__links a {
+  color: var(--ink-45);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--mono);
+}
+
+.footer__links a:hover { color: var(--ink); }
+
+@media (max-width: 700px) {
+  .footer__links { margin-left: 0; width: 100%; gap: 20px; }
+}
+
+/* The owners page uses the menu slot as a plain back link, so the word has to
+   survive the narrow breakpoint that hides it beside the hamburger. */
+a.menu-trigger .menu-trigger__word { display: inline !important; }
+
+/* ==========================================================================
+   Destination pages
+   Same parts as the homepage, one notch quieter: the hero is shorter because
+   it is a chapter opening rather than the front door.
+   ========================================================================== */
+
+.hero--page { min-height: 62svh; }
+
+/* Destinations we do not have a licensed photograph for yet. Deliberate,
+   not broken: drop an image into the entry in build-destinations.py and this
+   panel disappears. */
+.hero--plain { background: var(--ink); }
+
+.hero__media--plain {
+  background-image:
+    radial-gradient(120% 90% at 50% 0%, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 62%);
+}
+
+.card__media--plain {
+  background-color: var(--bg-alt);
+  background-image:
+    radial-gradient(90% 70% at 50% 30%, rgba(17,17,17,0.06) 0%, rgba(17,17,17,0) 70%);
+  border: 1px solid var(--rule-soft);
+}
+
+.card__link { display: flex; flex-direction: column; }
+.card__link .card__title { margin-top: 22px; }
+
+/* Practical rows. Mono label, one sentence, hairline above. */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 3vw, 44px);
+  margin: clamp(40px, 5vw, 64px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fact { border-top: 1px solid var(--rule); padding-top: 18px; }
+
+.fact__label { color: var(--ink-45); margin-bottom: 12px; }
+
+.fact__text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-70);
+  margin: 0;
+  max-width: 32ch;
+}
+
+@media (max-width: 760px) {
+  .facts { grid-template-columns: 1fr; gap: 24px; }
+}
+
+/* The destination rail on the homepage. */
+.journal--four { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 900px) {
+  .journal--four { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ==========================================================================
+   Hero video
+   The still is the video's own first frame, so there is no jump when it
+   starts, and it stays put for anyone who asks for less motion.
+   ========================================================================== */
+
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+}
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,0.42) 0%,
+    rgba(0,0,0,0.10) 38%,
+    rgba(0,0,0,0.72) 100%);
+}
+
+/* The homepage hero no longer needs its background photograph. */
+.hero .hero__media:has(.hero__video) { background-image: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__video { display: none; }
+  .hero .hero__media:has(.hero__video) {
+    background-image: url("img/hero-fuego-poster.jpg");
+    background-size: cover;
+    background-position: center 45%;
+  }
+}
+
+/* ==========================================================================
+   The line, under the wordmark
+   Only over the hero. It leaves as soon as the page moves, so it reads as
+   something said once on arrival rather than a strapline stuck to the header.
+   ========================================================================== */
+
+.wordmark-block {
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.wordmark__tag {
+  position: absolute;
+  top: calc(100% + 7px);
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  opacity: 0.86;
+  transition: opacity 320ms ease, transform 320ms ease;
+}
+
+.header.is-moved .wordmark__tag {
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wordmark__tag { transition: none; }
+}
+
+@media (max-width: 560px) {
+  .wordmark__tag { font-size: 12px; }
+}
+
+/* The same line, kept in English in both languages, closing the page. */
+.footer__tag {
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-70);
+}
+
+/* ==========================================================================
+   Partner logos
+   The files are cream, drawn for dark grounds, so they are knocked down to a
+   single ink weight here. That also stops four different brand colours from
+   fighting each other in one row.
+   ========================================================================== */
+
+.operated__names { align-items: center; }
+
+.logo {
+  display: block;
+  height: 26px;
+  width: auto;
+  max-width: 148px;
+  object-fit: contain;
+  filter: brightness(0);
+  opacity: 0.55;
+}
+
+/* Trip18 is a stacked mark rather than a wordmark, so it needs its own height
+   to sit at the same optical weight as the others. */
+.logo--tall { height: 50px; max-width: 64px; }
+
+/* The Hertz mark is bold italic and reads heavier than the rest at the same
+   height, so it is set one notch smaller to even the row out. */
+.logo[alt="Hertz Guatemala"] { height: 23px; }
+
+@media (max-width: 560px) {
+  .logo { height: 22px; }
+  .logo--tall { height: 42px; }
+}
