@@ -1418,3 +1418,57 @@ a.menu-trigger .menu-trigger__word { display: inline !important; }
 
 /* A hairline of sage closes the page, above the footer. */
 .footer { border-top-color: var(--sage); }
+
+/* ==========================================================================
+   Footer
+   The whole collection lives down here, the way it does on aman.com: every
+   house, every place, and the few pages that are not either.
+   ========================================================================== */
+
+.footer__cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 4vw, 64px);
+  padding-bottom: clamp(36px, 4vw, 56px);
+}
+
+.footer__head { color: var(--ink-45); margin-bottom: 18px; }
+
+.footer__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer__list a {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--ink-70);
+  border-bottom: 1px solid transparent;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+
+.footer__list a:hover { color: var(--jade); border-bottom-color: var(--jade); }
+
+.footer__bar {
+  border-top: 1px solid var(--rule-soft);
+  padding-top: 22px;
+}
+
+.footer__fine { margin: 0 0 0 auto; font-size: 13px; color: var(--ink-45); }
+
+/* House cards on the homepage: four across, so each one is small enough to
+   read as a collection rather than a single hero listing. */
+.houses .card__media { aspect-ratio: 4 / 3; }
+.houses .card__cat { margin: 18px 0 8px; color: var(--ink-45); }
+.houses .card__title { font-size: 20px; }
+
+@media (max-width: 860px) {
+  .footer__cols { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .footer__cols { grid-template-columns: 1fr; gap: 28px; }
+}

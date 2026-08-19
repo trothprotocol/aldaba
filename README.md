@@ -30,6 +30,22 @@ No nightly rate appears on a house page. Budget is a field the guest fills in,
 never a number we publish, and services are named but never bundled into the
 house.
 
+## About page
+
+`about.html` comes from `build-about.py`. Same shell, same footer.
+
+## The footer
+
+`common.py` reads the house and destination lists out of the two build
+scripts, so the footer lists the whole collection and a new house appears
+everywhere at once. After adding a house, run all three builds:
+
+    python3 build-houses.py && python3 build-destinations.py && python3 build-about.py
+
+`index.html` and `propietarios.html` carry the same footer between
+`<!-- footer:start -->` and `<!-- footer:end -->`; paste a fresh
+`common.footer_html("")` between those markers when the collection changes.
+
 ## Languages
 
 English is primary. Both languages live in one document: every translatable

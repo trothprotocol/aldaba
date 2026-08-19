@@ -14,16 +14,18 @@ Both languages live in one document (data-en / data-es), English primary.
 import os
 import html
 
+import common
+
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "destinations")
 
 DESTINATIONS = [
     {
         "slug": "antigua",
-        "image": "img/volcano.jpg",
-        "image_pos": "center 58%",
-        "alt_en": "Fuego and Acatenango above Antigua at first light",
-        "alt_es": "Fuego y Acatenango sobre Antigua a primera luz",
+        "image": "img/antigua-arch.jpg",
+        "image_pos": "center 62%",
+        "alt_en": "The Santa Catalina arch with Agua behind it at dawn",
+        "alt_es": "El arco de Santa Catalina con el Agua detrás al amanecer",
         "eyebrow_en": "Guatemala", "eyebrow_es": "Guatemala",
         "name_en": "Antigua", "name_es": "Antigua",
         "title_en": "A city that keeps its own hours.",
@@ -63,12 +65,6 @@ DESTINATIONS = [
     },
     {
         "slug": "atitlan",
-        "houses": [
-            {"slug": "choq", "name": "Aldaba Choq' (test)",
-             "image": "img/houses/choq-01.jpg", "image_pos": "center 55%",
-             "line_en": "A glass room on the water, with the deck running out over the lake.",
-             "line_es": "Una habitación de vidrio sobre el agua, con la terraza saliendo sobre el lago."},
-        ],
         "image": "img/lake.jpg",
         "image_pos": "center 52%",
         "alt_en": "Lake Atitlán with its volcanoes at dawn",
@@ -270,6 +266,7 @@ def header_and_menu():
     <ul class="menu__list">
       <li><a class="menu__link" href="../index.html#destinations" data-en="Destinations" data-es="Destinos">Destinations</a></li>
       <li><a class="menu__link" href="../index.html#experiences" data-en="Experiences" data-es="Experiencias">Experiences</a></li>
+      <li><a class="menu__link" href="../about.html" data-en="About us" data-es="Quiénes somos">About us</a></li>
       <li><a class="menu__link" href="../index.html#concierge" data-en="Concierge" data-es="Concierge">Concierge</a></li>
       <li><a class="menu__link" href="../index.html#contact" data-en="Contact us" data-es="Contáctenos">Contact us</a></li>
     </ul>
@@ -349,7 +346,7 @@ def days(d):
             "          </li>".format(n=i, title=t(en_t, es_t), text=t(en_x, es_x))
         )
     return """
-    <section class="section section--alt reveal">
+    <section class="section reveal">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" {eyebrow}</p>
         <h2 class="section__title" {title}</h2>
@@ -381,7 +378,7 @@ def facts(d):
             "          </li>".format(label=t(en_t, es_t), text=t(en_x, es_x))
         )
     return """
-    <section class="section reveal">
+    <section class="section section--alt reveal">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" {eyebrow}</p>
         <h2 class="section__title" {title}</h2>
@@ -400,7 +397,7 @@ def facts(d):
 
 def houses(d):
     """Houses we have here, or the plate that stands in until we do."""
-    listed = d.get("houses") or []
+    listed = [h for h in common.houses() if h["destination_slug"] == d["slug"]]
 
     if not listed:
         body = """        <div class="soon">
@@ -423,9 +420,9 @@ def houses(d):
               <p class="card__more" {more}</p>
             </a>
           </li>'''.format(
-                slug=h["slug"], img=h["image"], pos=h["image_pos"],
-                name=html.escape(h["name"]),
-                line=t(h["line_en"], h["line_es"]),
+                slug=h["slug"], img=h["image"], pos="center 55%",
+                name=html.escape(common.house_name(h)),
+                line=t(h["lead_en"], h["lead_es"]),
                 more=t("See the house", "Ver la casa"),
             )
             for h in listed
@@ -504,25 +501,11 @@ def other_destinations(current):
 
 
 def footer():
-    return """
-  <footer class="footer">
-    <div class="wrap footer__bar">
-      <p class="footer__mark"><img class="wordmark__img" src="../img/brand/wordmark-ink.png" alt="" aria-hidden="true"><span class="sr-only">Aldaba</span></p>
-      <p class="footer__tag">Well received.</p>
-      <nav class="footer__links" data-en-label="Secondary" data-es-label="Secundario" aria-label="Secondary">
-        <a href="../index.html#contact" {contact}</a>
-        <a href="../propietarios.html" rel="nofollow" {owners}</a>
-      </nav>
-    </div>
-  </footer>
-
+    return common.footer_html("../") + """
   <script src="../script.js"></script>
 </body>
 </html>
-""".format(
-        contact=t("Contact us", "Contáctenos"),
-        owners=t("Property owners", "Propietarios"),
-    )
+"""
 
 
 def build():
@@ -533,9 +516,9 @@ def build():
             + header_and_menu()
             + hero(d)
             + place(d)
+            + houses(d)
             + days(d)
             + facts(d)
-            + houses(d)
             + other_destinations(d)
             + footer()
         )

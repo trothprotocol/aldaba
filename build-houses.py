@@ -19,6 +19,8 @@ inventory. Bedroom counts and practical details are placeholders.
 import os
 import html
 
+import common
+
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "houses")
 
@@ -133,6 +135,318 @@ HOUSES = [
             ("Lo que no hay", "Ni televisión ni piscina. El lago está a treinta segundos y está frío."),
         ],
     },
+    {
+        "slug": "ja",
+        "test": True,
+        "name": "Aldaba Ja'",
+        "destination_slug": "antigua",
+        "place_en": "Antigua", "place_es": "Antigua",
+        "image": "img/houses/ja-01.jpg",
+        "alt_en": "A lit house opening onto its garden at dusk",
+        "alt_es": "Una casa encendida abriéndose al jardín al anochecer",
+
+        "lead_en": "The whole ground floor opens, and the garden becomes another room. Agua stands over the wall at the end of it.",
+        "lead_es": "Toda la planta baja se abre y el jardín se vuelve otro cuarto. El Agua se levanta detrás del muro del fondo.",
+
+        "body_en": [
+            "It is a quiet street ten minutes on foot from the arch, which is the correct distance: close enough to walk in for dinner, far enough that the bells arrive softened. Behind the wall the house turns its back on all of it and looks at the volcano instead.",
+            "Everything happens on the ground floor. The kitchen opens to the terrace, the terrace opens to the grass, and by the second evening nobody is bothering to close anything. Four bedrooms upstairs, each with a bath, each cool enough at night to want the blanket.",
+        ],
+        "body_es": [
+            "Es una calle callada a diez minutos a pie del arco, que es la distancia correcta: cerca para ir caminando a cenar, lejos para que las campanas lleguen suaves. Detrás del muro la casa le da la espalda a todo eso y mira al volcán.",
+            "Todo pasa en la planta baja. La cocina abre a la terraza, la terraza abre al pasto, y para la segunda noche ya nadie se molesta en cerrar nada. Cuatro habitaciones arriba, cada una con baño, y noches lo bastante frescas para querer la cobija.",
+        ],
+
+        "stats_en": [("Guests", "8"), ("Bedrooms", "4"), ("Baths", "4"), ("Arrival", "By car")],
+        "stats_es": [("Huéspedes", "8"), ("Habitaciones", "4"), ("Baños", "4"), ("Llegada", "En carro")],
+
+        "rooms_en": [
+            ("The long doors", "The ground floor folds open across its whole width. Most mornings it never gets closed again."),
+            ("The garden", "Grass, old trees, and the volcano standing behind the far wall as though it were part of the property."),
+            ("The kitchen", "Where everyone ends up, whether or not a chef is cooking in it that night."),
+            ("The fire", "Lit at six by someone who knows how, because Antigua is colder after dark than anyone expects."),
+            ("Four rooms upstairs", "Thick walls, cool floors, and shutters that keep the light out until you decide otherwise."),
+            ("The house team", "A housekeeper and a caretaker who will have your coffee right by the second morning."),
+        ],
+        "rooms_es": [
+            ("Las puertas largas", "La planta baja se abre de lado a lado. Casi todas las mañanas ya no se vuelve a cerrar."),
+            ("El jardín", "Pasto, árboles viejos, y el volcán parado detrás del muro del fondo como si fuera parte del terreno."),
+            ("La cocina", "Donde termina todo el mundo, cocine o no un chef esa noche."),
+            ("El fuego", "Encendido a las seis por alguien que sabe hacerlo, porque Antigua es más fría de noche de lo que cualquiera espera."),
+            ("Cuatro cuartos arriba", "Paredes gruesas, pisos frescos, y postigos que dejan la luz afuera hasta que usted decida."),
+            ("La casa", "Una camarista y un encargado que para la segunda mañana ya le dan bien el café."),
+        ],
+
+        "programmes": [
+            {
+                "key": "ascent",
+                "name_en": "Ascent", "name_es": "Ascenso",
+                "title_en": "Come home tired.",
+                "title_es": "Volver cansado.",
+                "text_en": "The trailhead is twenty minutes from the door, and the fire will be lit when you get back.",
+                "text_es": "El inicio del camino está a veinte minutos de la puerta, y el fuego estará encendido cuando vuelva.",
+                "beats_en": [
+                    ("Before light", "Acatenango, with the camp already standing and Fuego throwing light across the saddle after dark."),
+                    ("The day", "Coffee slopes on foot, or the old road to the ridge, with somebody who has walked it since he was a boy."),
+                    ("After dark", "Back through the arch for dinner, and a fire someone else lit."),
+                ],
+                "beats_es": [
+                    ("Antes de la luz", "El Acatenango, con el campamento ya montado y el Fuego tirando luz sobre la silla cuando cae la noche."),
+                    ("El día", "Laderas de café a pie, o el camino viejo a la cresta, con alguien que lo camina desde niño."),
+                    ("De noche", "De vuelta por el arco a cenar, y un fuego que encendió otro."),
+                ],
+            },
+            {
+                "key": "stillness",
+                "name_en": "Stillness", "name_es": "Reposo",
+                "title_en": "Nothing before ten.",
+                "title_es": "Nada antes de las diez.",
+                "text_en": "A garden, a wall, and a volcano. The city can wait until the light goes long.",
+                "text_es": "Un jardín, un muro y un volcán. La ciudad puede esperar a que la luz se alargue.",
+                "beats_en": [
+                    ("The morning", "Breakfast under the trees, and the doors open before anybody is dressed."),
+                    ("The day", "A massage in the garden, an afternoon in the shade, and nowhere at all to be."),
+                    ("After dark", "A chef in the kitchen, one long table, and the fire going down slowly."),
+                ],
+                "beats_es": [
+                    ("La mañana", "Desayuno bajo los árboles, y las puertas abiertas antes de que nadie se haya vestido."),
+                    ("El día", "Un masaje en el jardín, una tarde a la sombra, y ningún lugar donde estar."),
+                    ("De noche", "Un chef en la cocina, una sola mesa larga, y el fuego bajando despacio."),
+                ],
+            },
+            {
+                "key": "root",
+                "name_en": "Root", "name_es": "Raíz",
+                "title_en": "A working coffee town, not a film set.",
+                "title_es": "Un pueblo cafetalero de verdad, no un set.",
+                "text_en": "The city is four hundred years old and still doing what it always did.",
+                "text_es": "La ciudad tiene cuatrocientos años y sigue haciendo lo que siempre hizo.",
+                "beats_en": [
+                    ("The morning", "A finca at picking time with the family who own the slope, and coffee drunk metres from the tree."),
+                    ("The day", "The market before the tour buses, and a workshop where the jade is still cut by hand."),
+                    ("After dark", "Somebody's kitchen rather than a restaurant, at the hour they actually eat."),
+                ],
+                "beats_es": [
+                    ("La mañana", "Una finca en corte con la familia dueña de la ladera, y café tomado a metros del árbol."),
+                    ("El día", "El mercado antes de los buses, y un taller donde el jade todavía se corta a mano."),
+                    ("De noche", "La cocina de alguien y no un restaurante, a la hora en que de verdad se cena."),
+                ],
+            },
+        ],
+
+        "facts_en": [
+            ("Getting here", "Fifty minutes from the airport, door to door, with a driver waiting however late you land."),
+            ("Best months", "November to April. Cold at night, which is what the fire is for."),
+            ("One week to know about", "Semana Santa. The most beautiful week of the year here, and the fullest."),
+        ],
+        "facts_es": [
+            ("Cómo se llega", "Cincuenta minutos del aeropuerto, de puerta a puerta, con un chofer esperando por tarde que aterrice."),
+            ("Mejores meses", "De noviembre a abril. Frío de noche, que es para lo que está la chimenea."),
+            ("Una semana que conviene saber", "Semana Santa. La semana más hermosa del año aquí, y la más llena."),
+        ],
+    },
+    {
+        "slug": "ki",
+        "test": True,
+        "name": "Aldaba Ki'",
+        "destination_slug": "rio-dulce",
+        "place_en": "Río Dulce", "place_es": "Río Dulce",
+        "image": "img/houses/ki-01.jpg",
+        "alt_en": "A bedroom under a high thatched roof, open to the trees",
+        "alt_es": "Una habitación bajo un techo alto de palma, abierta a los árboles",
+
+        "lead_en": "A room under a high roof of palm, open on two sides, with the river moving somewhere below the trees.",
+        "lead_es": "Un cuarto bajo un techo alto de palma, abierto por dos lados, con el río moviéndose en algún lugar bajo los árboles.",
+
+        "body_en": [
+            "You arrive by boat because there is no other way, and that changes the register of the whole week before you have unpacked. The house stands back in the trees on its own stretch of bank, hardwood and thatch, built high so the air moves through it.",
+            "At six the howler monkeys start somewhere upriver and the birds answer, and it is the loudest the place will get all day. After that it is water, insects and rain on the palm, which is the sound most people say they came back for.",
+        ],
+        "body_es": [
+            "Uno llega en lancha porque no hay otra manera, y eso cambia el tono de toda la semana antes de deshacer la maleta. La casa está retirada entre los árboles, en su propio tramo de orilla, de madera dura y palma, levantada para que el aire la atraviese.",
+            "A las seis empiezan los saraguates río arriba y contestan los pájaros, y es lo más ruidoso que se pone el lugar en todo el día. Después es agua, insectos y lluvia sobre la palma, que es el sonido por el que casi todos dicen que volvieron.",
+        ],
+
+        "stats_en": [("Guests", "6"), ("Bedrooms", "3"), ("Baths", "3"), ("Arrival", "By boat")],
+        "stats_es": [("Huéspedes", "6"), ("Habitaciones", "3"), ("Baños", "3"), ("Llegada", "En lancha")],
+
+        "rooms_en": [
+            ("Under the palm", "Twenty feet of thatch above the bed, open on two sides, with mosquito nets that are actually beautiful."),
+            ("The deck over the water", "Where breakfast happens, and where somebody always ends up asleep in the afternoon."),
+            ("The dock", "Your own boat, and a captain who knows which channels are worth the detour."),
+            ("The kitchen", "River fish, coconut, and whatever came up from Livingston that morning."),
+            ("The hammocks", "Four of them. This is not a joke about doing nothing; it is the actual plan."),
+            ("The house team", "A cook and a caretaker who live along the bank and have done all their lives."),
+        ],
+        "rooms_es": [
+            ("Bajo la palma", "Seis metros de techo sobre la cama, abierta por dos lados, con mosquiteros que de verdad son bonitos."),
+            ("La terraza sobre el agua", "Donde se desayuna, y donde siempre termina alguien dormido por la tarde."),
+            ("El muelle", "Su propia lancha, y un capitán que sabe qué canales valen el desvío."),
+            ("La cocina", "Pescado de río, coco, y lo que haya subido de Livingston esa mañana."),
+            ("Las hamacas", "Cuatro. No es un chiste sobre no hacer nada; es el plan de verdad."),
+            ("La casa", "Una cocinera y un encargado que viven en la orilla y siempre han vivido ahí."),
+        ],
+
+        "programmes": [
+            {
+                "key": "ascent",
+                "name_en": "Ascent", "name_es": "Ascenso",
+                "title_en": "Everything here is reached by water.",
+                "title_es": "Aquí todo se alcanza por agua.",
+                "text_en": "Kayaks at dawn, the gorge at speed, and a beach at the end of it.",
+                "text_es": "Kayaks al amanecer, el cañón a toda velocidad, y una playa al final.",
+                "beats_en": [
+                    ("Before light", "Out on the water while the mist is still sitting on it, and the birds are the only traffic."),
+                    ("The day", "Down the gorge, out to the cays, and a swim where the river finally turns to sea."),
+                    ("After dark", "Back late, salt on everything, and dinner that was swimming this morning."),
+                ],
+                "beats_es": [
+                    ("Antes de la luz", "Al agua mientras la neblina todavía está encima, con los pájaros como único tráfico."),
+                    ("El día", "Cañón abajo, salir a los cayos, y un clavado donde el río por fin se hace mar."),
+                    ("De noche", "Volver tarde, sal en todo, y una cena que esta mañana estaba nadando."),
+                ],
+            },
+            {
+                "key": "stillness",
+                "name_en": "Stillness", "name_es": "Reposo",
+                "title_en": "The hammock is the itinerary.",
+                "title_es": "La hamaca es el itinerario.",
+                "text_en": "Rain on palm, a book you will not finish, and a river that does the moving for you.",
+                "text_es": "Lluvia sobre la palma, un libro que no va a terminar, y un río que se mueve por usted.",
+                "beats_en": [
+                    ("The morning", "The hot springs on the bank, reached before anybody else is awake to reach them."),
+                    ("The day", "Nothing, deliberately, interrupted only by lunch and possibly a swim."),
+                    ("After dark", "The generator off, the lamps low, and more stars than anyone is ready for."),
+                ],
+                "beats_es": [
+                    ("La mañana", "Las aguas calientes de la orilla, alcanzadas antes de que nadie más despierte para alcanzarlas."),
+                    ("El día", "Nada, a propósito, interrumpido solo por el almuerzo y quizá un clavado."),
+                    ("De noche", "La planta apagada, las lámparas bajas, y más estrellas de las que uno tiene previstas."),
+                ],
+            },
+            {
+                "key": "root",
+                "name_en": "Root", "name_es": "Raíz",
+                "title_en": "Where the country stops speaking Spanish.",
+                "title_es": "Donde el país deja de hablar español.",
+                "text_en": "Livingston is Garífuna, reachable only by water, and unlike anywhere else in Guatemala.",
+                "text_es": "Livingston es garífuna, solo se llega por agua, y no se parece a ningún otro lugar de Guatemala.",
+                "beats_en": [
+                    ("The morning", "Downriver to Livingston, with the drums audible before the dock is."),
+                    ("The day", "Fish cooked in coconut, and an afternoon that takes itself as long as it wants."),
+                    ("After dark", "Back up the river in the dark, which is the part people remember."),
+                ],
+                "beats_es": [
+                    ("La mañana", "Río abajo a Livingston, con los tambores oyéndose antes que el muelle."),
+                    ("El día", "Pescado en coco, y una tarde que se toma todo el tiempo que quiere."),
+                    ("De noche", "De regreso río arriba a oscuras, que es la parte que la gente recuerda."),
+                ],
+            },
+        ],
+
+        "facts_en": [
+            ("Getting here", "Four and a half hours by road from the city, or a short flight, then twenty minutes by boat."),
+            ("Best months", "January to April, driest and clearest on the water."),
+            ("Worth knowing", "There is no road to the door and the phone signal comes and goes. That is the point."),
+        ],
+        "facts_es": [
+            ("Cómo se llega", "Cuatro horas y media por carretera desde la capital, o un vuelo corto, y veinte minutos en lancha."),
+            ("Mejores meses", "De enero a abril, los más secos y limpios sobre el agua."),
+            ("Conviene saber", "No hay carretera hasta la puerta y la señal va y viene. De eso se trata."),
+        ],
+    },
+    {
+        "slug": "tinamit",
+        "test": True,
+        "name": "Aldaba Tinamit",
+        "destination_slug": "ciudad",
+        "place_en": "Guatemala City", "place_es": "Ciudad de Guatemala",
+        "image": "img/houses/tinamit-01.jpg",
+        "alt_en": "A modern house lit among tall pines at dusk",
+        "alt_es": "Una casa moderna encendida entre pinos altos al anochecer",
+
+        "lead_en": "Glass and concrete in a stand of old pines, fifteen minutes from the runway and nowhere near the noise.",
+        "lead_es": "Vidrio y concreto en un bosque de pinos viejos, a quince minutos de la pista y lejísimos del ruido.",
+
+        "body_en": [
+            "The city is where the flights land and where the country actually eats, and most visitors give it neither a night nor a thought. This house is the argument against that. It sits in the trees above the ravine, and from the top floor you would not know a capital was down there at all.",
+            "It is the right house for the first night and the last one. Bags land, the airport is fifteen minutes back down the hill, and somebody else is already driving.",
+        ],
+        "body_es": [
+            "La ciudad es donde aterrizan los vuelos y donde de verdad se come en el país, y casi todos los visitantes no le dan ni una noche ni un pensamiento. Esta casa es el argumento en contra. Está entre los árboles sobre el barranco, y desde el piso de arriba uno no sabría que hay una capital abajo.",
+            "Es la casa correcta para la primera noche y la última. Llegan las maletas, el aeropuerto queda quince minutos abajo, y ya hay alguien más manejando.",
+        ],
+
+        "stats_en": [("Guests", "6"), ("Bedrooms", "3"), ("Baths", "3"), ("Arrival", "By car")],
+        "stats_es": [("Huéspedes", "6"), ("Habitaciones", "3"), ("Baños", "3"), ("Llegada", "En carro")],
+
+        "rooms_en": [
+            ("The top floor", "Glass on three sides and pines filling all of it. The city is under there somewhere."),
+            ("The long room", "One table, one fireplace, and enough space to arrive at any hour without waking anyone."),
+            ("The terrace", "Cold air, tall trees, and the best cup of coffee of the trip taken standing up."),
+            ("The kitchen", "Stocked before you land, because the flight always lands later than it should."),
+            ("Three rooms", "Quiet, dark, and built for the night before an early flight."),
+            ("The house team", "A housekeeper and a driver who has done the airport run a thousand times."),
+        ],
+        "rooms_es": [
+            ("El piso de arriba", "Vidrio por tres lados y pinos llenándolo todo. La ciudad está ahí abajo, en alguna parte."),
+            ("El salón largo", "Una mesa, una chimenea, y espacio para llegar a cualquier hora sin despertar a nadie."),
+            ("La terraza", "Aire frío, árboles altos, y el mejor café del viaje tomado de pie."),
+            ("La cocina", "Surtida antes de que aterrice, porque el vuelo siempre llega más tarde de lo que debería."),
+            ("Tres habitaciones", "Calladas, oscuras, y hechas para la noche anterior a un vuelo temprano."),
+            ("La casa", "Una camarista y un chofer que ha hecho el viaje al aeropuerto mil veces."),
+        ],
+
+        "programmes": [
+            {
+                "key": "root",
+                "name_en": "Root", "name_es": "Raíz",
+                "title_en": "The best food in the country is here.",
+                "title_es": "La mejor comida del país está aquí.",
+                "text_en": "Not the prettiest city on the itinerary. Easily the one that eats best.",
+                "text_es": "No es la ciudad más bonita del itinerario. Es, de lejos, la que mejor come.",
+                "beats_en": [
+                    ("The morning", "Two small museums, textiles and ceramics, both better than they have any right to be."),
+                    ("The day", "The market at the hour it is actually working, with somebody who buys there."),
+                    ("After dark", "Zona 4 late, at a table held for you, eating what the country cooks for itself."),
+                ],
+                "beats_es": [
+                    ("La mañana", "Dos museos pequeños, textiles y cerámica, los dos mejores de lo que deberían ser."),
+                    ("El día", "El mercado a la hora en que de verdad trabaja, con alguien que compra ahí."),
+                    ("De noche", "Zona 4 tarde, en una mesa apartada para usted, comiendo lo que el país cocina para sí mismo."),
+                ],
+            },
+            {
+                "key": "stillness",
+                "name_en": "Stillness", "name_es": "Reposo",
+                "title_en": "A soft landing, or a soft exit.",
+                "title_es": "Un aterrizaje suave, o una salida suave.",
+                "text_en": "For the night the flight got in at eleven, and the morning after the volcano.",
+                "text_es": "Para la noche en que el vuelo llegó a las once, y la mañana después del volcán.",
+                "beats_en": [
+                    ("On arrival", "A driver, a lit house, a made bed, and nothing asked of you until you have slept."),
+                    ("The day", "The trees, the terrace, a massage, and a kitchen you did not have to shop for."),
+                    ("The way out", "A car at the hour the flight leaves, however unreasonable that hour is."),
+                ],
+                "beats_es": [
+                    ("Al llegar", "Un chofer, una casa encendida, una cama hecha, y nada que se le pida hasta que haya dormido."),
+                    ("El día", "Los árboles, la terraza, un masaje, y una cocina que usted no tuvo que surtir."),
+                    ("La salida", "Un carro a la hora del vuelo, por poco razonable que sea esa hora."),
+                ],
+            },
+        ],
+
+        "facts_en": [
+            ("Getting here", "Fifteen minutes from La Aurora, which sits inside the city."),
+            ("Onward", "Fifty minutes to Antigua, three hours to the lake."),
+            ("How long", "A night at each end of the trip is enough, and more than most people give it."),
+        ],
+        "facts_es": [
+            ("Cómo se llega", "Quince minutos de La Aurora, que está dentro de la ciudad."),
+            ("Hacia dónde sigue", "Cincuenta minutos a Antigua, tres horas al lago."),
+            ("Cuánto tiempo", "Una noche a cada extremo del viaje basta, y es más de lo que casi nadie le da."),
+        ],
+    },
 ]
 
 
@@ -210,6 +524,7 @@ def header_and_menu():
     <ul class="menu__list">
       <li><a class="menu__link" href="../index.html#destinations" data-en="Destinations" data-es="Destinos">Destinations</a></li>
       <li><a class="menu__link" href="../index.html#experiences" data-en="Experiences" data-es="Experiencias">Experiences</a></li>
+      <li><a class="menu__link" href="../about.html" data-en="About us" data-es="Quiénes somos">About us</a></li>
       <li><a class="menu__link" href="../index.html#concierge" data-en="Concierge" data-es="Concierge">Concierge</a></li>
       <li><a class="menu__link" href="../index.html#contact" data-en="Contact us" data-es="Contáctenos">Contact us</a></li>
     </ul>
@@ -494,28 +809,11 @@ def enquire(h):
 
 
 def footer(h):
-    return """
-  <footer class="footer">
-    <div class="wrap footer__bar">
-      <p class="footer__mark"><img class="wordmark__img" src="../img/brand/wordmark-ink.png" alt="" aria-hidden="true"><span class="sr-only">Aldaba</span></p>
-      <p class="footer__tag">Well received.</p>
-      <nav class="footer__links" data-en-label="Secondary" data-es-label="Secundario" aria-label="Secondary">
-        <a href="../destinations/{dest}.html" {back}</a>
-        <a href="../index.html#contact" {contact}</a>
-        <a href="../propietarios.html" rel="nofollow" {owners}</a>
-      </nav>
-    </div>
-  </footer>
-
+    return common.footer_html("../") + """
   <script src="../script.js"></script>
 </body>
 </html>
-""".format(
-        dest=h["destination_slug"],
-        back=t("Back to " + h["place_en"], "Volver a " + h["place_es"]),
-        contact=t("Contact us", "Contáctenos"),
-        owners=t("Property owners", "Propietarios"),
-    )
+"""
 
 
 def build():
