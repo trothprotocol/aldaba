@@ -498,7 +498,7 @@ def other_destinations(current):
   </main>
 """.format(
         eyebrow=t("Elsewhere", "En otra parte"),
-        title=t("The rest of the country.", "El resto del país."),
+        title=t("The rest of the world of Aldaba.", "El resto del mundo de Aldaba."),
         cards="\n".join(cards),
     )
 

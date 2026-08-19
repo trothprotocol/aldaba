@@ -33,48 +33,48 @@ HOUSES = [
         "alt_en": "A bedroom opening onto a deck above Lake Atitlán",
         "alt_es": "Una habitación que abre a una terraza sobre el lago de Atitlán",
 
-        "lead_en": "A glass room on the water, where the wall folds away and the deck runs out over the lake.",
-        "lead_es": "Una habitación de vidrio sobre el agua, donde la pared se recoge y la terraza sale sobre el lago.",
+        "lead_en": "You wake with the lake already in the room. The wall folds away and there is nothing between the bed and the water.",
+        "lead_es": "Uno despierta con el lago ya adentro. La pared se recoge y entre la cama y el agua no queda nada.",
 
         "body_en": [
-            "The house sits low on the rock with nothing between the bed and the water but a pane of glass that opens. In the morning the lake is flat and the light comes in off it, across the deck and up the ceiling. By two the wind is up and the same room is a different place.",
-            "Concrete, wood and glass, and very little else. Two bedrooms, both facing the water, both with their own bath. It is a small house on purpose, built for two couples or a family that wants to be in one place rather than spread through a villa.",
+            "The light comes first. It lifts off the water at six, crosses the deck and climbs the ceiling, and it wakes you before any alarm would. Most people lie there and let it. Then the sound arrives, or rather the lack of it: water against the rock below, an outboard somewhere far off, and after that nothing at all.",
+            "By two the wind is up and the lake has changed its mind, and so has the room. The house was built to sit inside that rhythm rather than shut it out. Concrete, wood, glass, and very little else. It is small on purpose. Four people, two rooms, one long table, and no reason to be anywhere by any particular hour.",
         ],
         "body_es": [
-            "La casa se asienta baja sobre la roca y entre la cama y el agua no hay más que un vidrio que se abre. Por la mañana el lago está liso y la luz entra desde él, cruza la terraza y sube por el techo. Para las dos el viento ya subió y la misma habitación es otro lugar.",
-            "Concreto, madera y vidrio, y muy poco más. Dos habitaciones, las dos frente al agua, las dos con su baño. Es una casa pequeña a propósito, hecha para dos parejas o para una familia que prefiere estar junta y no repartida por una villa.",
+            "Primero llega la luz. Se levanta del agua a las seis, cruza la terraza y sube por el techo, y despierta a uno antes que cualquier alarma. Casi todos se quedan quietos y la dejan. Después llega el sonido, o más bien su ausencia: el agua contra la roca, un motor lejísimos, y después nada.",
+            "Para las dos el viento ya subió, el lago cambió de opinión y la habitación también. La casa está hecha para vivir dentro de ese ritmo y no para taparlo. Concreto, madera, vidrio, y muy poco más. Es pequeña a propósito. Cuatro personas, dos cuartos, una mesa larga, y ninguna razón para estar en ningún lado a ninguna hora.",
         ],
 
         "stats_en": [("Guests", "4"), ("Bedrooms", "2"), ("Baths", "2"), ("Arrival", "By boat")],
         "stats_es": [("Huéspedes", "4"), ("Habitaciones", "2"), ("Baños", "2"), ("Llegada", "En lancha")],
 
         "rooms_en": [
-            ("The glass room", "The main bedroom, where the corner opens and the floor carries straight on out to the deck."),
-            ("The deck", "Over the water on the rock, wide enough to eat on, in shade by the middle of the afternoon."),
-            ("The second room", "Quieter, set back from the edge, with its own bath and the same view from the pillow."),
-            ("The kitchen", "Small, well equipped, and stocked before you arrive with what you told us you like."),
-            ("The dock", "Where the boat leaves from and where most people end up swimming before breakfast."),
-            ("The staff", "A housekeeper and a caretaker, both from the village, both trained to the Aldaba standard."),
+            ("The glass room", "You sleep with the corner open. At six the lake is in the room with you and the floor runs straight on out to the deck."),
+            ("The deck", "Warm boards underfoot, a metre of air, then water. In shade by four, and the best place in the house to do nothing."),
+            ("The second room", "Set back and quieter, for whoever would rather the light arrived later."),
+            ("The kitchen", "Small, well used, and stocked before you arrive with what you told us you like. The coffee is grown on the ridge above the house."),
+            ("The dock", "Where the boat comes and goes, and where the swim happens, usually before anyone has bothered to dress."),
+            ("The house team", "A housekeeper and a caretaker from the village, who will know your name by the second morning and your coffee by the third."),
         ],
         "rooms_es": [
-            ("La habitación de vidrio", "El dormitorio principal, donde la esquina se abre y el piso sigue de largo hasta la terraza."),
-            ("La terraza", "Sobre el agua, en la roca, con espacio para comer y con sombra a media tarde."),
-            ("La segunda habitación", "Más callada, retirada del filo, con su propio baño y la misma vista desde la almohada."),
-            ("La cocina", "Pequeña, bien equipada, y surtida antes de que usted llegue con lo que nos dijo que le gusta."),
-            ("El muelle", "De donde sale la lancha y donde casi todos terminan nadando antes del desayuno."),
-            ("El personal", "Una camarista y un encargado, los dos del pueblo, los dos formados en el estándar Aldaba."),
+            ("La habitación de vidrio", "Uno duerme con la esquina abierta. A las seis el lago está adentro con usted y el piso sigue de largo hasta la terraza."),
+            ("La terraza", "Tablas tibias bajo los pies, un metro de aire, y después agua. Con sombra a las cuatro, y el mejor lugar de la casa para no hacer nada."),
+            ("La segunda habitación", "Retirada y más callada, para quien prefiere que la luz llegue más tarde."),
+            ("La cocina", "Pequeña, bien usada, y surtida antes de que llegue con lo que nos dijo que le gusta. El café se cultiva en la ladera de arriba."),
+            ("El muelle", "Por donde va y viene la lancha, y donde ocurre el clavado, casi siempre antes de que alguien se haya vestido."),
+            ("La casa", "Una camarista y un encargado del pueblo, que para la segunda mañana saben su nombre y para la tercera saben su café."),
         ],
 
         "programmes": [
             {
                 "key": "ascent",
                 "name_en": "Ascent", "name_es": "Ascenso",
-                "title_en": "For people who would rather come home tired.",
-                "title_es": "Para quien prefiere volver cansado.",
-                "text_en": "The water early, the ridges after, and a boat that leaves when you are ready.",
-                "text_es": "El agua temprano, las crestas después, y una lancha que sale cuando usted está listo.",
+                "title_en": "Come home tired.",
+                "title_es": "Volver cansado.",
+                "text_en": "Out on the water before it is awake, up something steep after, and the good kind of ache by dinner.",
+                "text_es": "Al agua antes de que despierte, a algo empinado después, y el buen cansancio a la hora de la cena.",
                 "beats_en": [
-                    ("Before light", "Out across the lake while it is still glass, with San Pedro going pink on the far side."),
+                    ("Before light", "Out across the lake while it is still glass, San Pedro going pink on the far side, and nobody else awake to see it."),
                     ("The day", "Up the volcano with a guide of your own, or the long paddle to the cliffs and back before the wind."),
                     ("After dark", "Dinner on the deck, and an alarm nobody argues with."),
                 ],
@@ -89,10 +89,10 @@ HOUSES = [
                 "name_en": "Stillness", "name_es": "Reposo",
                 "title_en": "Nothing before ten.",
                 "title_es": "Nada antes de las diez.",
-                "text_en": "The house is built for this one. The wall opens and the day can be nothing at all.",
-                "text_es": "La casa está hecha para este. La pared se abre y el día puede no ser nada.",
+                "text_en": "The house was built for this one. The wall stays open, the day stays empty, and the hardest decision is whether to swim before or after coffee.",
+                "text_es": "La casa está hecha para este. La pared se queda abierta, el día se queda vacío, y la decisión más difícil es si nadar antes o después del café.",
                 "beats_en": [
-                    ("The morning", "Coffee on the deck with the wall folded back, and the lake to yourself until the first boat."),
+                    ("The morning", "Coffee on the deck with the wall folded back, and the lake entirely yours until the first boat crosses."),
                     ("The day", "A temazcal heated on the shore, hands that know what they are doing, and long gaps between things."),
                     ("After dark", "One table, cooked in the house, and the doors left open."),
                 ],
@@ -107,8 +107,8 @@ HOUSES = [
                 "name_en": "Root", "name_es": "Raíz",
                 "title_en": "The lake, from the people who live on it.",
                 "title_es": "El lago, de la mano de quien vive en él.",
-                "text_en": "Twelve villages, three languages, and a different answer in each one.",
-                "text_es": "Doce pueblos, tres idiomas, y una respuesta distinta en cada uno.",
+                "text_en": "Twelve villages, three languages, and a kitchen where the recipe is older than the question you asked in it.",
+                "text_es": "Doce pueblos, tres idiomas, y una cocina donde la receta es más vieja que la pregunta que usted hizo adentro.",
                 "beats_en": [
                     ("The morning", "Santiago at market hour, with somebody who is from there and is known there."),
                     ("The day", "Weaving where it is actually done, and a kitchen older than the language you are asking in."),
@@ -278,7 +278,7 @@ def house(h):
     </section>
 """.format(
         eyebrow=t("The house", "La casa"),
-        title=t("Small, and entirely about the water.", "Pequeña, y por completo sobre el agua."),
+        title=t("Wake up on the water.", "Despertar sobre el agua."),
         paras=paras, stats=stats,
     )
 
@@ -304,7 +304,7 @@ def rooms(h):
     </section>
 """.format(
         eyebrow=t("Inside", "Adentro"),
-        title=t("What is here.", "Lo que hay."),
+        title=t("Six things you will remember.", "Seis cosas que se le van a quedar."),
         items=items,
     )
 

@@ -1336,3 +1336,16 @@ a.menu-trigger .menu-trigger__word { display: inline !important; }
    four more paragraphs. */
 .places .card__media { aspect-ratio: 3 / 4; }
 .places .card__title { margin-top: 18px; font-size: 19px; }
+
+/* The partner row reads as a credit, so it sits centred under its own rule
+   rather than ranged left like body copy. */
+.operated {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 18px;
+}
+
+.operated__names { justify-content: center; }
+
+.operated__note { margin: 0; max-width: 42ch; }
