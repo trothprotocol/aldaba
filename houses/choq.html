@@ -87,7 +87,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section reveal">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" data-en="The house" data-es="La casa">The house</p>
         <h2 class="section__title" data-en="Small, and entirely about the water." data-es="Pequeña, y por completo sobre el agua.">Small, and entirely about the water.</h2>
@@ -115,7 +115,7 @@
       </div>
     </section>
 
-    <section class="section section--alt">
+    <section class="section section--alt reveal">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" data-en="Inside" data-es="Adentro">Inside</p>
         <h2 class="section__title" data-en="What is here." data-es="Lo que hay.">What is here.</h2>
@@ -149,30 +149,92 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section reveal">
       <div class="wrap">
-        <p class="eyebrow section__eyebrow" data-en="The programme" data-es="El programa">The programme</p>
-        <h2 class="section__title" data-en="Written for this house, not off a list." data-es="Escrito para esta casa, no sacado de una lista.">Written for this house, not off a list.</h2>
-        <p class="section__lead" data-en="Everything below is arranged by us and charged only if you want it. Nothing is bundled into the house." data-es="Todo lo de abajo lo arreglamos nosotros y se cobra solo si usted lo quiere. Nada va incluido en la casa.">Everything below is arranged by us and charged only if you want it. Nothing is bundled into the house.</p>
+        <p class="eyebrow section__eyebrow" data-en="Programmes" data-es="Programas">Programmes</p>
+        <h2 class="section__title" data-en="Three ways to spend the same week." data-es="Tres maneras de pasar la misma semana.">Three ways to spend the same week.</h2>
+        <p class="section__lead" data-en="Written for this house. Arranged by us, charged only if you want it, and never bundled into the house." data-es="Escritos para esta casa. Los arreglamos nosotros, se cobran solo si usted los quiere, y nunca van incluidos en la casa.">Written for this house. Arranged by us, charged only if you want it, and never bundled into the house.</p>
 
-        <ul class="grid grid--three">
-          <li class="grid__item">
-            <h3 class="grid__title" data-en="The arrival" data-es="La llegada">The arrival</h3>
-            <p class="grid__text" data-en="A driver at the airport, the road to the shore, and a boat that waits for you rather than the other way round. The house is open and the lights are on." data-es="Un chofer en el aeropuerto, el camino a la orilla, y una lancha que lo espera a usted y no al revés. La casa abierta y las luces encendidas.">A driver at the airport, the road to the shore, and a boat that waits for you rather than the other way round. The house is open and the lights are on.</p>
-          </li>
-          <li class="grid__item">
-            <h3 class="grid__title" data-en="The days" data-es="Los días">The days</h3>
-            <p class="grid__text" data-en="The crossing at dawn while the water is still glass, Santiago with somebody who is from there, and back on the deck before the wind arrives." data-es="El cruce al amanecer con el agua todavía como vidrio, Santiago con alguien de allí, y de vuelta en la terraza antes de que llegue el viento.">The crossing at dawn while the water is still glass, Santiago with somebody who is from there, and back on the deck before the wind arrives.</p>
-          </li>
-          <li class="grid__item">
-            <h3 class="grid__title" data-en="The nights" data-es="Las noches">The nights</h3>
-            <p class="grid__text" data-en="Dinner cooked in the house by a family from the next village along, and the lake going quiet outside the open wall." data-es="Una cena hecha en la casa por una familia del pueblo de al lado, y el lago quedándose callado detrás de la pared abierta.">Dinner cooked in the house by a family from the next village along, and the lake going quiet outside the open wall.</p>
-          </li>
-        </ul>
+        <div class="prog" data-prog>
+          <div class="prog__tabs" role="tablist"
+               data-en-label="Programmes" data-es-label="Programas" aria-label="Programmes">
+            <button class="prog__tab" type="button" role="tab" id="tab-ascent"
+                    aria-controls="panel-ascent" aria-selected="true" data-en="Ascent" data-es="Ascenso">Ascent</button>
+            <button class="prog__tab" type="button" role="tab" id="tab-stillness"
+                    aria-controls="panel-stillness" aria-selected="false" data-en="Stillness" data-es="Reposo">Stillness</button>
+            <button class="prog__tab" type="button" role="tab" id="tab-root"
+                    aria-controls="panel-root" aria-selected="false" data-en="Root" data-es="Raíz">Root</button>
+          </div>
+
+          <div class="prog__panel" role="tabpanel" id="panel-ascent" aria-labelledby="tab-ascent">
+            <div class="prog__intro">
+              <h3 class="prog__title" data-en="For people who would rather come home tired." data-es="Para quien prefiere volver cansado.">For people who would rather come home tired.</h3>
+              <p class="prog__text" data-en="The water early, the ridges after, and a boat that leaves when you are ready." data-es="El agua temprano, las crestas después, y una lancha que sale cuando usted está listo.">The water early, the ridges after, and a boat that leaves when you are ready.</p>
+            </div>
+            <ul class="prog__beats">
+              <li class="prog__beat">
+                <p class="prog__when" data-en="Before light" data-es="Antes de la luz">Before light</p>
+                <p class="prog__what" data-en="Out across the lake while it is still glass, with San Pedro going pink on the far side." data-es="Cruzar el lago mientras todavía es un vidrio, con el San Pedro poniéndose rosado al otro lado.">Out across the lake while it is still glass, with San Pedro going pink on the far side.</p>
+              </li>
+              <li class="prog__beat">
+                <p class="prog__when" data-en="The day" data-es="El día">The day</p>
+                <p class="prog__what" data-en="Up the volcano with a guide of your own, or the long paddle to the cliffs and back before the wind." data-es="Subir el volcán con un guía propio, o remar hasta los peñascos y volver antes del viento.">Up the volcano with a guide of your own, or the long paddle to the cliffs and back before the wind.</p>
+              </li>
+              <li class="prog__beat">
+                <p class="prog__when" data-en="After dark" data-es="De noche">After dark</p>
+                <p class="prog__what" data-en="Dinner on the deck, and an alarm nobody argues with." data-es="Cena en la terraza, y una alarma que nadie discute.">Dinner on the deck, and an alarm nobody argues with.</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="prog__panel" role="tabpanel" id="panel-stillness" aria-labelledby="tab-stillness" hidden>
+            <div class="prog__intro">
+              <h3 class="prog__title" data-en="Nothing before ten." data-es="Nada antes de las diez.">Nothing before ten.</h3>
+              <p class="prog__text" data-en="The house is built for this one. The wall opens and the day can be nothing at all." data-es="La casa está hecha para este. La pared se abre y el día puede no ser nada.">The house is built for this one. The wall opens and the day can be nothing at all.</p>
+            </div>
+            <ul class="prog__beats">
+              <li class="prog__beat">
+                <p class="prog__when" data-en="The morning" data-es="La mañana">The morning</p>
+                <p class="prog__what" data-en="Coffee on the deck with the wall folded back, and the lake to yourself until the first boat." data-es="Café en la terraza con la pared recogida, y el lago para usted hasta que pase la primera lancha.">Coffee on the deck with the wall folded back, and the lake to yourself until the first boat.</p>
+              </li>
+              <li class="prog__beat">
+                <p class="prog__when" data-en="The day" data-es="El día">The day</p>
+                <p class="prog__what" data-en="A temazcal heated on the shore, hands that know what they are doing, and long gaps between things." data-es="Un temazcal calentado en la orilla, manos que saben lo que hacen, y espacios largos entre una cosa y otra.">A temazcal heated on the shore, hands that know what they are doing, and long gaps between things.</p>
+              </li>
+              <li class="prog__beat">
+                <p class="prog__when" data-en="After dark" data-es="De noche">After dark</p>
+                <p class="prog__what" data-en="One table, cooked in the house, and the doors left open." data-es="Una sola mesa, cocinada en la casa, y las puertas abiertas.">One table, cooked in the house, and the doors left open.</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="prog__panel" role="tabpanel" id="panel-root" aria-labelledby="tab-root" hidden>
+            <div class="prog__intro">
+              <h3 class="prog__title" data-en="The lake, from the people who live on it." data-es="El lago, de la mano de quien vive en él.">The lake, from the people who live on it.</h3>
+              <p class="prog__text" data-en="Twelve villages, three languages, and a different answer in each one." data-es="Doce pueblos, tres idiomas, y una respuesta distinta en cada uno.">Twelve villages, three languages, and a different answer in each one.</p>
+            </div>
+            <ul class="prog__beats">
+              <li class="prog__beat">
+                <p class="prog__when" data-en="The morning" data-es="La mañana">The morning</p>
+                <p class="prog__what" data-en="Santiago at market hour, with somebody who is from there and is known there." data-es="Santiago a la hora del mercado, con alguien de allí y conocido allí.">Santiago at market hour, with somebody who is from there and is known there.</p>
+              </li>
+              <li class="prog__beat">
+                <p class="prog__when" data-en="The day" data-es="El día">The day</p>
+                <p class="prog__what" data-en="Weaving where it is actually done, and a kitchen older than the language you are asking in." data-es="Tejido donde de verdad se teje, y una cocina más antigua que el idioma en que usted pregunta.">Weaving where it is actually done, and a kitchen older than the language you are asking in.</p>
+              </li>
+              <li class="prog__beat">
+                <p class="prog__when" data-en="After dark" data-es="De noche">After dark</p>
+                <p class="prog__what" data-en="What a family from the next village along cooks for itself, at the hour they eat it." data-es="Lo que cocina para sí misma una familia del pueblo de al lado, a la hora en que lo comen.">What a family from the next village along cooks for itself, at the hour they eat it.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section section--alt">
+
+
+    <section class="section section--alt reveal">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" data-en="Practical" data-es="Lo práctico">Practical</p>
         <h2 class="section__title" data-en="Before you choose dates." data-es="Antes de elegir fechas.">Before you choose dates.</h2>
@@ -194,7 +256,7 @@
       </div>
     </section>
 
-    <section class="section" id="enquire">
+    <section class="section reveal" id="enquire">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" data-en="Enquire" data-es="Consultar">Enquire</p>
         <h2 class="section__title" data-en="Tell us when you are coming." data-es="Díganos cuándo viene.">Tell us when you are coming.</h2>

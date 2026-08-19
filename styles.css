@@ -1201,3 +1201,138 @@ a.menu-trigger .menu-trigger__word { display: inline !important; }
 .card--wide .card__media { aspect-ratio: 16 / 8; }
 .card--wide .card__title { font-size: clamp(22px, 2.4vw, 28px); }
 .card--wide .card__text { max-width: 52ch; }
+
+/* ==========================================================================
+   Programmes
+   Three ways to spend the same week. The tabs are the only interactive
+   element on the page, so they are quiet: a rule under the chosen one.
+   ========================================================================== */
+
+.prog { margin-top: clamp(40px, 5vw, 64px); }
+
+.prog__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(20px, 3vw, 44px);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 14px;
+}
+
+.prog__tab {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-45);
+  padding: 0 0 14px;
+  margin-bottom: -15px;
+  border-bottom: 1px solid transparent;
+  transition: color 220ms ease, border-color 220ms ease;
+}
+
+.prog__tab:hover { color: var(--ink-70); }
+
+.prog__tab[aria-selected="true"] {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.prog__panel[hidden] { display: none; }
+
+.prog__panel {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(28px, 4vw, 64px);
+  padding-top: clamp(32px, 4vw, 52px);
+  animation: prog-in 420ms ease both;
+}
+
+@keyframes prog-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.prog__intro { display: flex; flex-direction: column; gap: 16px; }
+
+.prog__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.16;
+  letter-spacing: -0.012em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.prog__text { margin: 0; color: var(--ink-70); max-width: 42ch; }
+
+.prog__beats { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; }
+
+.prog__beat {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 32px);
+  padding: 20px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.prog__beat:first-child { border-top: 0; padding-top: 0; }
+
+.prog__when {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-45);
+  margin: 0;
+  padding-top: 4px;
+}
+
+.prog__what { margin: 0; font-size: 15.5px; line-height: 1.6; }
+
+@media (max-width: 860px) {
+  .prog__panel { grid-template-columns: 1fr; }
+  .prog__beat { grid-template-columns: 1fr; gap: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prog__panel { animation: none; }
+}
+
+/* ==========================================================================
+   Arrival
+   Sections rise once, on first sight. Nothing moves after that.
+   ========================================================================== */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 760ms cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 760ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.js .reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Images lift very slightly under the cursor, and nothing else does. */
+.card__media {
+  transition: transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1),
+              filter 900ms ease;
+}
+
+.card__link:hover .card__media { transform: scale(1.015); filter: brightness(1.03); }
+
+.card__link:focus-visible { outline: 1px solid var(--ink); outline-offset: 6px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card__media, .card__link:hover .card__media { transition: none; transform: none; }
+}
+
+/* Where we are: name-only cards, so the row reads as a map rather than
+   four more paragraphs. */
+.places .card__media { aspect-ratio: 3 / 4; }
+.places .card__title { margin-top: 18px; font-size: 19px; }

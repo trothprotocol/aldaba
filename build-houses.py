@@ -65,15 +65,61 @@ HOUSES = [
             ("El personal", "Una camarista y un encargado, los dos del pueblo, los dos formados en el estándar Aldaba."),
         ],
 
-        "days_en": [
-            ("The arrival", "A driver at the airport, the road to the shore, and a boat that waits for you rather than the other way round. The house is open and the lights are on."),
-            ("The days", "The crossing at dawn while the water is still glass, Santiago with somebody who is from there, and back on the deck before the wind arrives."),
-            ("The nights", "Dinner cooked in the house by a family from the next village along, and the lake going quiet outside the open wall."),
-        ],
-        "days_es": [
-            ("La llegada", "Un chofer en el aeropuerto, el camino a la orilla, y una lancha que lo espera a usted y no al revés. La casa abierta y las luces encendidas."),
-            ("Los días", "El cruce al amanecer con el agua todavía como vidrio, Santiago con alguien de allí, y de vuelta en la terraza antes de que llegue el viento."),
-            ("Las noches", "Una cena hecha en la casa por una familia del pueblo de al lado, y el lago quedándose callado detrás de la pared abierta."),
+        "programmes": [
+            {
+                "key": "ascent",
+                "name_en": "Ascent", "name_es": "Ascenso",
+                "title_en": "For people who would rather come home tired.",
+                "title_es": "Para quien prefiere volver cansado.",
+                "text_en": "The water early, the ridges after, and a boat that leaves when you are ready.",
+                "text_es": "El agua temprano, las crestas después, y una lancha que sale cuando usted está listo.",
+                "beats_en": [
+                    ("Before light", "Out across the lake while it is still glass, with San Pedro going pink on the far side."),
+                    ("The day", "Up the volcano with a guide of your own, or the long paddle to the cliffs and back before the wind."),
+                    ("After dark", "Dinner on the deck, and an alarm nobody argues with."),
+                ],
+                "beats_es": [
+                    ("Antes de la luz", "Cruzar el lago mientras todavía es un vidrio, con el San Pedro poniéndose rosado al otro lado."),
+                    ("El día", "Subir el volcán con un guía propio, o remar hasta los peñascos y volver antes del viento."),
+                    ("De noche", "Cena en la terraza, y una alarma que nadie discute."),
+                ],
+            },
+            {
+                "key": "stillness",
+                "name_en": "Stillness", "name_es": "Reposo",
+                "title_en": "Nothing before ten.",
+                "title_es": "Nada antes de las diez.",
+                "text_en": "The house is built for this one. The wall opens and the day can be nothing at all.",
+                "text_es": "La casa está hecha para este. La pared se abre y el día puede no ser nada.",
+                "beats_en": [
+                    ("The morning", "Coffee on the deck with the wall folded back, and the lake to yourself until the first boat."),
+                    ("The day", "A temazcal heated on the shore, hands that know what they are doing, and long gaps between things."),
+                    ("After dark", "One table, cooked in the house, and the doors left open."),
+                ],
+                "beats_es": [
+                    ("La mañana", "Café en la terraza con la pared recogida, y el lago para usted hasta que pase la primera lancha."),
+                    ("El día", "Un temazcal calentado en la orilla, manos que saben lo que hacen, y espacios largos entre una cosa y otra."),
+                    ("De noche", "Una sola mesa, cocinada en la casa, y las puertas abiertas."),
+                ],
+            },
+            {
+                "key": "root",
+                "name_en": "Root", "name_es": "Raíz",
+                "title_en": "The lake, from the people who live on it.",
+                "title_es": "El lago, de la mano de quien vive en él.",
+                "text_en": "Twelve villages, three languages, and a different answer in each one.",
+                "text_es": "Doce pueblos, tres idiomas, y una respuesta distinta en cada uno.",
+                "beats_en": [
+                    ("The morning", "Santiago at market hour, with somebody who is from there and is known there."),
+                    ("The day", "Weaving where it is actually done, and a kitchen older than the language you are asking in."),
+                    ("After dark", "What a family from the next village along cooks for itself, at the hour they eat it."),
+                ],
+                "beats_es": [
+                    ("La mañana", "Santiago a la hora del mercado, con alguien de allí y conocido allí."),
+                    ("El día", "Tejido donde de verdad se teje, y una cocina más antigua que el idioma en que usted pregunta."),
+                    ("De noche", "Lo que cocina para sí misma una familia del pueblo de al lado, a la hora en que lo comen."),
+                ],
+            },
         ],
 
         "facts_en": [
@@ -219,7 +265,7 @@ def house(h):
         for en, es in zip(h["stats_en"], h["stats_es"])
     )
     return """
-    <section class="section">
+    <section class="section reveal">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" {eyebrow}</p>
         <h2 class="section__title" {title}</h2>
@@ -246,7 +292,7 @@ def rooms(h):
         for en, es in zip(h["rooms_en"], h["rooms_es"])
     )
     return """
-    <section class="section section--alt">
+    <section class="section section--alt reveal">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" {eyebrow}</p>
         <h2 class="section__title" {title}</h2>
@@ -264,33 +310,73 @@ def rooms(h):
 
 
 def days(h):
-    items = "\n".join(
-        '          <li class="grid__item">\n'
-        '            <h3 class="grid__title" {title}</h3>\n'
-        '            <p class="grid__text" {text}</p>\n'
-        "          </li>".format(title=t(en[0], es[0]), text=t(en[1], es[1]))
-        for en, es in zip(h["days_en"], h["days_es"])
-    )
+    """Three programmes, one panel at a time. Aman does not sell the same days
+    at every property, and neither do we."""
+    tabs, panels = [], []
+
+    for i, prog in enumerate(h["programmes"]):
+        pid = prog["key"]
+        tabs.append(
+            '''            <button class="prog__tab" type="button" role="tab" id="tab-{pid}"
+                    aria-controls="panel-{pid}" aria-selected="{sel}" {name}</button>'''.format(
+                pid=pid, sel="true" if i == 0 else "false",
+                name=t(prog["name_en"], prog["name_es"]),
+            )
+        )
+
+        beats = "\n".join(
+            '''              <li class="prog__beat">
+                <p class="prog__when" {when}</p>
+                <p class="prog__what" {what}</p>
+              </li>'''.format(when=t(en[0], es[0]), what=t(en[1], es[1]))
+            for en, es in zip(prog["beats_en"], prog["beats_es"])
+        )
+
+        panels.append(
+            '''          <div class="prog__panel" role="tabpanel" id="panel-{pid}" aria-labelledby="tab-{pid}"{hidden}>
+            <div class="prog__intro">
+              <h3 class="prog__title" {title}</h3>
+              <p class="prog__text" {text}</p>
+            </div>
+            <ul class="prog__beats">
+{beats}
+            </ul>
+          </div>'''.format(
+                pid=pid, hidden="" if i == 0 else " hidden",
+                title=t(prog["title_en"], prog["title_es"]),
+                text=t(prog["text_en"], prog["text_es"]),
+                beats=beats,
+            )
+        )
+
     return """
-    <section class="section">
+    <section class="section reveal">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" {eyebrow}</p>
         <h2 class="section__title" {title}</h2>
         <p class="section__lead" {lead}</p>
 
-        <ul class="grid grid--three">
-{items}
-        </ul>
+        <div class="prog" data-prog>
+          <div class="prog__tabs" role="tablist"
+               data-en-label="Programmes" data-es-label="Programas" aria-label="Programmes">
+{tabs}
+          </div>
+
+{panels}
+        </div>
       </div>
     </section>
+
+
 """.format(
-        eyebrow=t("The programme", "El programa"),
-        title=t("Written for this house, not off a list.", "Escrito para esta casa, no sacado de una lista."),
+        eyebrow=t("Programmes", "Programas"),
+        title=t("Three ways to spend the same week.", "Tres maneras de pasar la misma semana."),
         lead=t(
-            "Everything below is arranged by us and charged only if you want it. Nothing is bundled into the house.",
-            "Todo lo de abajo lo arreglamos nosotros y se cobra solo si usted lo quiere. Nada va incluido en la casa.",
+            "Written for this house. Arranged by us, charged only if you want it, and never bundled into the house.",
+            "Escritos para esta casa. Los arreglamos nosotros, se cobran solo si usted los quiere, y nunca van incluidos en la casa.",
         ),
-        items=items,
+        tabs="\n".join(tabs),
+        panels="\n\n".join(panels),
     )
 
 
@@ -303,7 +389,7 @@ def facts(h):
         for en, es in zip(h["facts_en"], h["facts_es"])
     )
     return """
-    <section class="section section--alt">
+    <section class="section section--alt reveal">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" {eyebrow}</p>
         <h2 class="section__title" {title}</h2>
@@ -322,7 +408,7 @@ def facts(h):
 
 def enquire(h):
     return """
-    <section class="section" id="enquire">
+    <section class="section reveal" id="enquire">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" {eyebrow}</p>
         <h2 class="section__title" {title}</h2>

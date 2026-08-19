@@ -1,6 +1,10 @@
 (function () {
   "use strict";
 
+  /* Reveal styles apply only once this file is running, so a script that
+     never loads leaves every section plainly visible. */
+  document.documentElement.classList.add("js");
+
   /* ======================================================================
      Language
      Both languages live in one document. Every translatable node carries
@@ -214,6 +218,74 @@
       );
     });
   });
+
+  /* ======================================================================
+     Programmes
+     Three ways to spend the same week. One panel at a time; arrow keys move
+     between the tabs the way a native tablist does.
+     ====================================================================== */
+
+  Array.prototype.forEach.call(
+    document.querySelectorAll("[data-prog]"),
+    function (group) {
+      var tabs = group.querySelectorAll(".prog__tab");
+      var panels = group.querySelectorAll(".prog__panel");
+      if (!tabs.length) return;
+
+      function select(index) {
+        Array.prototype.forEach.call(tabs, function (tab, i) {
+          var on = i === index;
+          tab.setAttribute("aria-selected", String(on));
+          tab.tabIndex = on ? 0 : -1;
+          panels[i].hidden = !on;
+        });
+      }
+
+      Array.prototype.forEach.call(tabs, function (tab, i) {
+        tab.addEventListener("click", function () { select(i); });
+        tab.addEventListener("keydown", function (event) {
+          var next = null;
+          if (event.key === "ArrowRight") next = (i + 1) % tabs.length;
+          if (event.key === "ArrowLeft") next = (i - 1 + tabs.length) % tabs.length;
+          if (next === null) return;
+          event.preventDefault();
+          select(next);
+          tabs[next].focus();
+        });
+      });
+
+      select(0);
+    }
+  );
+
+  /* ======================================================================
+     Arrival
+     Sections rise once, the first time they are seen.
+     ====================================================================== */
+
+  var reveals = document.querySelectorAll(".reveal");
+
+  if (!window.IntersectionObserver ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    Array.prototype.forEach.call(reveals, function (el) { el.classList.add("is-in"); });
+  } else {
+    var seen = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        seen.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.05 });
+
+    Array.prototype.forEach.call(reveals, function (el) { seen.observe(el); });
+
+    /* Belt and braces: if the observer never fires, because the tab was
+       restored in the background or the page was never scrolled, nothing
+       stays invisible. */
+    window.setTimeout(function () {
+      Array.prototype.forEach.call(reveals, function (el) { el.classList.add("is-in"); });
+    }, 3000);
+  }
 
   /* Start.
      Solo las páginas bilingües cambian de idioma. Las páginas de un solo

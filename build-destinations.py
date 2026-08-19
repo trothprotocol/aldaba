@@ -328,7 +328,7 @@ def place(d):
         for en, es in zip(d["body_en"], d["body_es"])
     )
     return f"""
-    <section class="section">
+    <section class="section reveal">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" {t("The place", "El lugar")}</p>
         <h2 class="section__title" {t(d['title_en'], d['title_es'])}</h2>
@@ -349,7 +349,7 @@ def days(d):
             "          </li>".format(n=i, title=t(en_t, es_t), text=t(en_x, es_x))
         )
     return """
-    <section class="section section--alt">
+    <section class="section section--alt reveal">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" {eyebrow}</p>
         <h2 class="section__title" {title}</h2>
@@ -364,8 +364,8 @@ def days(d):
         eyebrow=t("The days", "Los días"),
         title=t("What a few days here look like.", "Cómo se ven unos días aquí."),
         lead=t(
-            "Written for the house you are staying in, never off a list. These are the ones guests ask for again.",
-            "Se escriben para la casa donde usted se queda, nunca de una lista. Estos son los que los huéspedes vuelven a pedir.",
+            "Written for the house you are staying in, never off a list.",
+            "Se escriben para la casa donde usted se queda, nunca de una lista.",
         ),
         items="\n".join(items),
     )
@@ -381,7 +381,7 @@ def facts(d):
             "          </li>".format(label=t(en_t, es_t), text=t(en_x, es_x))
         )
     return """
-    <section class="section">
+    <section class="section reveal">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" {eyebrow}</p>
         <h2 class="section__title" {title}</h2>
@@ -435,7 +435,7 @@ def houses(d):
         </ul>'''.format(cards=cards)
 
     return """
-    <section class="section section--alt">
+    <section class="section section--alt reveal">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" {eyebrow}</p>
         <h2 class="section__title" {title}</h2>
@@ -484,7 +484,7 @@ def other_destinations(current):
             )
         )
     return """
-    <section class="section">
+    <section class="section reveal">
       <div class="wrap">
         <p class="eyebrow section__eyebrow" {eyebrow}</p>
         <h2 class="section__title" {title}</h2>
