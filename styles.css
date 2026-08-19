@@ -5,14 +5,21 @@
    ========================================================================== */
 
 :root {
-  --bg: #FAF9F6;
-  --bg-alt: #F2F0EB;
+  /* Taken from the wordmark files: their paper, their ink, their sage. */
+  --bg: #F4F4E6;
+  --bg-alt: #ECEEE1;
 
-  --ink: #111111;
-  --ink-70: rgba(17, 17, 17, 0.68);
-  --ink-45: rgba(17, 17, 17, 0.45);
-  --rule: rgba(17, 17, 17, 0.14);
-  --rule-soft: rgba(17, 17, 17, 0.08);
+  --ink: #272826;
+  --ink-70: rgba(39, 40, 38, 0.70);
+  --ink-45: rgba(39, 40, 38, 0.47);
+  --rule: rgba(39, 40, 38, 0.16);
+  --rule-soft: rgba(39, 40, 38, 0.09);
+
+  /* The jade is a signature, not a colour scheme. It appears on the chosen
+     programme, on whatever the cursor is over, and on the focus ring. That
+     is the whole licence. */
+  --jade: #35564A;
+  --sage: #D0DDD4;
 
   --light: #FFFFFF;
   --light-70: rgba(255, 255, 255, 0.72);
@@ -554,7 +561,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   align-self: flex-start;
   transition: border-color 200ms ease;
 }
-.card__more:hover { border-bottom-color: var(--ink); }
+.card__more:hover { color: var(--jade); border-bottom-color: var(--jade); }
 
 @media (max-width: 860px) {
   .journal { grid-template-columns: 1fr; max-width: 460px; }
@@ -985,7 +992,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   font-family: var(--mono);
 }
 
-.footer__links a:hover { color: var(--ink); }
+.footer__links a:hover { color: var(--jade); }
 
 @media (max-width: 700px) {
   .footer__links { margin-left: 0; width: 100%; gap: 20px; }
@@ -1233,8 +1240,8 @@ a.menu-trigger .menu-trigger__word { display: inline !important; }
 .prog__tab:hover { color: var(--ink-70); }
 
 .prog__tab[aria-selected="true"] {
-  color: var(--ink);
-  border-bottom-color: var(--ink);
+  color: var(--jade);
+  border-bottom-color: var(--jade);
 }
 
 .prog__panel[hidden] { display: none; }
@@ -1326,7 +1333,7 @@ a.menu-trigger .menu-trigger__word { display: inline !important; }
 
 .card__link:hover .card__media { transform: scale(1.015); filter: brightness(1.03); }
 
-.card__link:focus-visible { outline: 1px solid var(--ink); outline-offset: 6px; }
+.card__link:focus-visible { outline: 1px solid var(--jade); outline-offset: 6px; }
 
 @media (prefers-reduced-motion: reduce) {
   .card__media, .card__link:hover .card__media { transition: none; transform: none; }
@@ -1389,3 +1396,25 @@ a.menu-trigger .menu-trigger__word { display: inline !important; }
 
 /* The line under the mark hangs off the image now, not off a text baseline. */
 .wordmark__tag { top: calc(100% + 10px); }
+
+/* ==========================================================================
+   Jade, sparingly
+   Four appearances on the whole site, all of them a single hairline or a
+   single word. Nothing is filled with it.
+   ========================================================================== */
+
+:focus-visible { outline: 1px solid var(--jade); outline-offset: 4px; }
+
+/* The field you are typing in. */
+.field__input:focus,
+.field__area:focus {
+  outline: none;
+  border-bottom-color: var(--jade);
+}
+
+/* The eyebrow above the section you are reading is the one flash of colour
+   in the body of the page. */
+.section__eyebrow { color: var(--jade); opacity: 0.75; }
+
+/* A hairline of sage closes the page, above the footer. */
+.footer { border-top-color: var(--sage); }

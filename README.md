@@ -45,6 +45,14 @@ full-resolution stock originals, and it must not ship. The public site keeps
 the owner conversation to one quiet footer link and a noindex page: no rates,
 no commissions, no owner economics on any public URL.
 
+## Colour
+
+Tokens come from the wordmark files: paper `#F4F4E6`, ink `#272826`, sage
+`#D0DDD4`. The jade `#35564A` is a signature, not a palette, and appears in
+exactly four places: the chosen programme tab, whatever the cursor is over,
+the focus ring, and the section eyebrows. Nothing is filled with it. Adding a
+fifth use needs a reason.
+
 ## Brand
 
 The wordmark ships as two trimmed PNGs in `img/brand/`: `wordmark-ink.png`
