@@ -45,6 +45,15 @@ full-resolution stock originals, and it must not ship. The public site keeps
 the owner conversation to one quiet footer link and a noindex page: no rates,
 no commissions, no owner economics on any public URL.
 
+## Brand
+
+The wordmark ships as two trimmed PNGs in `img/brand/`: `wordmark-ink.png`
+for pale grounds and `wordmark-light.png` for the transparent header over the
+hero. The header cross-fades between them when it goes solid. The
+full-resolution exports live in `logos/`, which is gitignored; regenerate the
+trimmed files by cropping to the alpha bounding box and resizing to 1400px
+wide.
+
 ## Media
 
 The hero video was transcoded from a 4K original with macOS `avconvert`

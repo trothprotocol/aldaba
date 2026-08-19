@@ -1355,3 +1355,37 @@ a.menu-trigger .menu-trigger__word { display: inline !important; }
 .services .grid__item { padding-top: 22px; }
 .services .grid__title { font-size: 21px; margin-bottom: 12px; }
 .services .grid__text { max-width: 34ch; }
+
+/* ==========================================================================
+   Wordmark
+   The drawn mark replaces the typeset one. Two files, ink and light: the
+   light one carries the transparent header over the hero, the ink one takes
+   over the moment the header goes solid.
+   ========================================================================== */
+
+.wordmark { display: block; line-height: 0; }
+
+.wordmark__pair {
+  position: relative;
+  display: block;
+  height: clamp(15px, 1.6vw, 19px);
+}
+
+.wordmark__pair .wordmark__img { height: 100%; width: auto; display: block; }
+
+.wordmark__img--light,
+.wordmark__img--ink { transition: opacity 280ms ease; }
+
+.wordmark__img--ink { position: absolute; inset: 0; opacity: 0; }
+
+.header.is-solid .wordmark__img--ink { opacity: 1; }
+.header.is-solid .wordmark__img--light { opacity: 0; }
+
+.menu__wordmark { line-height: 0; }
+.menu__wordmark .wordmark__img { height: 17px; width: auto; display: block; }
+
+.footer__mark { line-height: 0; }
+.footer__mark .wordmark__img { height: 19px; width: auto; display: block; }
+
+/* The line under the mark hangs off the image now, not off a text baseline. */
+.wordmark__tag { top: calc(100% + 10px); }

@@ -178,7 +178,7 @@ def header_and_menu():
 
       <a class="wordmark" href="../index.html"
          data-en-label="Aldaba, home" data-es-label="Aldaba, inicio"
-         aria-label="Aldaba, home">Aldaba</a>
+         aria-label="Aldaba, home"><span class="wordmark__pair"><img class="wordmark__img wordmark__img--light" src="../img/brand/wordmark-light.png" alt="" aria-hidden="true"><img class="wordmark__img wordmark__img--ink" src="../img/brand/wordmark-ink.png" alt="" aria-hidden="true"></span></a>
 
       <div class="header__right">
         <div class="lang" role="group"
@@ -199,7 +199,7 @@ def header_and_menu():
     <div class="menu__head">
       <a class="menu__wordmark" href="../index.html"
          data-en-label="Aldaba, home" data-es-label="Aldaba, inicio"
-         aria-label="Aldaba, home">Aldaba</a>
+         aria-label="Aldaba, home"><img class="wordmark__img" src="../img/brand/wordmark-ink.png" alt="" aria-hidden="true"></a>
 
       <button class="menu__close" id="menu-close" type="button"
               data-en-label="Close menu" data-es-label="Cerrar menú" aria-label="Close menu">
@@ -497,7 +497,7 @@ def footer(h):
     return """
   <footer class="footer">
     <div class="wrap footer__bar">
-      <p class="footer__mark">Aldaba</p>
+      <p class="footer__mark"><img class="wordmark__img" src="../img/brand/wordmark-ink.png" alt="" aria-hidden="true"><span class="sr-only">Aldaba</span></p>
       <p class="footer__tag">Well received.</p>
       <nav class="footer__links" data-en-label="Secondary" data-es-label="Secundario" aria-label="Secondary">
         <a href="../destinations/{dest}.html" {back}</a>
