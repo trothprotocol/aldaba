@@ -99,3 +99,20 @@ document.querySelectorAll('.choices').forEach(function (group) {
     sync();
   });
 })();
+
+/* Header. The hero search hands its job to the header on the way past. */
+
+(function () {
+  var header = document.getElementById('header');
+  var heroSearch = document.querySelector('.hero .search');
+  if (!header || !heroSearch) return;
+
+  function sync() {
+    var passed = heroSearch.getBoundingClientRect().bottom < header.offsetHeight;
+    header.classList.toggle('is-compact', passed);
+  }
+
+  window.addEventListener('scroll', sync, { passive: true });
+  window.addEventListener('resize', sync);
+  sync();
+})();

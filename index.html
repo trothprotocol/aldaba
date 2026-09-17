@@ -8,12 +8,19 @@
 </head>
 <body>
 
-<header class="header">
-  <div class="header__left"></div>
+<header class="header" id="header">
+  <div class="header__spacer"></div>
 
   <div class="header__center">
     <a class="wordmark" href="/">Ladanta</a>
     <p class="tagline">Well received.</p>
+  </div>
+
+  <div class="header__compact" aria-hidden="true">
+    <button type="button" class="compact__field">Destination</button>
+    <button type="button" class="compact__field">Dates</button>
+    <button type="button" class="compact__field">Guests</button>
+    <button type="button" class="compact__submit">Search</button>
   </div>
 
   <nav class="header__right" aria-label="Utilities">
@@ -183,6 +190,46 @@
   </section>
 
 </main>
+
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__brand">
+      <a class="wordmark wordmark--footer" href="/">Ladanta</a>
+      <p class="tagline tagline--footer">Well received.</p>
+    </div>
+
+    <nav class="footer__cols" aria-label="Footer">
+      <div class="footer__col">
+        <p class="footer__heading">Destinations</p>
+        <a href="#">Antigua</a>
+        <a href="#">Lake Atitl&aacute;n</a>
+        <a href="#">R&iacute;o Dulce</a>
+        <a href="#">Guatemala City</a>
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__heading">Ladanta</p>
+        <a href="#">About us</a>
+        <a href="#">Experiences</a>
+        <a href="#">Journal</a>
+        <a href="#">Contact</a>
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__heading">Legal</p>
+        <a href="#">Terms</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#" rel="nofollow">Property owners</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="footer__base">
+    <p>&copy; 2026 Ladanta. Guatemala.</p>
+    <p><a href="mailto:hola@ladanta.com">hola@ladanta.com</a></p>
+  </div>
+</footer>
+
 
 <!-- Language and currency ------------------------------------------- -->
 
