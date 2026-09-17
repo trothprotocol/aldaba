@@ -40,6 +40,7 @@ document.querySelectorAll('.choices').forEach(function (group) {
   if (!rail) return;
 
   var arrows = document.querySelectorAll('[data-scroll]');
+  var animation = null;
 
   function step() {
     var card = rail.querySelector('.card');
@@ -47,17 +48,43 @@ document.querySelectorAll('.choices').forEach(function (group) {
   }
 
   function sync() {
-    var atStart = rail.scrollLeft <= 1;
-    var atEnd = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 1;
+    var max = rail.scrollWidth - rail.clientWidth;
+    var atStart = rail.scrollLeft <= 8;
+    var atEnd = rail.scrollLeft >= max - 8;
     arrows.forEach(function (arrow) {
-      var forward = arrow.dataset.scroll === '1';
-      arrow.disabled = forward ? atEnd : atStart;
+      arrow.disabled = arrow.dataset.scroll === '1' ? atEnd : atStart;
     });
+  }
+
+  // Animate by hand. behavior:"smooth" is unreliable next to scroll snapping.
+  function glide(to) {
+    var from = rail.scrollLeft;
+    var max = rail.scrollWidth - rail.clientWidth;
+    var target = Math.max(0, Math.min(to, max));
+    var startedAt = null;
+    var duration = 420;
+
+    if (animation) cancelAnimationFrame(animation);
+
+    function frame(now) {
+      if (startedAt === null) startedAt = now;
+      var t = Math.min((now - startedAt) / duration, 1);
+      var eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      rail.scrollLeft = from + (target - from) * eased;
+      if (t < 1) {
+        animation = requestAnimationFrame(frame);
+      } else {
+        animation = null;
+        sync();
+      }
+    }
+
+    animation = requestAnimationFrame(frame);
   }
 
   arrows.forEach(function (arrow) {
     arrow.addEventListener('click', function () {
-      rail.scrollBy({ left: step() * Number(arrow.dataset.scroll), behavior: 'smooth' });
+      glide(rail.scrollLeft + step() * Number(arrow.dataset.scroll));
     });
   });
 

@@ -20,3 +20,6 @@ _private/
 /Corallo-House-by-Paz-Arquitectura-contemporary-exterior.jpg
 /Ciudad_de_Guatemala,_CA.jpg
 /images.jpeg
+
+# local preview only
+dev-server.js
