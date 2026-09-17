@@ -469,7 +469,9 @@ body {
 
 /* Partners ----------------------------------------------------------- */
 
-.section--trust { padding-bottom: 96px; }
+.section--partners { padding-top: 0; padding-bottom: 96px; }
+
+.section--partners .section__prose { margin-top: 0; }
 
 .partners {
   display: flex;
