@@ -563,3 +563,59 @@ body {
 @media (max-width: 860px) {
   .experiences { grid-template-columns: minmax(0, 1fr); gap: 48px; }
 }
+
+/* Promises ----------------------------------------------------------- */
+
+.promises {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px 40px;
+}
+
+.promise {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 64px;
+  margin-bottom: 96px;
+}
+
+.promise:nth-child(even) .promise__frame { order: 2; }
+
+.promise__frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 1px solid #e2e2e2;
+  background: #fafafa;
+}
+
+.promise__body { max-width: 42ch; }
+
+.promise__label {
+  margin: 0 0 16px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.promise__title {
+  margin: 0 0 14px;
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.promise__prose {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #555;
+}
+
+@media (max-width: 860px) {
+  .promises { padding: 0 24px 24px; }
+  .promise { grid-template-columns: minmax(0, 1fr); gap: 24px; margin-bottom: 64px; }
+  .promise:nth-child(even) .promise__frame { order: 0; }
+}
