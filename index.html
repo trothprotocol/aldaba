@@ -16,14 +16,63 @@
   </div>
 
   <nav class="header__right" aria-label="Utilities">
-    <button type="button" class="util" aria-label="Language: English">EN</button>
+    <button type="button" class="util" data-open="prefs" aria-label="Language: English">EN</button>
     <span class="util-sep" aria-hidden="true">|</span>
-    <button type="button" class="util" aria-label="Currency: US dollars">$</button>
-    <a class="util" href="#">Sign in</a>
+    <button type="button" class="util" data-open="prefs" aria-label="Currency: US dollars">$</button>
+    <button type="button" class="util util--boxed" data-open="signin">Sign in</button>
   </nav>
 </header>
 
 <main></main>
 
+<!-- Language and currency ------------------------------------------- -->
+
+<div class="overlay" id="prefs" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="prefs-title">
+    <button type="button" class="dialog__close" data-close aria-label="Close">&times;</button>
+
+    <h2 class="dialog__title" id="prefs-title">Language and currency</h2>
+
+    <div class="field">
+      <p class="field__label">Language</p>
+      <div class="choices" data-group="language">
+        <button type="button" class="choice is-selected">English</button>
+        <button type="button" class="choice">Español</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="field__label">Currency</p>
+      <div class="choices" data-group="currency">
+        <button type="button" class="choice is-selected">US dollar &middot; $</button>
+        <button type="button" class="choice">Quetzal &middot; Q</button>
+      </div>
+    </div>
+
+    <button type="button" class="btn" data-close>Save</button>
+  </div>
+</div>
+
+<!-- Sign in ---------------------------------------------------------- -->
+
+<div class="overlay" id="signin" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="signin-title">
+    <button type="button" class="dialog__close" data-close aria-label="Close">&times;</button>
+
+    <h2 class="dialog__title" id="signin-title">Welcome to Ladanta</h2>
+
+    <button type="button" class="btn btn--outline">Continue with Google</button>
+    <button type="button" class="btn btn--outline">Continue with Facebook</button>
+
+    <p class="rule"><span>or</span></p>
+
+    <label class="input-label" for="email">Email address</label>
+    <input class="input" id="email" type="email" autocomplete="email" placeholder="you@example.com">
+
+    <button type="button" class="btn" data-close>Continue</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

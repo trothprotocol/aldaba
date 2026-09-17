@@ -64,3 +64,147 @@ body {
   color: #c6c6c6;
   margin: 0 -6px;
 }
+
+.util--boxed {
+  border: 1px solid #111;
+  padding: 10px 18px;
+  margin-left: 4px;
+}
+
+.util--boxed:hover { opacity: 1; background: #111; color: #fff; }
+
+/* Dialogs ------------------------------------------------------------ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(17, 17, 17, 0.35);
+  z-index: 10;
+}
+
+.overlay[hidden] { display: none; }
+
+.dialog {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  padding: 36px 32px 32px;
+  background: #fff;
+  border: 1px solid #111;
+}
+
+.dialog__close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font: inherit;
+  font-size: 20px;
+  line-height: 1;
+  color: #111;
+  background: none;
+  border: 0;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.dialog__title {
+  margin: 0 0 24px;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.field { margin-bottom: 24px; }
+
+.field__label {
+  margin: 0 0 10px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.choices { display: grid; gap: 8px; }
+
+.choice {
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  color: #111;
+  background: none;
+  border: 1px solid #e2e2e2;
+  padding: 12px 14px;
+  cursor: pointer;
+}
+
+.choice:hover { border-color: #111; }
+.choice.is-selected { border-color: #111; }
+
+.btn {
+  display: block;
+  width: 100%;
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #111;
+  border: 1px solid #111;
+  padding: 14px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.btn--outline {
+  color: #111;
+  background: #fff;
+  margin-bottom: 8px;
+}
+
+.btn--outline:hover { background: #f4f4f4; }
+
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.rule::before, .rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #e2e2e2;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  font: inherit;
+  font-size: 14px;
+  color: #111;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+
+.input:focus { outline: 0; border-color: #111; }
