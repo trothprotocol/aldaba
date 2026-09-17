@@ -32,3 +32,36 @@ document.querySelectorAll('.choices').forEach(function (group) {
     choice.classList.add('is-selected');
   });
 });
+
+/* Collection rail. Arrows scroll the whole track, intro panel included. */
+
+(function () {
+  var rail = document.getElementById('rail');
+  if (!rail) return;
+
+  var arrows = document.querySelectorAll('[data-scroll]');
+
+  function step() {
+    var card = rail.querySelector('.card');
+    return card ? card.getBoundingClientRect().width + 24 : rail.clientWidth * 0.8;
+  }
+
+  function sync() {
+    var atStart = rail.scrollLeft <= 1;
+    var atEnd = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 1;
+    arrows.forEach(function (arrow) {
+      var forward = arrow.dataset.scroll === '1';
+      arrow.disabled = forward ? atEnd : atStart;
+    });
+  }
+
+  arrows.forEach(function (arrow) {
+    arrow.addEventListener('click', function () {
+      rail.scrollBy({ left: step() * Number(arrow.dataset.scroll), behavior: 'smooth' });
+    });
+  });
+
+  rail.addEventListener('scroll', sync);
+  window.addEventListener('resize', sync);
+  sync();
+})();
