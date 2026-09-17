@@ -224,3 +224,23 @@ body {
 }
 
 .btn-pair .btn { margin: 0; }
+
+/* Hero --------------------------------------------------------------- */
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72vh;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.hero__line {
+  max-width: 20ch;
+  margin: 0;
+  font-size: clamp(30px, 5.2vw, 56px);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+}
