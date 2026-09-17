@@ -237,7 +237,7 @@ body {
 }
 
 .hero__line {
-  max-width: 20ch;
+  max-width: 34ch;
   margin: 0;
   font-size: clamp(30px, 5.2vw, 56px);
   font-weight: 400;
