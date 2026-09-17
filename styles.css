@@ -466,3 +466,40 @@ body {
   opacity: 0;
   pointer-events: none;
 }
+
+/* Partners ----------------------------------------------------------- */
+
+.section--trust { padding-bottom: 96px; }
+
+.partners {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  max-width: 1000px;
+  margin: 56px auto 0;
+  background: #e2e2e2;
+  border: 1px solid #e2e2e2;
+}
+
+.partner {
+  background: #fff;
+  padding: 28px 18px;
+}
+
+.partner__name {
+  margin: 0 0 6px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.partner__role {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #777;
+}
+
+@media (max-width: 860px) {
+  .partners { grid-template-columns: repeat(2, 1fr); }
+}
