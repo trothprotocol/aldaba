@@ -208,3 +208,19 @@ body {
 }
 
 .input:focus { outline: 0; border-color: #111; }
+
+.dialog__subtitle {
+  margin: -16px 0 24px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #777;
+  text-align: center;
+}
+
+.btn-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.btn-pair .btn { margin: 0; }
