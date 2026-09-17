@@ -624,14 +624,27 @@ body {
 
 /* Signup ------------------------------------------------------------- */
 
-.section--signup { padding-bottom: 110px; }
+.section--signup {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 64px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 110px;
+  text-align: left;
+}
+
+.section--signup .section__line { margin: 0; max-width: 18ch; }
+
+.section--signup .section__prose { margin: 16px 0 0; }
 
 .signup {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 0;
-  max-width: 520px;
-  margin: 40px auto 0;
+  max-width: 460px;
+  margin: 0;
   border: 1px solid #111;
 }
 
@@ -671,7 +684,7 @@ body {
 
 .signup__legal {
   max-width: 44ch;
-  margin: 18px auto 0;
+  margin: 16px 0 0;
   font-size: 12px;
   line-height: 1.6;
   color: #777;
@@ -681,7 +694,9 @@ body {
 
 .signup__legal a:hover { color: #111; }
 
-@media (max-width: 520px) {
+@media (max-width: 860px) {
+  .section--signup { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .section--signup .section__line { max-width: none; }
   .signup { grid-template-columns: minmax(0, 1fr); }
   .signup__submit { padding: 15px; }
 }
