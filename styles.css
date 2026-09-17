@@ -1,0 +1,66 @@
+/* Blueprint. Black and white, no brand yet. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: #111;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header ------------------------------------------------------------ */
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 26px 40px;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.header__left { justify-self: start; }
+.header__center { justify-self: center; }
+
+.header__right {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.wordmark {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.util {
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #111;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.util:hover { opacity: 0.55; }
+
+.util-sep {
+  font-size: 12px;
+  color: #c6c6c6;
+  margin: 0 -6px;
+}
