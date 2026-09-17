@@ -63,5 +63,12 @@ document.querySelectorAll('.choices').forEach(function (group) {
 
   rail.addEventListener('scroll', sync);
   window.addEventListener('resize', sync);
+
+  // Defeat the browser restoring a scroll position on reload.
+  rail.scrollLeft = 0;
   sync();
+  window.addEventListener('load', function () {
+    rail.scrollLeft = 0;
+    sync();
+  });
 })();
