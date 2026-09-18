@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Owners · Ladanta</title>
+<meta name="description" content="For the owner of a private house in Guatemala.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<header class="header is-compact" id="header">
+  <div class="header__spacer"></div>
+
+  <div class="header__center">
+    <a class="wordmark" href="/">Ladanta</a>
+    <p class="tagline">Well received.</p>
+  </div>
+
+  <div class="header__compact" aria-label="Search">
+    <button type="button" class="compact__field">Destination</button>
+    <button type="button" class="compact__field">Dates</button>
+    <button type="button" class="compact__field">Guests</button>
+    <a class="compact__submit" href="/houses">Search</a>
+  </div>
+
+  <nav class="header__right" aria-label="Utilities">
+    <button type="button" class="util" data-open="prefs" aria-label="Language: English">EN</button>
+    <span class="util-sep" aria-hidden="true">|</span>
+    <button type="button" class="util" data-open="prefs" aria-label="Currency: US dollars">$</button>
+    <button type="button" class="util util--boxed" data-open="signin">Sign in</button>
+  </nav>
+</header>
+
+<main id="main">
+
+  <div class="wrap">
+    <div class="essay essay--narrow">
+      <h1 class="essay__lede">For owners.</h1>
+
+      <div class="prose">
+        <p>Ladanta represents a small number of private houses in Guatemala and arranges the stays in them. If you own a house you think belongs on this list, we would like to see it.</p>
+        <p>Write to us with where it is and, if it is listed anywhere, a link. We will look, and reply within two days.</p>
+        <p><a href="mailto:hola@ladanta.com?subject=A%20house">hola@ladanta.com</a></p>
+      </div>
+
+      <form class="form" data-enquire data-subject="A house">
+        <div class="form__row">
+          <div>
+            <label class="input-label" for="own-name">Name</label>
+            <input class="input" id="own-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div>
+            <label class="input-label" for="own-email">Email</label>
+            <input class="input" id="own-email" name="email" type="email" autocomplete="email" required>
+          </div>
+        </div>
+        <label class="input-label" for="own-where">Where the house is</label>
+        <input class="input" id="own-where" name="where" type="text" required>
+        <label class="input-label" for="own-link">A link, if it is listed</label>
+        <input class="input" id="own-link" name="link" type="url" placeholder="https://" inputmode="url">
+        <button type="submit" class="btn">Send</button>
+        <p class="form__note">This opens your email with the message written. Nothing is stored on this site.</p>
+      </form>
+
+      <div class="essay__end"></div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__brand">
+      <a class="wordmark wordmark--footer" href="/">Ladanta</a>
+      <p class="tagline tagline--footer">Well received.</p>
+    </div>
+
+    <nav class="footer__cols" aria-label="Footer">
+      <div class="footer__col">
+        <p class="footer__heading">Destinations</p>
+        <a href="/houses?place=antigua">Antigua</a>
+        <a href="/houses?place=atitlan">Lake Atitl&aacute;n</a>
+        <a href="/houses?place=rio-dulce">R&iacute;o Dulce</a>
+        <a href="/houses?place=ciudad">Guatemala City</a>
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__heading">Ladanta</p>
+        <a href="/about">About us</a>
+        <a href="/experiences">Experiences</a>
+        <a href="/#word">Journal</a>
+        <a href="/about#contact">Contact</a>
+      </div>
+
+      <div class="footer__col">
+        <p class="footer__heading">Legal</p>
+        <a href="#">Terms</a>
+        <a href="#">Privacy Policy</a>
+        <a href="/propietarios" rel="nofollow">Property owners</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="footer__base">
+    <p>&copy; 2026 Ladanta. Guatemala.</p>
+    <p><a href="mailto:hola@ladanta.com">hola@ladanta.com</a></p>
+  </div>
+</footer>
+
+
+<!-- Language and currency ------------------------------------------- -->
+
+<div class="overlay" id="prefs" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="prefs-title">
+    <button type="button" class="dialog__close" data-close aria-label="Close">&times;</button>
+
+    <h2 class="dialog__title" id="prefs-title">Language and currency</h2>
+
+    <div class="field">
+      <p class="field__label">Language</p>
+      <div class="choices" data-group="language">
+        <button type="button" class="choice is-selected">English</button>
+        <button type="button" class="choice">Español</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <p class="field__label">Currency</p>
+      <div class="choices" data-group="currency">
+        <button type="button" class="choice is-selected">US dollar &middot; $</button>
+        <button type="button" class="choice">Quetzal &middot; Q</button>
+      </div>
+    </div>
+
+    <button type="button" class="btn" data-close>Save</button>
+  </div>
+</div>
+
+<!-- Sign in ---------------------------------------------------------- -->
+
+<div class="overlay" id="signin" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="signin-title">
+    <button type="button" class="dialog__close" data-close aria-label="Close">&times;</button>
+
+    <h2 class="dialog__title" id="signin-title">Welcome to Ladanta</h2>
+    <p class="dialog__subtitle">Choose how you&rsquo;d like to continue, or enter your email.</p>
+
+    <div class="btn-pair">
+      <button type="button" class="btn btn--outline">Google</button>
+      <button type="button" class="btn btn--outline">Facebook</button>
+    </div>
+
+    <p class="rule"><span>or</span></p>
+
+    <label class="input-label" for="email">Email address</label>
+    <input class="input" id="email" type="email" autocomplete="email" placeholder="you@example.com">
+
+    <button type="button" class="btn" data-close>Continue</button>
+  </div>
+</div>
+
+<script src="/script.js"></script>
+</body>
+</html>

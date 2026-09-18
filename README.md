@@ -1,92 +1,62 @@
-# Aldaba
+# Ladanta
 
-Guest-facing site for Aldaba, a collection of houses in Guatemala. Plain static
-HTML, CSS and one script, no build step for the site itself. Deployed on Vercel.
+Guest-facing site for Ladanta, a small collection of private houses in
+Guatemala. Plain static HTML, one stylesheet and one script. No build step.
+Deployed on Vercel with `cleanUrls`, so links are written without `.html`.
+
+## Pages
+
+    index.html            Home: hero and search, the rail, promises, experiences, mailing list
+    houses/index.html     The collection, filtered by place (?place=antigua|atitlan|rio-dulce|ciudad)
+    houses/<slug>.html    One house: sticky frame, image stack, the house, inside, around, practical, enquire
+    about.html            The idea, the name, the people behind it, where we are, contact
+    experiences.html      Three days we arrange, one per place, as split panels
+    propietarios.html     The private door for owners. noindex, and disallowed in robots.txt
+
+Every page carries the same header, footer and two dialogs. When one of
+those changes, change it in every file; there is no template.
 
 ## Running it locally
 
-    python3 -m http.server 4321 --directory .
+Any static server from the repo root will do, as long as it resolves clean
+URLs the way Vercel does (`/about` to `about.html`, `/houses` to
+`houses/index.html`). `dev-server.js` is a gitignored local copy that does.
 
-## Destination pages
+## Houses
 
-`destinations/*.html` are generated. All of their copy, in both languages,
-lives in `build-destinations.py`. Edit that file and run:
+The four houses (Ja', Choq', Ki', Tinamit) are working names on placeholder
+photography, and their pages are `noindex` until the houses are real. The
+fifth card on the rail and in the grid is a "listing soon" plate, not a link.
 
-    python3 build-destinations.py
+No nightly rate appears anywhere. Budget is something a guest tells us, never
+a number we publish, and services are named but never bundled into the house.
 
-Never edit the built pages directly; the next run overwrites them.
+## Forms
 
-## House pages
+There is no backend. The enquiry forms (house pages, about, owners) compose
+an email to `hola@ladanta.com` and open the guest's mail client; nothing is
+stored. The mailing list form does nothing yet.
 
-`houses/*.html` work the same way, from `build-houses.py`:
+## Images
 
-    python3 build-houses.py
+`img/houses/` is the house photography (stock, low resolution, to be
+replaced). `img/places/` is cut from the full-resolution originals in
+`stock/`, which is gitignored: a 2000px file and a `-1000` file for `srcset`,
+JPEG at quality 78, made with `sips`. Cut a new one the same way rather than
+committing an original.
 
-`houses/choq.html` is a test listing. Aldaba does not manage that house, the
-photograph is stock, the name carries "(test)" and the page is noindexed.
-Delete the entry from `build-houses.py` when it has served its purpose.
+## Colour and type
 
-No nightly rate appears on a house page. Budget is a field the guest fills in,
-never a number we publish, and services are named but never bundled into the
-house.
+Tokens live at the top of `styles.css`: paper `#F4F4E6`, ink `#272826`, and
+two greys for prose and labels that clear WCAG AA on paper. Jade `#35564A`
+is a signature, not a palette: the focus ring and the chosen filter's
+underline, and nothing else. Adding a third use needs a reason.
 
-## Journal
-
-`journal/*.html` comes from `build-journal.py`. Each piece ends the same way:
-what we arrange around it, then the houses it suits, pulled from the house
-list rather than restated.
-
-## About page
-
-`about.html` comes from `build-about.py`. Same shell, same footer.
-
-## The footer
-
-`common.py` reads the house and destination lists out of the two build
-scripts, so the footer lists the whole collection and a new house appears
-everywhere at once. After adding a house, run all three builds:
-
-    python3 build-houses.py && python3 build-destinations.py && python3 build-about.py && python3 build-journal.py
-
-`index.html` and `propietarios.html` carry the same footer between
-`<!-- footer:start -->` and `<!-- footer:end -->`; paste a fresh
-`common.footer_html("")` between those markers when the collection changes.
-
-## Languages
-
-English is primary. Both languages live in one document: every translatable
-node carries `data-en` and `data-es` (set as innerHTML, so inline markup
-travels), plus `data-en-label` / `data-es-label` for aria-labels. The choice
-persists in localStorage. The tagline "Well received." stays in English in
-both.
+Headlines set in a system serif stack (Iowan Old Style, Palatino, Georgia);
+everything else is the system sans. Both are one line to change in `:root`.
 
 ## What is deliberately not here
 
-`_private/` is gitignored. It holds the full owner pitch page and the
-full-resolution stock originals, and it must not ship. The public site keeps
-the owner conversation to one quiet footer link and a noindex page: no rates,
-no commissions, no owner economics on any public URL.
-
-## Colour
-
-Tokens come from the wordmark files: paper `#F4F4E6`, ink `#272826`, sage
-`#D0DDD4`. The jade `#35564A` is a signature, not a palette, and appears in
-exactly four places: the chosen programme tab, whatever the cursor is over,
-the focus ring, the section eyebrows, and the drop cap that opens a journal
-piece. Nothing is filled with it. Adding another use needs a reason.
-
-## Brand
-
-The wordmark ships as two trimmed PNGs in `img/brand/`: `wordmark-ink.png`
-for pale grounds and `wordmark-light.png` for the transparent header over the
-hero. The header cross-fades between them when it goes solid. The
-full-resolution exports live in `logos/`, which is gitignored; regenerate the
-trimmed files by cropping to the alpha bounding box and resizing to 1400px
-wide.
-
-## Media
-
-The hero video was transcoded from a 4K original with macOS `avconvert`
-(1080p and 720p, with a poster pulled from its own first frame). The 1080p file
-is heavier than it should be and is worth re-encoding with ffmpeg before
-launch.
+`_private/` is gitignored. It holds the business plan, the full owner pitch
+and the schema diagrams, and it must not ship. Nothing about commissions,
+owner economics or how the business is run appears on any public URL.

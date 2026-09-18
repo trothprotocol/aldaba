@@ -4,10 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ladanta</title>
-<link rel="stylesheet" href="styles.css">
+<meta name="description" content="Extraordinary private residences in Guatemala, and everything around them.">
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
+<a class="skip" href="#main">Skip to content</a>
 <header class="header" id="header">
   <div class="header__spacer"></div>
 
@@ -16,11 +18,11 @@
     <p class="tagline">Well received.</p>
   </div>
 
-  <div class="header__compact" aria-hidden="true">
+  <div class="header__compact" aria-label="Search">
     <button type="button" class="compact__field">Destination</button>
     <button type="button" class="compact__field">Dates</button>
     <button type="button" class="compact__field">Guests</button>
-    <button type="button" class="compact__submit">Search</button>
+    <a class="compact__submit" href="/houses">Search</a>
   </div>
 
   <nav class="header__right" aria-label="Utilities">
@@ -31,12 +33,12 @@
   </nav>
 </header>
 
-<main>
+<main id="main">
 
   <section class="hero">
     <h1 class="hero__line">Extraordinary private residences,<br>and everything around them.</h1>
 
-    <form class="search" role="search" onsubmit="return false">
+    <form class="search" role="search" action="/houses" method="get">
       <button type="button" class="search__field">
         <span class="search__label">Destination</span>
         <span class="search__value">Add destination</span>
@@ -66,34 +68,34 @@
       <div class="rail__intro">
         <h2 class="rail__title">Explore the world of Ladanta</h2>
         <p class="rail__prose">Houses across Guatemala, each one known personally.</p>
-        <a class="rail__cta" href="#">View all</a>
+        <a class="rail__cta" href="/houses">View all</a>
       </div>
 
-        <a class="card" href="#">
-          <span class="card__frame"></span>
-          <span class="card__name">House One</span>
+        <a class="card" href="/houses/ja" data-place="antigua">
+          <span class="card__frame"><img src="/img/houses/ja-01.jpg" alt="A white two-storey house lit from inside at dusk, its doors open to the garden" loading="lazy"></span>
+          <span class="card__name">Ja&rsquo;</span>
           <span class="card__meta">Antigua &middot; 4 bedrooms &middot; 8 guests</span>
         </a>
-        <a class="card" href="#">
-          <span class="card__frame"></span>
-          <span class="card__name">House Two</span>
+        <a class="card" href="/houses/choq" data-place="atitlan">
+          <span class="card__frame"><img src="/img/houses/choq-01.jpg" alt="A glass-walled bedroom opening onto a timber deck above the lake" loading="lazy"></span>
+          <span class="card__name">Choq&rsquo;</span>
           <span class="card__meta">Lake Atitl&aacute;n &middot; 3 bedrooms &middot; 6 guests</span>
         </a>
-        <a class="card" href="#">
-          <span class="card__frame"></span>
-          <span class="card__name">House Three</span>
-          <span class="card__meta">Antigua &middot; 5 bedrooms &middot; 10 guests</span>
-        </a>
-        <a class="card" href="#">
-          <span class="card__frame"></span>
-          <span class="card__name">House Four</span>
-          <span class="card__meta">Guatemala City &middot; 2 bedrooms &middot; 4 guests</span>
-        </a>
-        <a class="card" href="#">
-          <span class="card__frame"></span>
-          <span class="card__name">House Five</span>
+        <a class="card" href="/houses/ki" data-place="rio-dulce">
+          <span class="card__frame"><img src="/img/houses/ki-01.jpg" alt="A timber bedroom under a high thatched roof with white curtains and a spiral stair" loading="lazy"></span>
+          <span class="card__name">Ki&rsquo;</span>
           <span class="card__meta">R&iacute;o Dulce &middot; 6 bedrooms &middot; 12 guests</span>
         </a>
+        <a class="card" href="/houses/tinamit" data-place="ciudad">
+          <span class="card__frame"><img src="/img/houses/tinamit-01.jpg" alt="A glass and concrete house lit at night among tall trees" loading="lazy"></span>
+          <span class="card__name">Tinamit</span>
+          <span class="card__meta">Guatemala City &middot; 2 bedrooms &middot; 4 guests</span>
+        </a>
+        <div class="card card--soon" data-place="antigua">
+          <span class="card__frame"><span>Listing soon</span></span>
+          <span class="card__name">A second house in Antigua</span>
+          <span class="card__meta">Antigua &middot; 5 bedrooms &middot; 10 guests</span>
+        </div>
     </div>
 
     <button type="button" class="rail__arrow rail__arrow--prev" data-scroll="-1" disabled aria-label="Previous">&larr;</button>
@@ -104,7 +106,7 @@
 
   <section class="promises">
     <div class="promise">
-      <span class="promise__frame"></span>
+      <span class="promise__frame"><img src="/img/houses/ja-01.jpg" alt="A white house lit from inside at dusk, its doors open to the garden" loading="lazy"></span>
       <div class="promise__body">
         <h3 class="promise__title">We take on very few.</h3>
         <p class="promise__prose">Every house on the list is one we have walked through ourselves. When a house stops meeting the standard, it leaves the list.</p>
@@ -112,7 +114,7 @@
     </div>
 
     <div class="promise">
-      <span class="promise__frame"></span>
+      <span class="promise__frame"><img src="/img/places/antigua-plaza-1000.jpg" srcset="/img/places/antigua-plaza-1000.jpg 1000w, /img/places/antigua-plaza.jpg 2000w" sizes="(max-width: 860px) 100vw, 520px" alt="The cathedral square in Antigua at dawn, with Agua volcano behind it" loading="lazy"></span>
       <div class="promise__body">
         <h3 class="promise__title">One person, all the way through.</h3>
         <p class="promise__prose">From the first note to the last morning, the same name answers. Nothing is handed between departments, because there are none.</p>
@@ -120,7 +122,7 @@
     </div>
 
     <div class="promise">
-      <span class="promise__frame"></span>
+      <span class="promise__frame"><img src="/img/places/atitlan-boat-1000.jpg" srcset="/img/places/atitlan-boat-1000.jpg 1000w, /img/places/atitlan-boat.jpg 2000w" sizes="(max-width: 860px) 100vw, 520px" alt="A single boat crossing Lake Atitlán below the volcano" loading="lazy"></span>
       <div class="promise__body">
         <h3 class="promise__title">Whatever the house cannot do for itself.</h3>
         <p class="promise__prose">A chef for the evening, a boat at first light, a guide who has walked the trail since he was a boy. Arranged quietly, priced plainly.</p>
@@ -146,33 +148,33 @@
 
     <div class="experiences">
       <article class="experience">
-        <span class="experience__frame"></span>
+        <span class="experience__frame"><img src="/img/coffee.jpg" alt="Ripe red coffee cherries on the branch" loading="lazy"></span>
         <p class="experience__place">Antigua</p>
         <h3 class="experience__title">Coffee before the city wakes</h3>
         <p class="experience__prose">A finca on the slope, picked at first light, cupped at a table under the volcano.</p>
-        <a class="experience__more" href="#">Read more</a>
+        <a class="experience__more" href="/experiences#antigua">Read more</a>
       </article>
 
       <article class="experience">
-        <span class="experience__frame"></span>
+        <span class="experience__frame"><img src="/img/lake.jpg" alt="Lake Atitlán under cloud" loading="lazy"></span>
         <p class="experience__place">Lake Atitl&aacute;n</p>
         <h3 class="experience__title">The lake while it is still glass</h3>
         <p class="experience__prose">Out on the water before the wind arrives, and a Tz&rsquo;utujil kitchen in Santiago after.</p>
-        <a class="experience__more" href="#">Read more</a>
+        <a class="experience__more" href="/experiences#atitlan">Read more</a>
       </article>
 
       <article class="experience">
-        <span class="experience__frame"></span>
+        <span class="experience__frame"><img src="/img/rio-dulce.jpg" alt="The river opening into the lake, with houses on the far bank" loading="lazy"></span>
         <p class="experience__place">R&iacute;o Dulce</p>
         <h3 class="experience__title">Downriver, under the canopy</h3>
         <p class="experience__prose">The gorge at the hour the herons move, and the Caribbean waiting at the end of it.</p>
-        <a class="experience__more" href="#">Read more</a>
+        <a class="experience__more" href="/experiences#rio-dulce">Read more</a>
       </article>
     </div>
   </section>
 
 
-  <section class="section section--signup">
+  <section class="section section--signup" id="word">
     <div class="signup__text">
       <h2 class="section__line">Word from here, now and then.</h2>
       <p class="section__prose">New houses before they are listed, and the occasional note from the road.</p>
@@ -201,25 +203,25 @@
     <nav class="footer__cols" aria-label="Footer">
       <div class="footer__col">
         <p class="footer__heading">Destinations</p>
-        <a href="#">Antigua</a>
-        <a href="#">Lake Atitl&aacute;n</a>
-        <a href="#">R&iacute;o Dulce</a>
-        <a href="#">Guatemala City</a>
+        <a href="/houses?place=antigua">Antigua</a>
+        <a href="/houses?place=atitlan">Lake Atitl&aacute;n</a>
+        <a href="/houses?place=rio-dulce">R&iacute;o Dulce</a>
+        <a href="/houses?place=ciudad">Guatemala City</a>
       </div>
 
       <div class="footer__col">
         <p class="footer__heading">Ladanta</p>
-        <a href="#">About us</a>
-        <a href="#">Experiences</a>
-        <a href="#">Journal</a>
-        <a href="#">Contact</a>
+        <a href="/about">About us</a>
+        <a href="/experiences">Experiences</a>
+        <a href="/#word">Journal</a>
+        <a href="/about#contact">Contact</a>
       </div>
 
       <div class="footer__col">
         <p class="footer__heading">Legal</p>
         <a href="#">Terms</a>
         <a href="#">Privacy Policy</a>
-        <a href="#" rel="nofollow">Property owners</a>
+        <a href="/propietarios" rel="nofollow">Property owners</a>
       </div>
     </nav>
   </div>
@@ -282,6 +284,6 @@
   </div>
 </div>
 
-<script src="script.js"></script>
+<script src="/script.js"></script>
 </body>
 </html>

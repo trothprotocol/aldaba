@@ -1,37 +1,58 @@
-/* Prototype only. Opens and closes the dialogs, tracks the selected choice. */
+/* Prototype only. Dialogs, the collection rail and grid, and the enquiry forms. */
 
-document.querySelectorAll('[data-open]').forEach(function (trigger) {
-  trigger.addEventListener('click', function () {
-    var dialog = document.getElementById(trigger.dataset.open);
-    if (dialog) dialog.hidden = false;
-  });
-});
+/* Dialogs. Focus moves in on open and back to the trigger on close. */
 
-document.querySelectorAll('.overlay').forEach(function (overlay) {
-  overlay.addEventListener('click', function (event) {
-    if (event.target === overlay || event.target.closest('[data-close]')) {
+(function () {
+  var lastTrigger = null;
+
+  function open(id, trigger) {
+    var overlay = document.getElementById(id);
+    if (!overlay) return;
+    lastTrigger = trigger || null;
+    overlay.hidden = false;
+    var first = overlay.querySelector('.dialog__close');
+    if (first) first.focus();
+  }
+
+  function closeAll() {
+    var wasOpen = false;
+    document.querySelectorAll('.overlay').forEach(function (overlay) {
+      if (!overlay.hidden) wasOpen = true;
       overlay.hidden = true;
-    }
-  });
-});
-
-document.addEventListener('keydown', function (event) {
-  if (event.key !== 'Escape') return;
-  document.querySelectorAll('.overlay').forEach(function (overlay) {
-    overlay.hidden = true;
-  });
-});
-
-document.querySelectorAll('.choices').forEach(function (group) {
-  group.addEventListener('click', function (event) {
-    var choice = event.target.closest('.choice');
-    if (!choice) return;
-    group.querySelectorAll('.choice').forEach(function (other) {
-      other.classList.remove('is-selected');
     });
-    choice.classList.add('is-selected');
+    if (wasOpen && lastTrigger) lastTrigger.focus();
+    lastTrigger = null;
+  }
+
+  document.querySelectorAll('[data-open]').forEach(function (trigger) {
+    trigger.addEventListener('click', function () {
+      open(trigger.dataset.open, trigger);
+    });
   });
-});
+
+  document.querySelectorAll('.overlay').forEach(function (overlay) {
+    overlay.addEventListener('click', function (event) {
+      if (event.target === overlay || event.target.closest('[data-close]')) {
+        closeAll();
+      }
+    });
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') closeAll();
+  });
+
+  document.querySelectorAll('.choices').forEach(function (group) {
+    group.addEventListener('click', function (event) {
+      var choice = event.target.closest('.choice');
+      if (!choice) return;
+      group.querySelectorAll('.choice').forEach(function (other) {
+        other.classList.remove('is-selected');
+      });
+      choice.classList.add('is-selected');
+    });
+  });
+})();
 
 /* Collection rail. Arrows scroll the whole track, intro panel included. */
 
@@ -115,4 +136,82 @@ document.querySelectorAll('.choices').forEach(function (group) {
   window.addEventListener('scroll', sync, { passive: true });
   window.addEventListener('resize', sync);
   sync();
+})();
+
+/* Collection grid. One filter, by place, mirrored into the address bar. */
+
+(function () {
+  var grid = document.querySelector('[data-grid]');
+  if (!grid) return;
+
+  var filters = document.querySelectorAll('[data-filters] .filter');
+  var count = document.querySelector('[data-count]');
+  var empty = document.querySelector('[data-empty]');
+  var cards = grid.querySelectorAll('.card');
+  var words = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+
+  function apply(place, pushState) {
+    var shown = 0;
+    var label = '';
+
+    filters.forEach(function (button) {
+      var active = button.dataset.place === place;
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+      if (active && place) label = button.textContent;
+    });
+
+    cards.forEach(function (card) {
+      var match = !place || card.dataset.place === place;
+      card.hidden = !match;
+      if (match) shown += 1;
+    });
+
+    if (count) {
+      count.textContent = (words[shown] || shown) + (shown === 1 ? ' house' : ' houses') + (label ? ' in ' + label : '');
+    }
+    if (empty) empty.hidden = shown > 0;
+
+    if (pushState && window.history.replaceState) {
+      var url = place ? '?place=' + place : window.location.pathname;
+      window.history.replaceState(null, '', url);
+    }
+  }
+
+  filters.forEach(function (button) {
+    button.addEventListener('click', function () {
+      apply(button.dataset.place, true);
+    });
+  });
+
+  var initial = new URLSearchParams(window.location.search).get('place') || '';
+  var known = Array.prototype.some.call(filters, function (button) {
+    return button.dataset.place === initial;
+  });
+  apply(known ? initial : '', false);
+})();
+
+/* Enquiries. No backend yet: the form writes the email and hands it over. */
+
+(function () {
+  var address = 'hola@ladanta.com';
+
+  document.querySelectorAll('[data-enquire]').forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var lines = [];
+      form.querySelectorAll('input, textarea').forEach(function (field) {
+        var label = form.querySelector('label[for="' + field.id + '"]');
+        var value = field.value.trim();
+        if (!value) return;
+        lines.push((label ? label.textContent : field.name) + ': ' + value);
+      });
+
+      var subject = form.dataset.subject || 'Enquiry';
+      var body = lines.join('\n') + '\n\nSent from ladanta.com';
+      window.location.href = 'mailto:' + address +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
+    });
+  });
 })();
