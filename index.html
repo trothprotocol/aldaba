@@ -35,7 +35,12 @@
 
 <main id="main">
 
-  <section class="hero">
+  <section class="hero hero--video">
+    <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="/img/hero-fuego-poster.jpg" data-hd="/img/hero-fuego-1080.mp4" aria-hidden="true" tabindex="-1">
+      <source src="/img/hero-fuego-720.mp4" type="video/mp4">
+    </video>
+    <div class="hero__scrim" aria-hidden="true"></div>
+
     <h1 class="hero__line">Extraordinary private residences,<br>and everything around them.</h1>
 
     <form class="search" role="search" action="/houses" method="get">
@@ -148,27 +153,27 @@
 
     <div class="experiences">
       <article class="experience">
-        <span class="experience__frame"><img src="/img/coffee.jpg" alt="Ripe red coffee cherries on the branch" loading="lazy"></span>
+        <a class="experience__frame" href="/experiences/antigua" aria-label="Coffee before the city wakes"><img src="/img/coffee.jpg" alt="Ripe red coffee cherries on the branch" loading="lazy"></a>
         <p class="experience__place">Antigua</p>
         <h3 class="experience__title">Coffee before the city wakes</h3>
         <p class="experience__prose">A finca on the slope, picked at first light, cupped at a table under the volcano.</p>
-        <a class="experience__more" href="/experiences#antigua">Read more</a>
+        <a class="experience__more" href="/experiences/antigua">Read more</a>
       </article>
 
       <article class="experience">
-        <span class="experience__frame"><img src="/img/lake.jpg" alt="Lake Atitlán under cloud" loading="lazy"></span>
+        <a class="experience__frame" href="/experiences/atitlan" aria-label="The lake while it is still glass"><img src="/img/lake.jpg" alt="Lake Atitlán under cloud" loading="lazy"></a>
         <p class="experience__place">Lake Atitl&aacute;n</p>
         <h3 class="experience__title">The lake while it is still glass</h3>
         <p class="experience__prose">Out on the water before the wind arrives, and a Tz&rsquo;utujil kitchen in Santiago after.</p>
-        <a class="experience__more" href="/experiences#atitlan">Read more</a>
+        <a class="experience__more" href="/experiences/atitlan">Read more</a>
       </article>
 
       <article class="experience">
-        <span class="experience__frame"><img src="/img/rio-dulce.jpg" alt="The river opening into the lake, with houses on the far bank" loading="lazy"></span>
+        <a class="experience__frame" href="/experiences/rio-dulce" aria-label="Downriver, under the canopy"><img src="/img/rio-dulce.jpg" alt="The river opening into the lake, with houses on the far bank" loading="lazy"></a>
         <p class="experience__place">R&iacute;o Dulce</p>
         <h3 class="experience__title">Downriver, under the canopy</h3>
         <p class="experience__prose">The gorge at the hour the herons move, and the Caribbean waiting at the end of it.</p>
-        <a class="experience__more" href="/experiences#rio-dulce">Read more</a>
+        <a class="experience__more" href="/experiences/rio-dulce">Read more</a>
       </article>
     </div>
   </section>

@@ -6,11 +6,12 @@ Deployed on Vercel with `cleanUrls`, so links are written without `.html`.
 
 ## Pages
 
-    index.html            Home: hero and search, the rail, promises, experiences, mailing list
+    index.html            Home: video hero and search, the rail, promises, experiences, mailing list
     houses/index.html     The collection, filtered by place (?place=antigua|atitlan|rio-dulce|ciudad)
     houses/<slug>.html    One house: sticky frame, image stack, the house, inside, around, practical, enquire
     about.html            The idea, the name, the people behind it, where we are, contact
-    experiences.html      Three days we arrange, one per place, as split panels
+    experiences/index.html   The three days we arrange, as cards
+    experiences/<slug>.html  One day: split opening, the day, what we arrange, houses nearby, elsewhere, ask
     propietarios.html     The private door for owners. noindex, and disallowed in robots.txt
 
 Every page carries the same header, footer and two dialogs. When one of
@@ -37,6 +38,22 @@ There is no backend. The enquiry forms (house pages, about, owners) compose
 an email to `hola@ladanta.com` and open the guest's mail client; nothing is
 stored. The mailing list form does nothing yet.
 
+## The hero
+
+`index.html` opens on the hiker video (`img/hero-fuego-720.mp4`; the script
+swaps in the 1080 file on screens 1280px and wider, and leaves the poster
+alone under `prefers-reduced-motion` or Save-Data). The hero slides under the
+sticky header by `--header-h`, which the script measures, and the header goes
+transparent with light type while it is over the video, then translucent with
+a blur once the page has moved.
+
+## Motion
+
+One easing curve (`--ease`) and long durations: image scale on hover 1.6s,
+borders 0.4s, header states 0.5s. Sections carry `.reveal` (set by script,
+so nothing hides without it) and fade up on an IntersectionObserver. All of
+it is switched off under `prefers-reduced-motion`.
+
 ## Images
 
 `img/houses/` is the house photography (stock, low resolution, to be
@@ -47,7 +64,8 @@ committing an original.
 
 ## Colour and type
 
-Tokens live at the top of `styles.css`: paper `#F4F4E6`, ink `#272826`, and
+Tokens live at the top of `styles.css`: paper `#F3EFE8` (a warm off-white,
+in the Aman register), ink `#272826`, and
 two greys for prose and labels that clear WCAG AA on paper. Jade `#35564A`
 is a signature, not a palette: the focus ring and the chosen filter's
 underline, and nothing else. Adding a third use needs a reason.

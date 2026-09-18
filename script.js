@@ -83,7 +83,7 @@
     var max = rail.scrollWidth - rail.clientWidth;
     var target = Math.max(0, Math.min(to, max));
     var startedAt = null;
-    var duration = 420;
+    var duration = 640;
 
     if (animation) cancelAnimationFrame(animation);
 
@@ -121,21 +121,80 @@
   });
 })();
 
-/* Header. The hero search hands its job to the header on the way past. */
+/* Header. Translucent once the page moves, transparent over the video hero,
+   and it takes the search from the hero on the way past. */
 
 (function () {
   var header = document.getElementById('header');
-  var heroSearch = document.querySelector('.hero .search');
-  if (!header || !heroSearch) return;
+  if (!header) return;
+
+  var hero = document.querySelector('.hero');
+  var overVideo = !!document.querySelector('.hero--video');
+
+  // The hero slides under the header by this much.
+  function measure() {
+    if (header.classList.contains('is-compact')) return;
+    document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+  }
 
   function sync() {
-    var passed = heroSearch.getBoundingClientRect().bottom < header.offsetHeight;
-    header.classList.toggle('is-compact', passed);
+    var h = header.offsetHeight;
+    var heroBottom = hero ? hero.getBoundingClientRect().bottom : 0;
+    header.classList.toggle('is-scrolled', window.scrollY > 8);
+    header.classList.toggle('is-over', overVideo && heroBottom > h);
+    if (hero) header.classList.toggle('is-compact', heroBottom < h);
   }
 
   window.addEventListener('scroll', sync, { passive: true });
-  window.addEventListener('resize', sync);
+  window.addEventListener('resize', function () { measure(); sync(); });
+  measure();
   sync();
+})();
+
+/* Hero video. The 720 file is in the markup; wide screens get the 1080. */
+
+(function () {
+  var video = document.querySelector('.hero__video');
+  if (!video) return;
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var saveData = navigator.connection && navigator.connection.saveData;
+  if (reduced || saveData) {
+    video.removeAttribute('autoplay');
+    video.pause();
+    return;
+  }
+
+  if (window.innerWidth >= 1280 && video.dataset.hd) video.src = video.dataset.hd;
+
+  var playing = video.play();
+  if (playing && playing.catch) playing.catch(function () {});
+})();
+
+/* Reveal. Sections fade up as they arrive. Without the observer nothing is hidden. */
+
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var targets = document.querySelectorAll(
+    '.section:not(.section--collection):not(.section--experiences), .section--experiences .section__line, ' +
+    '.experience, .collection, .promise, .filters, .grid .card, .house-section, ' +
+    '.essay__lede, .essay__intro, .essay__block, .pull, .split'
+  );
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-in');
+      observer.unobserve(entry.target);
+    });
+  }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+
+  targets.forEach(function (el) {
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
 })();
 
 /* Collection grid. One filter, by place, mirrored into the address bar. */
