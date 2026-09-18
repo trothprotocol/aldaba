@@ -19,17 +19,28 @@
     <p class="tagline">Well received.</p>
   </div>
 
-  <div class="header__compact" aria-label="Search">
-    <button type="button" class="compact__field">Destination</button>
-    <button type="button" class="compact__field">Dates</button>
-    <button type="button" class="compact__field">Guests</button>
-    <a class="compact__submit" href="/houses">Search</a>
-  </div>
+  <form class="header__compact" role="search" action="/houses" method="get">
+    <label class="compact__field">
+      <span class="compact__label">Where</span>
+      <select class="compact__input" name="place">
+        <option value="">Anywhere</option>
+        <option value="antigua">Antigua</option>
+        <option value="atitlan">Lake Atitl&aacute;n</option>
+        <option value="rio-dulce">R&iacute;o Dulce</option>
+        <option value="ciudad">Guatemala City</option>
+      </select>
+    </label>
+    <label class="compact__field">
+      <span class="compact__label">Guests</span>
+      <input class="compact__input compact__input--guests" name="guests" type="number" min="1" max="14" placeholder="Any">
+    </label>
+    <button type="submit" class="compact__submit">Search</button>
+  </form>
 
   <nav class="header__right" aria-label="Utilities">
-    <button type="button" class="util" data-open="prefs" aria-label="Language: English">EN</button>
+    <button type="button" class="util" data-open="prefs" data-pref-label="language" aria-label="Language: English">EN</button>
     <span class="util-sep" aria-hidden="true">|</span>
-    <button type="button" class="util" data-open="prefs" aria-label="Currency: US dollars">$</button>
+    <button type="button" class="util" data-open="prefs" data-pref-label="currency" aria-label="Currency: US dollars">$</button>
     <button type="button" class="util util--boxed" data-open="signin">Sign in</button>
   </nav>
 </header>
@@ -62,6 +73,10 @@
       <figure class="stack__item">
         <img src="/img/houses/ja-01.jpg" alt="The house at dusk, seen from the garden">
         <figcaption class="stack__caption">The house at dusk</figcaption>
+      </figure>
+      <figure class="stack__item stack__item--wide">
+        <video muted loop playsinline preload="none" poster="/img/video/antigua-cathedral-poster.jpg" data-src="/img/video/antigua-cathedral-720.mp4" aria-hidden="true" tabindex="-1"></video><span class="sr-only">The carved facade of La Merced church in Antigua</span>
+        <figcaption class="stack__caption">La Merced, ten minutes on foot</figcaption>
       </figure>
       <figure class="stack__item stack__item--wide">
         <img src="/img/antigua-arch.jpg" alt="The yellow arch of Santa Catalina with Agua behind it" loading="lazy">
@@ -146,8 +161,12 @@
       </div>
       <div class="form__row">
         <div>
-          <label class="input-label" for="enq-dates">Dates</label>
-          <input class="input" id="enq-dates" name="dates" type="text" placeholder="Arriving and leaving" autocomplete="off">
+          <label class="input-label" for="enq-from">Arriving</label>
+          <input class="input" id="enq-from" name="from" type="date">
+        </div>
+        <div>
+          <label class="input-label" for="enq-to">Leaving</label>
+          <input class="input" id="enq-to" name="to" type="date">
         </div>
         <div>
           <label class="input-label" for="enq-guests">Guests</label>
@@ -189,8 +208,8 @@
 
       <div class="footer__col">
         <p class="footer__heading">Legal</p>
-        <a href="#">Terms</a>
-        <a href="#">Privacy Policy</a>
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy Policy</a>
         <a href="/propietarios" rel="nofollow">Property owners</a>
       </div>
     </nav>
@@ -214,20 +233,22 @@
     <div class="field">
       <p class="field__label">Language</p>
       <div class="choices" data-group="language">
-        <button type="button" class="choice is-selected">English</button>
-        <button type="button" class="choice">Español</button>
+        <button type="button" class="choice is-selected" data-value="en">English</button>
+        <button type="button" class="choice" data-value="es">Español</button>
       </div>
+      <p class="dialog__note">Español is being written. The site will switch when it is ready.</p>
     </div>
 
     <div class="field">
       <p class="field__label">Currency</p>
       <div class="choices" data-group="currency">
-        <button type="button" class="choice is-selected">US dollar &middot; $</button>
-        <button type="button" class="choice">Quetzal &middot; Q</button>
+        <button type="button" class="choice is-selected" data-value="usd">US dollar &middot; $</button>
+        <button type="button" class="choice" data-value="gtq">Quetzal &middot; Q</button>
       </div>
+      <p class="dialog__note">No rate is published on this site. Your choice is kept for when we write to you.</p>
     </div>
 
-    <button type="button" class="btn" data-close>Save</button>
+    <button type="button" class="btn" data-save-prefs data-close>Save</button>
   </div>
 </div>
 
@@ -238,19 +259,24 @@
     <button type="button" class="dialog__close" data-close aria-label="Close">&times;</button>
 
     <h2 class="dialog__title" id="signin-title">Welcome to Ladanta</h2>
-    <p class="dialog__subtitle">Choose how you&rsquo;d like to continue, or enter your email.</p>
+    <p class="dialog__subtitle">Tell us who you are and this device will remember you. Your enquiries go out with your name already on them.</p>
 
-    <div class="btn-pair">
-      <button type="button" class="btn btn--outline">Google</button>
-      <button type="button" class="btn btn--outline">Facebook</button>
+    <form class="signin" data-profile>
+      <label class="input-label" for="signin-name">Name</label>
+      <input class="input" id="signin-name" name="name" type="text" autocomplete="name" required>
+
+      <label class="input-label" for="signin-email">Email address</label>
+      <input class="input" id="signin-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+
+      <button type="submit" class="btn">Continue</button>
+      <p class="dialog__note">Kept in this browser only. Nothing leaves this device until you write to us.</p>
+    </form>
+
+    <div data-signed hidden>
+      <p class="dialog__signed">Signed in as <strong data-signed-name></strong><br><span data-signed-email></span></p>
+      <button type="button" class="btn btn--outline" data-forget>Forget me</button>
+      <button type="button" class="btn" data-close>Done</button>
     </div>
-
-    <p class="rule"><span>or</span></p>
-
-    <label class="input-label" for="email">Email address</label>
-    <input class="input" id="email" type="email" autocomplete="email" placeholder="you@example.com">
-
-    <button type="button" class="btn" data-close>Continue</button>
   </div>
 </div>
 

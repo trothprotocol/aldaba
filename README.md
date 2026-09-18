@@ -13,6 +13,8 @@ Deployed on Vercel with `cleanUrls`, so links are written without `.html`.
     experiences/index.html   The three days we arrange, as cards
     experiences/<slug>.html  One day: split opening, the day, what we arrange, houses nearby, elsewhere, ask
     propietarios.html     The private door for owners. noindex, and disallowed in robots.txt
+    terms.html            Terms of use. Plain English, written in house; needs a lawyer's pass before launch
+    privacy.html          Privacy. What the browser keeps, what the forms send, nothing else
 
 Every page carries the same header, footer and two dialogs. When one of
 those changes, change it in every file; there is no template.
@@ -32,20 +34,46 @@ fifth card on the rail and in the grid is a "listing soon" plate, not a link.
 No nightly rate appears anywhere. Budget is something a guest tells us, never
 a number we publish, and services are named but never bundled into the house.
 
+## Search
+
+The hero search and the compact bar in the header are real forms that GET
+`/houses?place=&from=&to=&guests=`. The collection filters by place and by
+capacity (`data-guests` on each card) and carries `from`, `to` and `guests`
+on into every house link, where the enquiry form is prefilled from them.
+Dates do not filter anything: there is no availability data yet.
+
 ## Forms
 
-There is no backend. The enquiry forms (house pages, about, owners) compose
-an email to `hola@ladanta.com` and open the guest's mail client; nothing is
-stored. The mailing list form does nothing yet.
+There is no backend. Every form on the site (house and experience enquiries,
+about, owners, and the mailing list) composes an email to `hola@ladanta.com`
+and opens the guest's mail client; nothing is stored on the server.
 
-## The hero
+## Sign in and preferences
 
-`index.html` opens on the hiker video (`img/hero-fuego-720.mp4`; the script
-swaps in the 1080 file on screens 1280px and wider, and leaves the poster
-alone under `prefers-reduced-motion` or Save-Data). The hero slides under the
-sticky header by `--header-h`, which the script measures, and the header goes
-transparent with light type while it is over the video, then translucent with
-a blur once the page has moved.
+Both live in `localStorage` and nowhere else. Sign in keeps a name and email
+(`ladanta.guest`), shows the first name in the header and prefills every
+enquiry form; Forget me clears it. The language and currency choice
+(`ladanta.prefs`) is kept and shown in the header, and does nothing else yet:
+no rate is published, and the Spanish copy is not written.
+
+## Video
+
+The hero rotates through the clips listed in its `data-clips` attribute
+(the hiker on Fuego, the lake at sunrise, La Merced in Antigua), two layers
+crossfading a second before each clip ends. Small screens get the `-540`
+files, screens 1280px and wider the `-1080`. Elsewhere, `<video data-src>`
+elements (the Atitlán and Antigua openings, the About panel, two house
+stacks) use the `-720` files, load only when they scroll into view and pause
+when they leave. Under `prefers-reduced-motion` or Save-Data everything stays
+on its poster.
+
+The files in `img/video/` are cut from the originals in `stock/` with
+`avconvert -p Preset960x540 | Preset1280x720 | Preset1920x1080`; posters come
+from `qlmanage -t` thumbnails resized with `sips`.
+
+The hero slides under the sticky header by `--header-h`, which the script
+measures, and the header goes transparent with light type while it is over
+the video, then translucent with a blur once the page has moved.
 
 ## Motion
 

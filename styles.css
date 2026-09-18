@@ -326,6 +326,23 @@ img { max-width: 100%; }
   text-align: center;
 }
 
+.dialog__note {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+
+.dialog__signed {
+  margin: 0 0 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--text-2);
+}
+
+.dialog__signed strong { font-weight: 400; color: var(--ink); }
+
 .btn-pair {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -377,11 +394,15 @@ img { max-width: 100%; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background: var(--ink) url("/img/hero-fuego-poster.jpg") center / cover no-repeat;
+  background: var(--ink);
+  opacity: 0;
+  transition: opacity 1.6s var(--ease);
 }
 
+.hero__video.is-on { opacity: 1; }
+
 .hero__scrim {
-  background: linear-gradient(to bottom, rgba(var(--ink-rgb), 0.42), rgba(var(--ink-rgb), 0.18) 45%, rgba(var(--ink-rgb), 0.5));
+  background: linear-gradient(to bottom, rgba(var(--ink-rgb), 0.44), rgba(var(--ink-rgb), 0.26) 45%, rgba(var(--ink-rgb), 0.52));
 }
 
 .hero--video .search {
@@ -415,7 +436,59 @@ img { max-width: 100%; }
   cursor: pointer;
 }
 
-.search__field:hover { background: var(--wash); }
+.search__field:hover,
+.search__field:focus-within { background: var(--wash); }
+
+.search__input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.search__input::placeholder { color: var(--text-3); }
+
+.search__input:focus-visible { outline-offset: 4px; }
+
+select.search__input {
+  padding-right: 18px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' fill='none' stroke='%23272826' stroke-width='1.2'/></svg>") no-repeat right center / 10px 6px;
+  cursor: pointer;
+}
+
+.search__dates {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search__dates .search__input { flex: 1; width: auto; }
+
+.search__to {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0.55; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
 
 .search__label {
   display: block;
@@ -725,6 +798,27 @@ img { max-width: 100%; }
   border-bottom-color: var(--jade);
 }
 
+.filters__meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.filters__clear {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+  transition: opacity 0.3s ease;
+}
+
+.filters__clear:hover { opacity: 0.55; }
+
+.filters__clear[hidden] { display: none; }
+
 .filters__count {
   margin: 0;
   font-size: 12px;
@@ -868,7 +962,8 @@ img { max-width: 100%; }
 
 .stack__item { margin: 0; }
 
-.stack__item img {
+.stack__item img,
+.stack__item video {
   display: block;
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -877,7 +972,8 @@ img { max-width: 100%; }
   background: var(--wash);
 }
 
-.stack__item--wide img { aspect-ratio: 16 / 10; }
+.stack__item--wide img,
+.stack__item--wide video { aspect-ratio: 16 / 10; }
 
 .stack__caption {
   margin: 10px 0 0;
@@ -1450,18 +1546,51 @@ img { max-width: 100%; }
 }
 
 .compact__field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font: inherit;
   font-size: 12px;
   color: var(--text-2);
   background: none;
   border: 0;
   border-right: 1px solid var(--line);
-  padding: 9px 18px;
+  padding: 9px 16px;
   cursor: pointer;
   white-space: nowrap;
 }
 
-.compact__field:hover { background: var(--wash); }
+.compact__field:hover,
+.compact__field:focus-within { background: var(--wash); }
+
+.compact__label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.compact__input {
+  font: inherit;
+  font-size: 12px;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.compact__input::placeholder { color: var(--text-3); }
+
+select.compact__input {
+  padding-right: 14px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' fill='none' stroke='%23272826' stroke-width='1.2'/></svg>") no-repeat right center / 8px 5px;
+  cursor: pointer;
+}
+
+.compact__input--guests { width: 3.2em; }
 
 .compact__submit {
   display: flex;
