@@ -45,7 +45,7 @@ Dates do not filter anything: there is no availability data yet.
 ## Forms
 
 There is no backend. Every form on the site (house and experience enquiries,
-about, owners, and the mailing list) composes an email to `hola@ladanta.com`
+about, owners, and the mailing list) composes an email to `hola@ladantajourneys.com`
 and opens the guest's mail client; nothing is stored on the server.
 
 ## Sign in and preferences

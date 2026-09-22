@@ -478,7 +478,7 @@
 /* Enquiries. No backend yet: the form writes the email and hands it over. */
 
 (function () {
-  var address = 'hola@ladanta.com';
+  var address = 'hola@ladantajourneys.com';
 
   document.querySelectorAll('[data-enquire]').forEach(function (form) {
     form.addEventListener('submit', function (event) {
@@ -493,7 +493,7 @@
       });
 
       var subject = form.dataset.subject || 'Enquiry';
-      var body = lines.join('\n') + '\n\nSent from ladanta.com';
+      var body = lines.join('\n') + '\n\nSent from ladantajourneys.com';
       window.location.href = 'mailto:' + address +
         '?subject=' + encodeURIComponent(subject) +
         '&body=' + encodeURIComponent(body);
