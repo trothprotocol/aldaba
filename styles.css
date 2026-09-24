@@ -21,7 +21,9 @@
   --line: #C9CEBD;
   --wash: var(--sage);
   --header-h: 96px;
-  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --radius-tile: 28px;
+  --on-ochre: #F4F5EF;
   --font-body: "Montserrat", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   /* Memoir is the brand face; Marcellus stands in until the files are self-hosted. */
   --font-display: "Memoir", "Marcellus", "Iowan Old Style", Palatino, Georgia, serif;
@@ -83,6 +85,11 @@ img { max-width: 100%; }
 .split__title,
 .card--soon .card__frame span {
   font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+@media (max-width: 560px) {
+  .hero__line br { display: none; }
 }
 
 /* Header ------------------------------------------------------------ */
@@ -263,23 +270,24 @@ img { max-width: 100%; }
   text-align: center;
   text-decoration: none;
   color: var(--paper);
-  background: var(--ink);
-  border: 1px solid var(--ink);
+  background: var(--accent);
+  border: 1px solid var(--accent);
   padding: 14px;
   margin-top: 8px;
   cursor: pointer;
-  transition: opacity 0.15s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.16s var(--ease);
 }
 
-.btn:hover { opacity: 0.85; }
+.btn:hover { background: var(--ink); border-color: var(--ink); }
 
 .btn--outline {
   color: var(--ink);
   background: var(--paper);
+  border-color: var(--ink);
   margin-bottom: 8px;
 }
 
-.btn--outline:hover { opacity: 1; background: var(--wash); }
+.btn--outline:hover { background: var(--wash); border-color: var(--ink); }
 
 .btn--inline {
   display: inline-block;
@@ -527,13 +535,14 @@ input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--paper);
-  background: var(--ink);
+  background: var(--accent);
   border: 0;
   padding: 0 34px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.search__submit:hover { opacity: 0.85; }
+.search__submit:hover { background: var(--ink); }
 
 @media (max-width: 720px) {
   .search { grid-template-columns: 1fr; }
@@ -713,7 +722,10 @@ input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0
 }
 
 .card:hover .card__frame { border-color: var(--ink); }
-.card:hover .card__frame img { transform: scale(1.025); }
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .card__frame img { transform: scale(1.025); }
+}
 
 .card__name {
   display: block;
@@ -736,14 +748,16 @@ input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--stone);
+  border-color: var(--stone);
 }
 
 .card--soon .card__frame span {
   font-size: 20px;
-  color: var(--text-3);
+  color: var(--ink);
 }
 
-.card--soon:hover .card__frame { border-color: var(--line); }
+.card--soon:hover .card__frame { border-color: var(--stone); }
 
 .rail__arrow {
   position: absolute;
@@ -1292,8 +1306,6 @@ input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0
 
 /* Partners ----------------------------------------------------------- */
 
-.section--partners { padding-top: 0; padding-bottom: 96px; }
-
 .section--partners .section__prose { margin-top: 0; }
 
 .partners {
@@ -1359,7 +1371,10 @@ input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0
 }
 
 .experience:hover .experience__frame { border-color: var(--ink); }
-.experience:hover .experience__frame img { transform: scale(1.025); }
+
+@media (hover: hover) and (pointer: fine) {
+  .experience:hover .experience__frame img { transform: scale(1.025); }
+}
 
 .experience__place {
   margin: 0 0 10px;
@@ -1402,12 +1417,6 @@ input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0
 }
 
 /* Promises ----------------------------------------------------------- */
-
-.promises {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 40px 40px;
-}
 
 .promise {
   display: grid;
@@ -1460,7 +1469,6 @@ input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0
 }
 
 @media (max-width: 860px) {
-  .promises { padding: 0 24px 24px; }
   .promise { grid-template-columns: minmax(0, 1fr); gap: 24px; margin-bottom: 64px; }
   .promise:nth-child(even) .promise__frame { order: 0; }
 }
@@ -1472,9 +1480,6 @@ input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
   gap: 64px;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding-bottom: 110px;
   text-align: left;
 }
 
@@ -1523,7 +1528,9 @@ input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0
   cursor: pointer;
 }
 
-.signup__submit:hover { opacity: 0.85; }
+.signup__submit { transition: background-color 0.2s ease; }
+
+.signup__submit:hover { background: var(--accent); }
 
 .signup__legal {
   max-width: 44ch;
@@ -1617,13 +1624,14 @@ select.compact__input {
   text-transform: uppercase;
   text-decoration: none;
   color: var(--paper);
-  background: var(--ink);
+  background: var(--accent);
   border: 0;
   padding: 0 20px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.compact__submit:hover { opacity: 0.85; }
+.compact__submit:hover { background: var(--ink); }
 
 @media (max-width: 860px) {
   .header.is-compact { grid-template-columns: auto minmax(0, 1fr); }
@@ -1645,7 +1653,7 @@ select.compact__input {
 /* The playbook's cover: terracotta wordmark on cacao. */
 
 .footer {
-  padding: 72px 40px 32px;
+  padding: 72px 48px 32px;
   color: var(--paper);
   background: var(--cacao);
 }
@@ -1732,6 +1740,120 @@ select.compact__input {
   .footer__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
   .footer__base { flex-direction: column; }
 }
+
+
+/* Tiles -------------------------------------------------------------- */
+/* The playbook sets the brand as rounded colour cards. Each colour owns
+   one region of the page; text inside is tuned per ground for contrast. */
+
+.promises,
+.section--partners,
+.section--signup,
+.footer {
+  width: calc(100% - 32px);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: var(--radius-tile);
+}
+
+/* Sage: the promises. */
+.promises {
+  --text-2: #5F463E;
+  --text-3: #5F463E;
+  --line: #BCC4AF;
+  max-width: 1240px;
+  margin-bottom: 16px;
+  padding: 96px 64px 8px;
+  background: var(--sage);
+}
+
+.promise__frame { border-color: transparent; }
+
+/* Stone: the partners, over the wordmark pressed into the paper. */
+.section--partners {
+  --text-2: var(--cacao);
+  --text-3: var(--cacao);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  max-width: 1240px;
+  margin-bottom: 96px;
+  padding: 120px 40px;
+  background: var(--stone);
+}
+
+.section--partners .partners { border-top-color: rgba(var(--ink-rgb), 0.22); }
+
+.emboss {
+  position: absolute;
+  top: 50%;
+  left: -0.02em;
+  z-index: -1;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(140px, 26vw, 360px);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--stone);
+  text-shadow:
+    -1px -1px 0 rgba(255, 255, 255, 0.28),
+    1px 1px 1px rgba(var(--ink-rgb), 0.3);
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Ochre: the mailing list. */
+.section--signup {
+  --text-2: var(--on-ochre);
+  --text-3: var(--on-ochre);
+  max-width: 1240px;
+  margin-bottom: 16px;
+  padding: 96px 64px;
+  color: var(--on-ochre);
+  background: var(--ochre);
+}
+
+.section--signup ::selection { background: var(--cacao); }
+.section--signup :focus-visible { outline-color: var(--sage); }
+.section--signup .signup__legal a:hover { color: var(--sage); }
+.section--signup .signup { border-color: var(--cacao); }
+
+/* Cacao: the footer closes the page as the playbook's cover card. */
+.footer { margin-bottom: 16px; }
+
+@media (max-width: 860px) {
+  .promises { padding: 64px 24px 8px; }
+  .section--partners { padding: 88px 24px; }
+  .section--signup { padding: 64px 24px; }
+}
+
+@media (max-width: 560px) {
+  :root { --radius-tile: 20px; }
+  .promises,
+  .section--partners,
+  .section--signup,
+  .footer { width: calc(100% - 16px); }
+  .footer { margin-bottom: 8px; }
+}
+
+/* Press feedback on everything pressable. */
+
+.btn:active,
+.search__submit:active,
+.compact__submit:active,
+.signup__submit:active,
+.util--boxed:active,
+.rail__cta:active,
+.rail__arrow:active { transform: scale(0.97); }
+
+.util--boxed,
+.rail__cta,
+.search__submit,
+.compact__submit,
+.signup__submit { transition-property: background-color, border-color, color, opacity, transform; transition-duration: 0.2s; }
 
 /* Sections arrive as they are reached. The class is set by script, so
    nothing is hidden without it. */
