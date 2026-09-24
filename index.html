@@ -60,7 +60,10 @@
     <video class="hero__video" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
     <div class="hero__scrim" aria-hidden="true"></div>
 
-    <h1 class="hero__line">Extraordinary private residences, <br>and everything around them.</h1>
+    <div class="hero__mark">
+      <p class="hero__wordmark" aria-hidden="true">Ladanta</p>
+      <h1 class="hero__line">Extraordinary private residences, and everything around them.</h1>
+    </div>
 
     <form class="search" role="search" action="/houses" method="get">
       <label class="search__field">
@@ -94,9 +97,39 @@
     </form>
   </section>
 
-  <section class="section">
-    <h2 class="section__line">A stay should be worth the trip.</h2>
-    <p class="section__prose">A few houses, each one known personally, with everything around the stay arranged.</p>
+  <section class="intro">
+    <h2 class="intro__line">A stay should be worth the trip.</h2>
+    <p class="intro__prose">A few houses, each one known personally, with everything around the stay arranged.</p>
+  </section>
+
+  <section class="feature">
+    <a class="feature__frame" href="/houses" tabindex="-1" aria-hidden="true"><img src="/img/houses/ja-01.jpg" alt="" loading="lazy"></a>
+    <div class="caption caption--feature">
+      <p class="caption__label">The houses</p>
+      <h2 class="caption__title">We take on very few.</h2>
+      <p class="caption__prose">Every house on the list is one we have walked through ourselves. When a house stops meeting the standard, it leaves the list.</p>
+      <a class="more" href="/houses">Discover the houses</a>
+    </div>
+  </section>
+
+  <section class="pair">
+    <article class="pair__item pair__item--major">
+      <span class="pair__frame"><img src="/img/places/antigua-plaza-1000.jpg" srcset="/img/places/antigua-plaza-1000.jpg 1000w, /img/places/antigua-plaza.jpg 2000w" sizes="(max-width: 860px) 100vw, 66vw" alt="The cathedral square in Antigua at dawn, with Agua volcano behind it" loading="lazy"></span>
+      <div class="caption">
+        <p class="caption__label">Concierge</p>
+        <h3 class="caption__title">One person, all the way through.</h3>
+        <p class="caption__prose">From the first note to the last morning, the same name answers. Nothing is handed between departments, because there are none.</p>
+      </div>
+    </article>
+    <article class="pair__item">
+      <span class="pair__frame"><img src="/img/places/atitlan-boat-1000.jpg" srcset="/img/places/atitlan-boat-1000.jpg 1000w, /img/places/atitlan-boat.jpg 2000w" sizes="(max-width: 860px) 100vw, 33vw" alt="A single boat crossing Lake Atitlán below the volcano" loading="lazy"></span>
+      <div class="caption">
+        <p class="caption__label">Around the house</p>
+        <h3 class="caption__title">Whatever the house cannot do for itself.</h3>
+        <p class="caption__prose">A chef for the evening, a boat at first light, a guide who has walked the trail since he was a boy. Arranged quietly, priced plainly.</p>
+        <a class="more" href="/experiences">Discover experiences</a>
+      </div>
+    </article>
   </section>
 
   <section class="collection">
@@ -104,7 +137,7 @@
       <div class="rail__intro">
         <h2 class="rail__title">Explore the world of Ladanta</h2>
         <p class="rail__prose">Houses across Guatemala, each one known personally.</p>
-        <a class="rail__cta" href="/houses">View all</a>
+        <a class="more" href="/houses">View all houses</a>
       </div>
 
         <a class="card" href="/houses/ja" data-place="antigua" data-guests="8">
@@ -138,93 +171,54 @@
     <button type="button" class="rail__arrow rail__arrow--next" data-scroll="1" aria-label="Next">&rarr;</button>
   </section>
 
-
-
-  <section class="promises">
-    <div class="promise">
-      <span class="promise__frame"><img src="/img/houses/ja-01.jpg" alt="A white house lit from inside at dusk, its doors open to the garden" loading="lazy"></span>
-      <div class="promise__body">
-        <h3 class="promise__title">We take on very few.</h3>
-        <p class="promise__prose">Every house on the list is one we have walked through ourselves. When a house stops meeting the standard, it leaves the list.</p>
-      </div>
-    </div>
-
-    <div class="promise">
-      <span class="promise__frame"><img src="/img/places/antigua-plaza-1000.jpg" srcset="/img/places/antigua-plaza-1000.jpg 1000w, /img/places/antigua-plaza.jpg 2000w" sizes="(max-width: 860px) 100vw, 520px" alt="The cathedral square in Antigua at dawn, with Agua volcano behind it" loading="lazy"></span>
-      <div class="promise__body">
-        <h3 class="promise__title">One person, all the way through.</h3>
-        <p class="promise__prose">From the first note to the last morning, the same name answers. Nothing is handed between departments, because there are none.</p>
-      </div>
-    </div>
-
-    <div class="promise">
-      <span class="promise__frame"><img src="/img/places/atitlan-boat-1000.jpg" srcset="/img/places/atitlan-boat-1000.jpg 1000w, /img/places/atitlan-boat.jpg 2000w" sizes="(max-width: 860px) 100vw, 520px" alt="A single boat crossing Lake Atitlán below the volcano" loading="lazy"></span>
-      <div class="promise__body">
-        <h3 class="promise__title">Whatever the house cannot do for itself.</h3>
-        <p class="promise__prose">A chef for the evening, a boat at first light, a guide who has walked the trail since he was a boy. Arranged quietly, priced plainly.</p>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="section section--partners">
-    <p class="emboss" aria-hidden="true">Ladanta</p>
-    <p class="section__prose">Six decades of receiving travellers in this country.</p>
-
-    <div class="partners">
-      <p class="partner">Carma Group</p>
-      <p class="partner">Hertz Guatemala</p>
-      <p class="partner">Trasla</p>
-      <p class="partner">Maya Trails</p>
-      <p class="partner">Trip18</p>
-    </div>
-  </section>
-
-  <section class="section section--experiences">
-    <h2 class="section__line">What we build around the house.</h2>
+  <section class="band">
+    <h2 class="band__title">What we build around the house.</h2>
 
     <div class="experiences">
       <article class="experience">
-        <a class="experience__frame" href="/experiences/antigua" aria-label="Coffee before the city wakes"><img src="/img/coffee.jpg" alt="Ripe red coffee cherries on the branch" loading="lazy"></a>
-        <p class="experience__place">Antigua</p>
-        <h3 class="experience__title">Coffee before the city wakes</h3>
-        <p class="experience__prose">A finca on the slope, picked at first light, cupped at a table under the volcano.</p>
-        <a class="experience__more" href="/experiences/antigua">Read more</a>
+        <a class="experience__frame" href="/experiences/antigua" tabindex="-1" aria-hidden="true"><img src="/img/coffee.jpg" alt="" loading="lazy"></a>
+        <p class="caption__label">Antigua</p>
+        <h3 class="caption__title"><a href="/experiences/antigua">Coffee before the city wakes</a></h3>
+        <p class="caption__prose">A finca on the slope, picked at first light, cupped at a table under the volcano.</p>
       </article>
 
       <article class="experience">
-        <a class="experience__frame" href="/experiences/atitlan" aria-label="The lake while it is still glass"><img src="/img/lake.jpg" alt="Lake Atitlán under cloud" loading="lazy"></a>
-        <p class="experience__place">Lake Atitl&aacute;n</p>
-        <h3 class="experience__title">The lake while it is still glass</h3>
-        <p class="experience__prose">Out on the water before the wind arrives, and a Tz&rsquo;utujil kitchen in Santiago after.</p>
-        <a class="experience__more" href="/experiences/atitlan">Read more</a>
+        <a class="experience__frame" href="/experiences/atitlan" tabindex="-1" aria-hidden="true"><img src="/img/lake.jpg" alt="" loading="lazy"></a>
+        <p class="caption__label">Lake Atitl&aacute;n</p>
+        <h3 class="caption__title"><a href="/experiences/atitlan">The lake while it is still glass</a></h3>
+        <p class="caption__prose">Out on the water before the wind arrives, and a Tz&rsquo;utujil kitchen in Santiago after.</p>
       </article>
 
       <article class="experience">
-        <a class="experience__frame" href="/experiences/rio-dulce" aria-label="Downriver, under the canopy"><img src="/img/rio-dulce.jpg" alt="The river opening into the lake, with houses on the far bank" loading="lazy"></a>
-        <p class="experience__place">R&iacute;o Dulce</p>
-        <h3 class="experience__title">Downriver, under the canopy</h3>
-        <p class="experience__prose">The gorge at the hour the herons move, and the Caribbean waiting at the end of it.</p>
-        <a class="experience__more" href="/experiences/rio-dulce">Read more</a>
+        <a class="experience__frame" href="/experiences/rio-dulce" tabindex="-1" aria-hidden="true"><img src="/img/rio-dulce.jpg" alt="" loading="lazy"></a>
+        <p class="caption__label">R&iacute;o Dulce</p>
+        <h3 class="caption__title"><a href="/experiences/rio-dulce">Downriver, under the canopy</a></h3>
+        <p class="caption__prose">The gorge at the hour the herons move, and the Caribbean waiting at the end of it.</p>
       </article>
     </div>
   </section>
 
+  <section class="partners-line">
+    <p class="partners-line__lede">Six decades of receiving travellers in this country.</p>
+    <ul class="partners-line__names">
+      <li>Carma Group</li>
+      <li>Hertz Guatemala</li>
+      <li>Trasla</li>
+      <li>Maya Trails</li>
+      <li>Trip18</li>
+    </ul>
+  </section>
 
-  <section class="section section--signup" id="word">
-    <div class="signup__text">
-      <h2 class="section__line">Word from here, now and then.</h2>
-      <p class="section__prose">New houses before they are listed, and the occasional note from the road.</p>
-    </div>
-
-    <div class="signup__side">
+  <section class="word" id="word">
+    <h2 class="word__title">Word from here, now and then.</h2>
+    <p class="word__prose">New houses before they are listed, and the occasional note from the road.</p>
+    <div class="word__side">
       <form class="signup" data-enquire data-subject="Subscribe">
         <label class="signup__label" for="signup-email">Email address</label>
-        <input class="signup__input" id="signup-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-        <button type="submit" class="signup__submit">Subscribe</button>
+        <input class="signup__input" id="signup-email" name="email" type="email" autocomplete="email" placeholder="Email address" required>
+        <button type="submit" class="signup__submit">Sign up</button>
       </form>
-
-      <p class="signup__legal">By subscribing you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>. This opens your email client; nothing is stored here.</p>
+      <p class="signup__legal">By signing up you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>. This opens your email client; nothing is stored here.</p>
     </div>
   </section>
 
