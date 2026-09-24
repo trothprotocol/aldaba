@@ -121,16 +121,17 @@
   });
 })();
 
-/* Header. Translucent once the page moves, and it takes the search from
-   the hero on the way past. The film sits in its own frame below it. */
+/* Header. Translucent once the page moves, transparent over the video hero,
+   and it takes the search from the hero on the way past. */
 
 (function () {
   var header = document.getElementById('header');
   if (!header) return;
 
   var hero = document.querySelector('.hero');
+  var overVideo = !!document.querySelector('.hero--video');
 
-  // The hero frame is sized against this.
+  // The hero slides under the header by this much.
   function measure() {
     if (header.classList.contains('is-compact')) return;
     document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
@@ -140,6 +141,7 @@
     var h = header.offsetHeight;
     var heroBottom = hero ? hero.getBoundingClientRect().bottom : 0;
     header.classList.toggle('is-scrolled', window.scrollY > 8);
+    header.classList.toggle('is-over', overVideo && heroBottom > h);
     if (hero) header.classList.toggle('is-compact', heroBottom < h);
   }
 
