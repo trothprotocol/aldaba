@@ -1,6 +1,30 @@
 /* Ladanta, branding v1. Cacao ink on a pale sage ground, terracotta
    used sparingly, Memoir for display and Montserrat for everything else. */
 
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* The five brand colours, exactly as the playbook gives them. */
   --cacao: #522F26;
@@ -11,23 +35,25 @@
 
   /* Roles. The page ground is a lighter step of the brand sage so long
      reading stays calm; the brand sage itself is the wash. */
-  --paper: #EDEDE6;
-  --paper-rgb: 237, 237, 230;
+  --paper: #E9E7DA;
+  --paper-rgb: 233, 231, 218;
   --ink: var(--cacao);
   --ink-rgb: 82, 47, 38;
   --accent: var(--terracotta);
   --text-2: #5F463E;
-  --text-3: #74605A;
-  --line: #D3D5CA;
-  --paper-deep: #DEDCD1;
+  --text-3: #6A5750;
+  --line: #D2CFC0;
+  --paper-deep: #DDDACB;
   --wash: var(--sage);
   --header-h: 96px;
   --ease: cubic-bezier(0.23, 1, 0.32, 1);
   --gutter: 20px;
   --on-ochre: #F4F5EF;
   --font-body: "Montserrat", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  /* Memoir is the brand face; Marcellus stands in until the files are self-hosted. */
-  --font-display: "Memoir", "Marcellus", "Iowan Old Style", Palatino, Georgia, serif;
+  /* Memoir is the brand's display face; Montserrat Light carries display
+     lines until its files are self-hosted, then Memoir takes over. */
+  --font-display: "Memoir", "Montserrat", system-ui, sans-serif;
+  --display-weight: 300;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -148,8 +174,8 @@ img { max-width: 100%; }
 .header.is-over .wordmark { color: var(--paper); }
 .header.is-over .tagline { color: rgba(var(--paper-rgb), 0.78); }
 .header.is-over .util-sep { color: rgba(var(--paper-rgb), 0.4); }
-.header.is-over .util--boxed { color: var(--ink); background: var(--paper); }
-.header.is-over .util--boxed:hover { color: var(--paper); background: var(--accent); }
+.header.is-over .util--boxed { color: var(--paper); background: transparent; border-color: var(--paper); }
+.header.is-over .util--boxed:hover { color: var(--ink); background: var(--paper); }
 
 .header__left { justify-self: start; }
 .header__center { justify-self: center; }
@@ -163,11 +189,11 @@ img { max-width: 100%; }
 
 .wordmark {
   transition: color 0.3s var(--ease);
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 400;
   line-height: 1;
-  letter-spacing: 0.1em;
-  text-indent: 0.1em;
+  letter-spacing: 0.24em;
+  text-indent: 0.24em;
   text-transform: uppercase;
   text-decoration: none;
   color: inherit;
@@ -198,14 +224,20 @@ img { max-width: 100%; }
   transition: color 0.5s var(--ease);
 }
 
+/* Sign in starts as an outline and fills once the page moves. */
+
 .util--boxed {
-  color: var(--paper);
-  background: var(--ink);
-  padding: 10px 22px;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--ink);
+  padding: 9px 21px;
   margin-left: 6px;
 }
 
-.util--boxed:hover { opacity: 1; background: var(--accent); }
+.util--boxed:hover { opacity: 1; color: var(--paper); background: var(--ink); }
+
+.header.is-scrolled:not(.is-over) .util--boxed { color: var(--paper); background: var(--ink); }
+.header.is-scrolled:not(.is-over) .util--boxed:hover { background: var(--accent); border-color: var(--accent); }
 
 /* Dialogs ------------------------------------------------------------ */
 
@@ -1508,7 +1540,10 @@ select.compact__input {
 
 .wordmark--footer {
   display: inline-block;
-  font-size: clamp(64px, 15vw, 196px);
+  font-size: clamp(56px, 13vw, 176px);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-indent: 0.08em;
   color: var(--terracotta);
   transition: color 0.3s var(--ease);
 }
@@ -1687,7 +1722,6 @@ select.compact__input {
 /* A deeper step of the paper: the one change of ground, as Aman's darker wash. */
 
 .band {
-  --text-3: #6A5750;
   padding: 120px var(--gutter) 130px;
   background: var(--paper-deep);
 }
@@ -1710,6 +1744,80 @@ select.compact__input {
 
 .experience.reveal:nth-child(2) { transition-delay: 80ms; }
 .experience.reveal:nth-child(3) { transition-delay: 160ms; }
+
+/* The book, on ochre as the brandbook shows it, beside a spread set like
+   the guide's pages: a folio across the top and a short title in capitals. */
+
+.book {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  margin: 130px var(--gutter) 0;
+}
+
+.book__field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 96px 48px;
+  background: var(--ochre);
+}
+
+.book__cover {
+  display: block;
+  width: min(62%, 400px);
+  height: auto;
+  box-shadow:
+    0 2px 3px rgba(52, 34, 16, 0.2),
+    0 28px 56px -18px rgba(52, 34, 16, 0.5);
+}
+
+.book__text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 96px clamp(32px, 6vw, 104px);
+}
+
+.folio {
+  position: absolute;
+  top: 28px;
+  left: clamp(32px, 6vw, 104px);
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.book__title {
+  max-width: 14ch;
+  margin: 0 0 18px;
+  font-size: clamp(26px, 2.6vw, 36px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.book__prose {
+  max-width: 36ch;
+  margin: 0;
+  color: var(--text-2);
+}
+
+.book__text .more { align-self: flex-start; }
+
+@media (max-width: 860px) {
+  .book { grid-template-columns: minmax(0, 1fr); margin-top: 104px; }
+  .book__field { padding: 64px 24px; }
+  .book__text { padding: 88px 8px 8px; }
+  .folio { left: 8px; right: 8px; }
+}
 
 /* Partners: one line and the names, nothing more. */
 
@@ -1853,6 +1961,30 @@ select.compact__input {
 .util--boxed,
 .search__submit,
 .compact__submit { transition-property: background-color, border-color, color, opacity, transform; transition-duration: 0.2s; }
+
+/* Display weight. Montserrat Light while it stands in for Memoir; Memoir
+   ships one weight, so the browser uses its Regular regardless. */
+
+.hero__line,
+.intro__line,
+.band__title,
+.word__title,
+.section__line,
+.rail__title,
+.promise__title,
+.experience__title,
+.dialog__title,
+.house__name,
+.house-section__title,
+.essay__lede,
+.essay__title,
+.pull,
+.split__title,
+.card--soon .card__frame span,
+.caption__title,
+.partners-line__lede {
+  font-weight: var(--display-weight);
+}
 
 /* Sections arrive as they are reached. The class is set by script, so
    nothing is hidden without it. */
