@@ -387,7 +387,7 @@
     '.section:not(.section--collection):not(.section--experiences), .section--experiences .section__line, ' +
     '.experience, .collection, .promise, .filters, .grid .card, .house-section, ' +
     '.essay__lede, .essay__intro, .essay__block, .pull, .split, ' +
-    '.intro, .feature, .pair__item, .band__title, .partners-line, .word'
+    '.spread, .duo, .feature, .pair__item, .band__title, .mosaic, .book, .letterpress, .partners-line, .word'
   );
 
   var observer = new IntersectionObserver(function (entries) {
