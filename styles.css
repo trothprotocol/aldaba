@@ -25,6 +25,17 @@
   font-display: swap;
 }
 
+/* Belleza (OFL) stands in for Memoir on titles: the closest free match in
+   weight, width and flared strokes. Titles are set in capitals because
+   Memoir is a capitals-only face, so nothing shifts when it replaces this. */
+@font-face {
+  font-family: "Belleza";
+  src: url("/fonts/Belleza-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Only the letters A B E G H I L M N O P R S T U: the partial Memoir
    embedded in the brandbook. It sets the few titles spelled from those
    letters; the full Memoir replaces it when its files arrive. */
@@ -61,10 +72,10 @@
   --gutter: 20px;
   --on-ochre: #F4F5EF;
   --font-body: "Montserrat", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  /* Memoir for titles once its files are hosted; Montserrat Light until then. */
-  --font-display: "Memoir", "Montserrat", system-ui, sans-serif;
+  /* Memoir for titles once its files are hosted; Belleza until then. */
+  --font-display: "Memoir", "Belleza", "Montserrat", system-ui, sans-serif;
   --font-memoir-partial: "Memoir Brandbook", var(--font-display);
-  --display-weight: 300;
+  --display-weight: 400;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -141,9 +152,6 @@ img { max-width: 100%; }
   text-wrap: balance;
 }
 
-@media (max-width: 560px) {
-  .hero__line br { display: none; }
-}
 
 /* Header ------------------------------------------------------------ */
 
@@ -452,7 +460,7 @@ img { max-width: 100%; }
 .hero__line {
   max-width: 34ch;
   margin: 0;
-  font-size: clamp(30px, 5.2vw, 56px);
+  font-size: clamp(28px, 4.2vw, 50px);
   font-weight: 400;
   line-height: 1.18;
   letter-spacing: -0.01em;
@@ -2094,8 +2102,11 @@ select.compact__input {
 .split__title,
 .card--soon .card__frame span,
 .caption__title,
+.card__name,
 .partners-line__lede {
   font-weight: var(--display-weight);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 /* Sections arrive as they are reached. The class is set by script, so
