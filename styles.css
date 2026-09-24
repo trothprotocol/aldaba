@@ -2110,6 +2110,19 @@ select.compact__input {
   text-transform: uppercase;
 }
 
+/* The about page's opening is a paragraph, not a title: keep it in
+   sentence case and the body face. */
+.essay__lede {
+  font-family: var(--font-body);
+  font-weight: 300;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* The place follows the house name as a quiet line, not a label above it. */
+.house__place { margin: 0 0 18px; }
+.house__name { margin-bottom: 10px; }
+
 /* Sections arrive as they are reached. The class is set by script, so
    nothing is hidden without it. */
 
