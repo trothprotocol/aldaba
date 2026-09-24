@@ -1,20 +1,30 @@
-/* Ladanta. Paper, ink, and a hairline of jade. */
+/* Ladanta, branding v1. Cacao ink on a pale sage ground, terracotta
+   used sparingly, Memoir for display and Montserrat for everything else. */
 
 :root {
-  --paper: #F3EFE8;
-  --paper-rgb: 243, 239, 232;
-  --ink: #272826;
-  --ink-rgb: 39, 40, 38;
-  --sage: #D0DDD4;
-  --jade: #35564A;
-  --text-2: #55534E;
-  --text-3: #66635D;
-  --line: #DED7CC;
-  --wash: #EAE4DA;
+  /* The five brand colours, exactly as the playbook gives them. */
+  --cacao: #522F26;
+  --terracotta: #944636;
+  --sage: #D4DBC9;
+  --stone: #A7AD9C;
+  --ochre: #876639;
+
+  /* Roles. The page ground is a lighter step of the brand sage so long
+     reading stays calm; the brand sage itself is the wash. */
+  --paper: #E9ECE2;
+  --paper-rgb: 233, 236, 226;
+  --ink: var(--cacao);
+  --ink-rgb: 82, 47, 38;
+  --accent: var(--terracotta);
+  --text-2: #5F463E;
+  --text-3: #74605A;
+  --line: #C9CEBD;
+  --wash: var(--sage);
   --header-h: 96px;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --font-body: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  --font-body: "Montserrat", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  /* Memoir is the brand face; Marcellus stands in until the files are self-hosted. */
+  --font-display: "Memoir", "Marcellus", "Iowan Old Style", Palatino, Georgia, serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -26,13 +36,17 @@ body {
   font-family: var(--font-body);
   color: var(--ink);
   background: var(--paper);
+  caret-color: var(--accent);
+  scrollbar-color: var(--stone) var(--paper);
   -webkit-font-smoothing: antialiased;
 }
+
+::selection { background: var(--terracotta); color: var(--paper); }
 
 img { max-width: 100%; }
 
 :focus-visible {
-  outline: 2px solid var(--jade);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -54,6 +68,7 @@ img { max-width: 100%; }
 
 /* Display face on the lines that carry the page. */
 
+.wordmark,
 .hero__line,
 .section__line,
 .rail__title,
@@ -123,10 +138,11 @@ img { max-width: 100%; }
 
 .wordmark {
   transition: color 0.5s var(--ease), font-size 0.3s var(--ease);
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 400;
-  letter-spacing: 0.3em;
-  text-indent: 0.3em;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-indent: 0.04em;
   text-transform: uppercase;
   text-decoration: none;
   color: inherit;
@@ -174,7 +190,7 @@ img { max-width: 100%; }
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: rgba(39, 40, 38, 0.35);
+  background: rgba(var(--ink-rgb), 0.4);
   z-index: 10;
 }
 
@@ -460,7 +476,7 @@ img { max-width: 100%; }
 
 select.search__input {
   padding-right: 18px;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' fill='none' stroke='%23272826' stroke-width='1.2'/></svg>") no-repeat right center / 10px 6px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' fill='none' stroke='%23522F26' stroke-width='1.2'/></svg>") no-repeat right center / 10px 6px;
   cursor: pointer;
 }
 
@@ -530,10 +546,11 @@ input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0
 .wordmark { display: block; }
 
 .tagline {
-  margin: 6px 0 0;
-  font-size: 11px;
-  font-style: italic;
-  letter-spacing: 0.04em;
+  margin: 8px 0 0;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
   color: var(--text-3);
 }
 
@@ -722,8 +739,7 @@ input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0
 }
 
 .card--soon .card__frame span {
-  font-size: 18px;
-  font-style: italic;
+  font-size: 20px;
   color: var(--text-3);
 }
 
@@ -795,7 +811,7 @@ input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0
 
 .filter[aria-pressed="true"] {
   color: var(--ink);
-  border-bottom-color: var(--jade);
+  border-bottom-color: var(--accent);
 }
 
 .filters__meta {
@@ -1249,8 +1265,8 @@ input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0
   padding: 96px 0 40px;
   font-size: clamp(24px, 3vw, 34px);
   font-weight: 400;
-  font-style: italic;
   line-height: 1.3;
+  color: var(--accent);
   text-align: center;
 }
 
@@ -1536,7 +1552,7 @@ input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0
 .header.is-compact .header__spacer { display: none; }
 .header.is-compact .header__center { justify-self: start; text-align: left; }
 .header.is-compact .tagline { display: none; }
-.header.is-compact .wordmark { font-size: 18px; }
+.header.is-compact .wordmark { font-size: 21px; }
 
 .header.is-compact .header__compact {
   display: flex;
@@ -1586,7 +1602,7 @@ input[type="date"].search__input::-webkit-calendar-picker-indicator { opacity: 0
 
 select.compact__input {
   padding-right: 14px;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' fill='none' stroke='%23272826' stroke-width='1.2'/></svg>") no-repeat right center / 8px 5px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' fill='none' stroke='%23522F26' stroke-width='1.2'/></svg>") no-repeat right center / 8px 5px;
   cursor: pointer;
 }
 
@@ -1616,7 +1632,7 @@ select.compact__input {
 
 @media (max-width: 720px) {
   .header { padding: 20px 24px; gap: 16px; }
-  .wordmark { font-size: 18px; }
+  .wordmark { font-size: 21px; }
   .header__right { gap: 14px; }
   .util--boxed { padding: 9px 14px; }
   .section { padding-left: 24px; padding-right: 24px; }
@@ -1626,27 +1642,45 @@ select.compact__input {
 }
 
 /* Footer ------------------------------------------------------------- */
+/* The playbook's cover: terracotta wordmark on cacao. */
 
 .footer {
-  border-top: 1px solid var(--line);
-  padding: 64px 40px 32px;
+  padding: 72px 40px 32px;
+  color: var(--paper);
+  background: var(--cacao);
 }
 
 .footer__top {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 64px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 72px;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-.wordmark--footer { font-size: 18px; }
+.footer__brand {
+  order: 2;
+  text-align: center;
+}
 
-.tagline--footer { margin-top: 6px; }
+.wordmark--footer {
+  display: inline-block;
+  font-size: clamp(64px, 15vw, 196px);
+  color: var(--terracotta);
+  transition: color 0.5s var(--ease);
+}
+
+.wordmark--footer:hover { color: color-mix(in srgb, var(--terracotta) 82%, var(--sage)); }
+
+.tagline--footer {
+  margin-top: 18px;
+  color: var(--stone);
+}
 
 .footer__cols {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 160px));
+  grid-template-columns: repeat(3, minmax(0, 200px));
+  justify-content: space-between;
   gap: 48px;
 }
 
@@ -1654,41 +1688,47 @@ select.compact__input {
 
 .footer__heading {
   margin: 0 0 14px;
-  font-size: 11px;
-  letter-spacing: 0.14em;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-3);
+  color: var(--stone);
 }
 
 .footer__col a {
   font-size: 13px;
   line-height: 2;
-  color: var(--ink);
+  color: var(--paper);
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.footer__col a { transition: opacity 0.3s ease; }
+.footer__col a:hover { color: var(--stone); }
 
-.footer__col a:hover { opacity: 0.55; }
+.footer :focus-visible { outline-color: var(--sage); }
 
 .footer__base {
   display: flex;
   justify-content: space-between;
   gap: 24px;
   max-width: 1100px;
-  margin: 56px auto 0;
+  margin: 48px auto 0;
   padding-top: 24px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(var(--paper-rgb), 0.16);
   font-size: 12px;
-  color: var(--text-3);
+  color: var(--stone);
 }
 
 .footer__base p { margin: 0; }
-.footer__base a { color: var(--text-3); }
-.footer__base a:hover { color: var(--ink); }
+.footer__base a { color: var(--stone); }
+.footer__base a:hover { color: var(--paper); }
+
+@media (max-width: 720px) {
+  .footer { padding-left: 24px; padding-right: 24px; }
+}
 
 @media (max-width: 860px) {
-  .footer__top { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .footer__top { gap: 56px; }
   .footer__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
   .footer__base { flex-direction: column; }
 }
