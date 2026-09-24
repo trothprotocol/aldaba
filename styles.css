@@ -1918,6 +1918,7 @@ select.compact__input {
 
 .book__title {
   max-width: 14ch;
+  font-family: var(--font-display);
   margin: 0 0 18px;
   font-size: clamp(26px, 2.6vw, 36px);
   font-weight: 400;
