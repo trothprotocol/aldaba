@@ -1924,7 +1924,7 @@ select.compact__input {
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .book__prose {
@@ -2107,7 +2107,7 @@ select.compact__input {
 .partners-line__lede {
   font-weight: var(--display-weight);
   letter-spacing: 0.03em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 /* The about page's opening is a paragraph, not a title: keep it in
