@@ -1804,7 +1804,7 @@ select.compact__input {
 
 .more:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
-.feature { padding: 0 var(--gutter); }
+.feature { padding: clamp(72px, 9vw, 140px) var(--gutter) 0; }
 
 .feature__frame,
 .pair__frame {
