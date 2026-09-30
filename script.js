@@ -482,7 +482,7 @@
 /* Enquiries. No backend yet: the form writes the email and hands it over. */
 
 (function () {
-  var address = 'hola@ladantajourneys.com';
+  var address = 'hello@ladantajourneys.com';
 
   document.querySelectorAll('[data-enquire]').forEach(function (form) {
     form.addEventListener('submit', function (event) {
