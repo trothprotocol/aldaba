@@ -1018,3 +1018,22 @@ body::after { display: none; }
   .home__frame img,
   .day__frame img { transition: none; }
 }
+
+/* The tapir stands where the big wordmark used to. */
+
+.footer__mark {
+  display: block;
+  width: clamp(120px, 14vw, 180px);
+  margin: 0 auto;
+  transition: opacity 0.2s ease;
+}
+
+.footer__mark img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .footer__mark:hover { opacity: 0.8; }
+}
