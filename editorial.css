@@ -1037,11 +1037,3 @@ body::after { display: none; }
   .day__frame img { transition: none; }
 }
 
-/* Once the page moves, the tapir takes the wordmark's place in the header. */
-
-.header.is-scrolled .header__center .wordmark {
-  width: 34px;
-  aspect-ratio: 720 / 629;
-  -webkit-mask-image: url("/img/brand/tapir-ink.png");
-  mask-image: url("/img/brand/tapir-ink.png");
-}
