@@ -5,6 +5,14 @@
    Everything here loads after styles.css and only overrides it, so the
    previous look returns by removing this one file. */
 
+@font-face {
+  font-family: "Memoir";
+  src: url("/fonts/Memoir.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --paper: #FFFFFF;
   --paper-rgb: 255, 255, 255;
@@ -17,7 +25,7 @@
   --line: #E7E3DA;
   --wash: var(--panel);
   --font-serif: "Newsreader", "Iowan Old Style", Georgia, serif;
-  --font-condensed: "Instrument Serif", "Newsreader", Georgia, serif;
+  --font-condensed: "Memoir", "Instrument Serif", "Newsreader", Georgia, serif;
   --measure: 1240px;
 }
 
@@ -105,7 +113,7 @@ body::after { display: none; }
 .house__name,
 .essay__lede--display {
   font-family: var(--font-condensed);
-  font-size: clamp(52px, 7vw, 92px);
+  font-size: clamp(40px, 5.6vw, 76px);
   font-weight: 400;
   line-height: 0.95;
   letter-spacing: 0.01em;
@@ -329,7 +337,7 @@ body::after { display: none; }
 
 .hero__big {
   font-family: var(--font-condensed);
-  font-size: clamp(56px, 8vw, 104px);
+  font-size: clamp(38px, 6.6vw, 88px);
   line-height: 0.92;
   letter-spacing: 0.01em;
   text-transform: uppercase;
