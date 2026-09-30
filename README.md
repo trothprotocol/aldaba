@@ -90,7 +90,7 @@ replaced). `img/places/` is cut from the full-resolution originals in
 JPEG at quality 78, made with `sips`. Cut a new one the same way rather than
 committing an original.
 
-## Colour and type
+## Color and type
 
 Tokens live at the top of `styles.css`: paper `#F3EFE8` (a warm off-white,
 in the Aman register), ink `#272826`, and
