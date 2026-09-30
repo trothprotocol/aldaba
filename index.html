@@ -50,8 +50,29 @@
     <span class="util-sep" aria-hidden="true">|</span>
     <button type="button" class="util" data-open="prefs" data-pref-label="currency" aria-label="Currency: US dollars">$</button>
     <button type="button" class="util util--boxed" data-open="signin">Sign in</button>
+    <button type="button" class="menu-toggle" aria-label="Menu" aria-controls="menu" aria-expanded="false"><span></span><span></span></button>
   </nav>
 </header>
+
+<div class="menu" id="menu" hidden>
+  <div class="menu__scrim" data-menu-close></div>
+  <div class="menu__panel" role="dialog" aria-modal="true" aria-label="Menu">
+    <button type="button" class="menu__close" data-menu-close aria-label="Close menu">&times;</button>
+    <nav class="menu__nav" aria-label="Sections">
+      <a href="/houses">Houses</a>
+      <a href="/experiences">Experiences</a>
+      <a href="/about">About us</a>
+      <a href="/#word">Journal</a>
+      <a href="/about#contact">Contact</a>
+    </nav>
+    <div class="menu__utils">
+      <button type="button" class="menu__util" data-open="signin" data-signin-label>Sign in</button>
+      <button type="button" class="menu__util" data-open="prefs" data-pref-label="language">Language</button>
+      <button type="button" class="menu__util" data-open="prefs" data-pref-label="currency">Currency</button>
+    </div>
+    <a class="menu__owners" href="/propietarios" rel="nofollow">Property owners</a>
+  </div>
+</div>
 
 <main id="main">
 

@@ -295,7 +295,9 @@
     document.querySelectorAll('[data-pref-label]').forEach(function (button) {
       var key = button.dataset.prefLabel;
       var value = prefs[key] in labels[key] ? prefs[key] : Object.keys(labels[key])[0];
-      button.textContent = labels[key][value];
+      button.textContent = button.classList.contains('menu__util')
+        ? (key === 'language' ? 'Language' : 'Currency') + ' \u00b7 ' + names[key][value]
+        : labels[key][value];
       button.setAttribute('aria-label', (key === 'language' ? 'Language: ' : 'Currency: ') + names[key][value]);
     });
     document.querySelectorAll('.choices[data-group]').forEach(function (group) {
@@ -323,7 +325,7 @@
 
   function paintProfile() {
     var guest = store.get('ladanta.guest');
-    document.querySelectorAll('.util--boxed[data-open="signin"]').forEach(function (button) {
+    document.querySelectorAll('.util--boxed[data-open="signin"], [data-signin-label]').forEach(function (button) {
       button.textContent = guest ? guest.name.split(' ')[0] : 'Sign in';
     });
     if (form && signed) {
@@ -499,5 +501,44 @@
         '?subject=' + encodeURIComponent(subject) +
         '&body=' + encodeURIComponent(body);
     });
+  });
+})();
+
+/* Once the page moves, the header's utilities fold into a menu on the right. */
+
+(function () {
+  var menu = document.getElementById('menu');
+  var toggle = document.querySelector('.menu-toggle');
+  if (!menu || !toggle) return;
+  var panel = menu.querySelector('.menu__panel');
+
+  function open() {
+    menu.hidden = false;
+    void menu.offsetWidth;
+    menu.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.documentElement.classList.add('is-locked');
+    menu.querySelector('.menu__close').focus();
+  }
+
+  function close(returnFocus) {
+    if (menu.hidden) return;
+    menu.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.documentElement.classList.remove('is-locked');
+    panel.addEventListener('transitionend', function done() {
+      panel.removeEventListener('transitionend', done);
+      if (!menu.classList.contains('is-open')) menu.hidden = true;
+    });
+    if (returnFocus) toggle.focus();
+  }
+
+  toggle.addEventListener('click', open);
+  menu.addEventListener('click', function (event) {
+    if (event.target.closest('[data-menu-close]')) close(true);
+    else if (event.target.closest('[data-open], a')) close(false);
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') close(true);
   });
 })();
