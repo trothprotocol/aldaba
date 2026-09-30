@@ -1700,3 +1700,39 @@ html.has-bookbar .wa-float { bottom: 84px; }
   .owners-form__body { padding: 0 16px; }
   .owners-form .plan__media img { aspect-ratio: 3 / 2; }
 }
+
+/* Motion ------------------------------------------------------------ */
+/* One authored moment: the hero settles in, line by line, on arrival. */
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+
+.hero--video .hero__small,
+.hero--video .hero__big,
+.hero--video .hero__sub,
+.hero--video .search,
+.hero--video .hero__hint {
+  animation: rise-in 0.9s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+.hero--video .hero__small { animation-delay: 0.15s; }
+.hero--video .hero__big { animation-delay: 0.25s; }
+.hero--video .hero__sub { animation-delay: 0.45s; }
+.hero--video .search { animation-delay: 0.6s; }
+.hero--video .hero__hint { animation-delay: 0.75s; }
+
+/* Sections rise a little less than before, and a touch quicker. */
+.reveal {
+  transform: translateY(20px);
+  transition-duration: 0.8s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero--video .hero__small,
+  .hero--video .hero__big,
+  .hero--video .hero__sub,
+  .hero--video .search,
+  .hero--video .hero__hint { animation: none; }
+}

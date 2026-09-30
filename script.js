@@ -390,7 +390,9 @@
     '.section:not(.section--collection):not(.section--experiences), .section--experiences .section__line, ' +
     '.experience, .collection, .promise, .filters, .grid .card, .house-section, ' +
     '.essay__lede, .essay__intro, .essay__block, .pull, .split, ' +
-    '.spread, .duo, .feature, .pair__item, .band__title, .mosaic, .book, .letterpress, .partners-line, .word'
+    '.spread, .duo, .feature, .pair__item, .band__title, .mosaic, .book, .letterpress, .partners-line, .word' + ', ' +
+    '.homes__head, .home, .homes__foot, .pillar, .season__text, .season__media, .tiers > .title, .tiers__intro, .tier, .tiers > .cta, ' +
+    '.plan__media, .plan__text, .days__head, .day, .twin__col, .word__text, .word__side, .step, .others__grid .card'
   );
 
   var observer = new IntersectionObserver(function (entries) {
@@ -401,8 +403,14 @@
     });
   }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
 
+  // Cards in a row arrive one after another, 90ms apart.
+  var groups = '.home, .pillar, .tier, .day, .twin__col, .step, .others__grid .card';
   targets.forEach(function (el) {
     el.classList.add('reveal');
+    if (el.matches(groups)) {
+      var index = Array.prototype.indexOf.call(el.parentNode.children, el);
+      el.style.transitionDelay = Math.min(index, 4) * 90 + 'ms';
+    }
     observer.observe(el);
   });
 })();
