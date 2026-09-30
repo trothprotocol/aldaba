@@ -2171,7 +2171,6 @@ select.compact__input {
 /* Burger menu: appears once the page moves and takes over the utilities. */
 
 .menu-toggle {
-  display: none;
   flex-direction: column;
   justify-content: center;
   gap: 6px;
@@ -2198,8 +2197,8 @@ select.compact__input {
 }
 .header.is-over .menu-toggle { color: var(--paper); }
 
-.header.is-scrolled .header__right > :not(.menu-toggle) { display: none; }
-.header.is-scrolled .menu-toggle { display: flex; }
+.header__right > :not(.menu-toggle) { display: none; }
+.menu-toggle { display: flex; }
 
 .menu {
   position: fixed;
