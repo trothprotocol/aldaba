@@ -813,7 +813,7 @@ body::after { display: none; }
 
 .twin__col--book {
   display: grid;
-  grid-template-columns: 116px minmax(0, 1fr);
+  grid-template-columns: 150px minmax(0, 1fr);
   align-items: center;
   gap: 32px;
 }
