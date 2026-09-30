@@ -130,7 +130,7 @@
   if (!header) return;
 
   var hero = document.querySelector('.hero');
-  var overVideo = !!document.querySelector('.hero--video');
+  var overVideo = !!document.querySelector('.hero--video, .hero--image');
 
   // The hero slides under the header by this much.
   function measure() {
