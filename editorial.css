@@ -1736,3 +1736,26 @@ html.has-bookbar .wa-float { bottom: 84px; }
   .hero--video .search,
   .hero--video .hero__hint { animation: none; }
 }
+
+/* Journeys: the film hero, shorter than the home page's. */
+.hero--page { min-height: clamp(460px, 64vh, 640px); }
+.hero--page .hero__sub { max-width: 52ch; line-height: 1.6; }
+
+/* The Standard: the pressed wordmark, wide, under the opening. */
+.standard-plate {
+  max-width: 1180px;
+  margin: 64px auto 0;
+  padding: 0 32px;
+}
+
+.standard-plate img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+@media (max-width: 860px) {
+  .standard-plate { margin-top: 44px; padding: 0 16px; }
+}
