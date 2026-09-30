@@ -617,3 +617,69 @@
     });
   }
 })();
+
+/* Homes map. Pins sit near each home's town, never on the address, and
+   follow the filters. Hovering a card lifts its pin and the other way round. */
+
+(function () {
+  var el = document.querySelector('[data-map]');
+  if (!el || !window.L) return;
+
+  var cards = Array.prototype.filter.call(document.querySelectorAll('[data-grid] .card'), function (card) {
+    return card.dataset.lat;
+  });
+
+  var map = L.map(el, { scrollWheelZoom: false, zoomControl: true, attributionControl: true });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 16,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+
+  var pins = cards.map(function (card) {
+    var name = card.querySelector('.card__name').textContent;
+    var soon = card.classList.contains('card--soon');
+    var icon = L.divIcon({
+      className: 'pin' + (soon ? ' pin--soon' : ''),
+      html: '<span>' + (soon ? 'Soon' : name) + '</span>',
+      iconSize: null
+    });
+    var marker = L.marker([Number(card.dataset.lat), Number(card.dataset.lng)], { icon: icon, keyboard: false, title: name });
+    marker.on('mouseover', function () { card.classList.add('is-hot'); });
+    marker.on('mouseout', function () { card.classList.remove('is-hot'); });
+    marker.on('click', function () {
+      if (card.href) window.location.href = card.href;
+      else card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    card.addEventListener('mouseenter', function () {
+      var node = marker.getElement();
+      if (node) node.classList.add('is-hot');
+      marker.setZIndexOffset(1000);
+    });
+    card.addEventListener('mouseleave', function () {
+      var node = marker.getElement();
+      if (node) node.classList.remove('is-hot');
+      marker.setZIndexOffset(0);
+    });
+    return { card: card, marker: marker };
+  });
+
+  function sync() {
+    var shown = [];
+    pins.forEach(function (pin) {
+      if (pin.card.hidden) {
+        map.removeLayer(pin.marker);
+      } else {
+        pin.marker.addTo(map);
+        shown.push(pin.marker.getLatLng());
+      }
+    });
+    if (!shown.length) return;
+    if (shown.length === 1) map.setView(shown[0], 11);
+    else map.fitBounds(L.latLngBounds(shown), { padding: [48, 48], maxZoom: 11 });
+  }
+
+  var observer = new MutationObserver(sync);
+  cards.forEach(function (card) { observer.observe(card, { attributes: true, attributeFilter: ['hidden'] }); });
+  sync();
+  window.addEventListener('resize', function () { map.invalidateSize(); });
+})();

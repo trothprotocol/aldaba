@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap">
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/editorial.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 </head>
 <body>
 
@@ -104,36 +105,40 @@
         </div>
       </div>
 
+      <div class="browse">
       <div class="grid" data-grid>
-<a class="card" href="/homes/ja" data-place="antigua" data-guests="8">
+<a class="card" data-lat="14.5540" data-lng="-90.7290" href="/homes/ja" data-place="antigua" data-guests="8">
   <span class="card__frame card__frame--blank"><span>Home 1</span></span>
   <span class="card__name">Ja&rsquo;</span>
   <span class="card__meta">Antigua &middot; 4 bedrooms &middot; 8 guests</span>
 </a>
 
-<a class="card" href="/homes/choq" data-place="atitlan" data-guests="6">
+<a class="card" data-lat="14.7240" data-lng="-91.2060" href="/homes/choq" data-place="atitlan" data-guests="6">
   <span class="card__frame card__frame--blank"><span>Home 2</span></span>
   <span class="card__name">Choq&rsquo;</span>
   <span class="card__meta">Lake Atitl&aacute;n &middot; 3 bedrooms &middot; 6 guests</span>
 </a>
 
-<a class="card" href="/homes/ki" data-place="rio-dulce" data-guests="12">
+<a class="card" data-lat="15.6660" data-lng="-88.9910" href="/homes/ki" data-place="rio-dulce" data-guests="12">
   <span class="card__frame card__frame--blank"><span>Home 3</span></span>
   <span class="card__name">Ki&rsquo;</span>
   <span class="card__meta">R&iacute;o Dulce &middot; 6 bedrooms &middot; 12 guests</span>
 </a>
 
-<a class="card" href="/homes/tinamit" data-place="ciudad" data-guests="4">
+<a class="card" data-lat="14.5800" data-lng="-90.5050" href="/homes/tinamit" data-place="ciudad" data-guests="4">
   <span class="card__frame card__frame--blank"><span>Home 4</span></span>
   <span class="card__name">Tinamit</span>
   <span class="card__meta">Guatemala City &middot; 2 bedrooms &middot; 4 guests</span>
 </a>
 
-<div class="card card--soon" data-place="antigua">
+<div class="card card--soon" data-place="antigua" data-lat="14.5620" data-lng="-90.7380">
   <span class="card__frame"><span>Listing soon</span></span>
   <span class="card__name">A second house in Antigua</span>
   <span class="card__meta">Antigua &middot; 5 bedrooms &middot; 10 guests</span>
 </div>
+      </div>
+
+      <div class="browse__map" data-map role="region" aria-label="Map of the homes. Pins show the area, not the address."></div>
       </div>
 
       <p class="grid__empty" data-empty hidden>Nothing here yet. <a href="/about#contact">Tell us where you want to go</a> and we will say what we know.</p>
@@ -243,6 +248,7 @@
 
 <a class="wa-float" href="https://wa.me/502XXXXXXXX" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"></a>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="/script.js"></script>
 </body>
 </html>

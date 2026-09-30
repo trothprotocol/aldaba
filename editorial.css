@@ -1201,3 +1201,85 @@ body::after { display: none; }
   background: var(--panel);
   border: 1px solid var(--line);
 }
+
+/* Homes page: the list on the left, the map on the right. */
+
+.browse {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 32px;
+}
+
+.browse .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.browse__map {
+  position: sticky;
+  top: calc(var(--header-h) + 16px);
+  height: calc(100vh - var(--header-h) - 32px);
+  min-height: 420px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  z-index: 0;
+}
+
+/* The map in the site's own quiet palette. */
+.browse__map .leaflet-tile-pane { filter: grayscale(1) sepia(0.12) contrast(0.92) brightness(1.04); }
+
+.browse__map .leaflet-control-attribution {
+  font-size: 10px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.browse__map .leaflet-bar a {
+  color: var(--ink);
+  border-radius: 0;
+}
+
+.browse__map .leaflet-bar { border-radius: 0; border: 1px solid var(--line); box-shadow: none; }
+
+.pin {
+  background: none;
+  border: 0;
+}
+
+.pin span {
+  display: inline-block;
+  transform: translate(-50%, -100%);
+  padding: 6px 10px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--paper);
+  background: var(--ink);
+  box-shadow: 0 2px 8px rgba(var(--ink-rgb), 0.2);
+  transition: background-color 0.18s ease, transform 0.18s var(--ease);
+  cursor: pointer;
+}
+
+.pin--soon span { background: var(--terracotta); }
+
+.pin.is-hot span,
+.pin:hover span {
+  background: var(--terracotta);
+  transform: translate(-50%, -100%) scale(1.08);
+}
+
+.card.is-hot .card__name { color: var(--accent); }
+
+@media (max-width: 960px) {
+  .browse { grid-template-columns: minmax(0, 1fr); }
+  .browse__map {
+    position: relative;
+    top: auto;
+    order: -1;
+    height: 320px;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .browse .grid { grid-template-columns: minmax(0, 1fr); }
+}
