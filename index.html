@@ -14,7 +14,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/fonts/Montserrat-Light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap">
 <link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/editorial.css">
 </head>
 <body>
 
@@ -52,6 +56,7 @@
     <button type="button" class="util util--boxed" data-open="signin">Sign in</button>
     <button type="button" class="menu-toggle" aria-label="Menu" aria-controls="menu" aria-expanded="false"><span></span><span></span></button>
   </nav>
+  <a class="header__contact" href="mailto:hola@ladantajourneys.com">hola@ladantajourneys.com</a>
 </header>
 
 <div class="menu" id="menu" hidden>
@@ -88,13 +93,14 @@
     <video class="hero__video" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
     <div class="hero__scrim" aria-hidden="true"></div>
 
-    <h1 class="hero__line">Extraordinary private residences, and everything around them.</h1>
+    <h1 class="hero__title"><span class="hero__small">Guatemala,</span> <span class="hero__big">well received</span></h1>
+    <p class="hero__sub">Extraordinary private residences, and everything around them.</p>
 
     <form class="search" role="search" action="/houses" method="get">
-      <label class="search__field">
-        <span class="search__label">Destination</span>
+      <label class="search__field search__field--place">
+        <span class="sr-only">Destination</span>
         <select class="search__input" name="place">
-          <option value="">Anywhere</option>
+          <option value="">Destination</option>
           <option value="antigua">Antigua</option>
           <option value="atitlan">Lake Atitl&aacute;n</option>
           <option value="rio-dulce">R&iacute;o Dulce</option>
@@ -102,154 +108,201 @@
         </select>
       </label>
 
-      <div class="search__field">
-        <span class="search__label" id="search-dates-label">Dates</span>
-        <span class="search__dates">
-          <label class="sr-only" for="search-from">Arriving</label>
-          <input class="search__input" id="search-from" name="from" type="date">
-          <span class="search__to" aria-hidden="true">to</span>
-          <label class="sr-only" for="search-to">Leaving</label>
-          <input class="search__input" id="search-to" name="to" type="date">
-        </span>
+      <div class="search__field search__field--dates">
+        <label class="search__date">
+          <span class="search__ph" aria-hidden="true">Arriving</span>
+          <input class="search__input" id="search-from" name="from" type="date" aria-label="Arriving">
+        </label>
+        <svg class="search__arrow" viewBox="0 0 16 8" aria-hidden="true"><path d="M0 4h14.5M11.5 1l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+        <label class="search__date">
+          <span class="search__ph" aria-hidden="true">Leaving</span>
+          <input class="search__input" id="search-to" name="to" type="date" aria-label="Leaving">
+        </label>
       </div>
 
-      <label class="search__field">
-        <span class="search__label">Guests</span>
-        <input class="search__input" name="guests" type="number" min="1" max="14" placeholder="Add guests">
+      <label class="search__field search__field--guests">
+        <span class="sr-only">Guests</span>
+        <input class="search__input" name="guests" type="number" inputmode="numeric" min="1" max="14" placeholder="Guests">
       </label>
 
       <button type="submit" class="search__submit">Search</button>
     </form>
+
+    <p class="hero__hint">Not sure where to go? <a href="/about#contact">Ask us</a></p>
   </section>
 
-  <section class="collection">
-    <div class="rail" id="rail">
-      <div class="rail__intro">
-        <h2 class="rail__title">Explore the world of Ladanta</h2>
-        <p class="rail__prose">Houses across Guatemala, each one known personally.</p>
-        <a class="more" href="/houses">View all houses</a>
+  <section class="homes" aria-labelledby="homes-title">
+    <div class="homes__head">
+      <h2 class="title homes__title" id="homes-title">Our houses</h2>
+      <div class="homes__filters" role="group" aria-label="Show houses">
+        <button type="button" class="homes__filter" data-filter="all" aria-pressed="true">All houses</button>
+        <button type="button" class="homes__filter" data-filter="water" aria-pressed="false">By the water</button>
+        <button type="button" class="homes__filter" data-filter="town" aria-pressed="false">In town</button>
+        <button type="button" class="homes__filter" data-filter="groups" aria-pressed="false">For large groups</button>
       </div>
+    </div>
 
-        <a class="card" href="/houses/ja" data-place="antigua" data-guests="8">
-          <span class="card__frame"><img src="/img/houses/ja-01.jpg" alt="A white two-storey house lit from inside at dusk, its doors open to the garden" loading="lazy"></span>
-          <span class="card__name">Ja&rsquo;</span>
-          <span class="card__meta">Antigua &middot; 4 bedrooms &middot; 8 guests</span>
+    <ul class="homes__grid">
+      <li class="home" data-tags="town groups">
+        <a class="home__link" href="/houses/ja">
+          <span class="home__frame"><img src="/img/houses/ja-01.jpg" alt="A white two-storey house lit from inside at dusk, its doors open to the garden" loading="lazy"></span>
+          <span class="home__name">Ja&rsquo;</span>
+          <span class="home__meta"><span class="home__place">Antigua</span> <span class="home__size">4 bedrooms &middot; 8 guests</span></span>
         </a>
-        <a class="card" href="/houses/choq" data-place="atitlan" data-guests="6">
-          <span class="card__frame"><img src="/img/houses/choq-01.jpg" alt="A glass-walled bedroom opening onto a timber deck above the lake" loading="lazy"></span>
-          <span class="card__name">Choq&rsquo;</span>
-          <span class="card__meta">Lake Atitl&aacute;n &middot; 3 bedrooms &middot; 6 guests</span>
+      </li>
+      <li class="home" data-tags="water">
+        <a class="home__link" href="/houses/choq">
+          <span class="home__frame"><img src="/img/houses/choq-01.jpg" alt="A glass-walled bedroom opening onto a timber deck above the lake" loading="lazy"></span>
+          <span class="home__name">Choq&rsquo;</span>
+          <span class="home__meta"><span class="home__place">Lake Atitl&aacute;n</span> <span class="home__size">3 bedrooms &middot; 6 guests</span></span>
         </a>
-        <a class="card" href="/houses/ki" data-place="rio-dulce" data-guests="12">
-          <span class="card__frame"><img src="/img/houses/ki-01.jpg" alt="A timber bedroom under a high thatched roof with white curtains and a spiral stair" loading="lazy"></span>
-          <span class="card__name">Ki&rsquo;</span>
-          <span class="card__meta">R&iacute;o Dulce &middot; 6 bedrooms &middot; 12 guests</span>
+      </li>
+      <li class="home" data-tags="water groups">
+        <a class="home__link" href="/houses/ki">
+          <span class="home__frame"><img src="/img/houses/ki-01.jpg" alt="A timber bedroom under a high thatched roof with white curtains and a spiral stair" loading="lazy"></span>
+          <span class="home__name">Ki&rsquo;</span>
+          <span class="home__meta"><span class="home__place">R&iacute;o Dulce</span> <span class="home__size">6 bedrooms &middot; 12 guests</span></span>
         </a>
-        <a class="card" href="/houses/tinamit" data-place="ciudad" data-guests="4">
-          <span class="card__frame"><img src="/img/houses/tinamit-01.jpg" alt="A glass and concrete house lit at night among tall trees" loading="lazy"></span>
-          <span class="card__name">Tinamit</span>
-          <span class="card__meta">Guatemala City &middot; 2 bedrooms &middot; 4 guests</span>
+      </li>
+      <li class="home" data-tags="town">
+        <a class="home__link" href="/houses/tinamit">
+          <span class="home__frame"><img src="/img/houses/tinamit-01.jpg" alt="A glass and concrete house lit at night among tall trees" loading="lazy"></span>
+          <span class="home__name">Tinamit</span>
+          <span class="home__meta"><span class="home__place">Guatemala City</span> <span class="home__size">2 bedrooms &middot; 4 guests</span></span>
         </a>
-        <div class="card card--soon" data-place="antigua">
-          <span class="card__frame"><span>Listing soon</span></span>
-          <span class="card__name">A second house in Antigua</span>
-          <span class="card__meta">Antigua &middot; 5 bedrooms &middot; 10 guests</span>
+      </li>
+    </ul>
+
+    <div class="homes__foot">
+      <a class="cta" href="/houses">View all houses</a>
+    </div>
+  </section>
+
+  <section class="pillars" aria-label="What sets a Ladanta stay apart">
+    <div class="pillar">
+      <h3 class="pillar__title"><span class="pillar__big">Few</span> <span class="pillar__label">houses</span></h3>
+      <p class="pillar__text">Every house on the list is one we have walked through ourselves. When a house stops meeting the standard, it leaves the list.</p>
+    </div>
+    <div class="pillar">
+      <h3 class="pillar__title"><span class="pillar__big">One</span> <span class="pillar__label">person</span></h3>
+      <p class="pillar__text">From the first note to the last morning, the same name answers. Nothing is handed between departments, because there are none.</p>
+    </div>
+    <div class="pillar">
+      <h3 class="pillar__title"><span class="pillar__big">Our own</span> <span class="pillar__label">cars and drivers</span></h3>
+      <p class="pillar__text">The companies behind us have received travellers here for six decades. The car at the door at midnight is ours, and so is the driver.</p>
+    </div>
+  </section>
+
+  <section class="season" aria-labelledby="season-title">
+    <div class="season__text">
+      <h2 class="title" id="season-title">The dry season starts here</h2>
+      <p class="serif">From November to April the rains stop and the volcanoes stand clear from the terrace. Tell us your dates early and we will hold what we can.</p>
+      <a class="cta" href="/houses">Explore the houses</a>
+    </div>
+    <div class="season__media">
+      <img src="/img/places/volcanoes-dusk-1000.jpg" srcset="/img/places/volcanoes-dusk-1000.jpg 1000w, /img/places/volcanoes-dusk.jpg 2000w" sizes="(max-width: 860px) 100vw, 50vw" alt="Acatenango and Fuego at dusk under a sky of lit cloud" loading="lazy">
+    </div>
+  </section>
+
+  <section class="tiers" aria-labelledby="tiers-title">
+    <h2 class="title" id="tiers-title">The Ladanta Standard</h2>
+    <p class="serif tiers__intro">Every house meets the same standard, and it is checked before every guest. It comes down to three things.</p>
+    <div class="tiers__cols">
+      <div class="tier">
+        <h3 class="tier__name">The house</h3>
+        <p class="serif">Walked through room by room before every stay, and made ready the way we would want to find it.</p>
+      </div>
+      <div class="tier">
+        <h3 class="tier__name">The arrival</h3>
+        <p class="serif">Our car at the airport, our driver on the road, and the house ready when you reach it.</p>
+      </div>
+      <div class="tier">
+        <h3 class="tier__name">The service</h3>
+        <p class="serif">One person from the first note to the last morning, and a reply the same day.</p>
+      </div>
+    </div>
+    <a class="cta" href="/standard">Discover the standard</a>
+  </section>
+
+  <section class="plan" aria-labelledby="plan-title">
+    <div class="plan__inner">
+      <div class="plan__media">
+        <img src="/img/places/antigua-plaza-1000.jpg" srcset="/img/places/antigua-plaza-1000.jpg 1000w, /img/places/antigua-plaza.jpg 2000w" sizes="(max-width: 860px) 100vw, 45vw" alt="The cathedral square in Antigua at dawn, with Agua volcano behind it" loading="lazy">
+      </div>
+      <div class="plan__text">
+        <h2 class="title" id="plan-title">Let us plan your stay</h2>
+        <p class="serif">Tell us where and when, and how many of you there are. We reply the same day, with the houses that fit and what we would arrange around them.</p>
+        <div class="plan__actions">
+          <a class="cta" href="/about#contact">Write to us</a>
+          <a class="cta cta--outline" href="mailto:hola@ladantajourneys.com">Email us</a>
         </div>
-    </div>
-
-    <button type="button" class="rail__arrow rail__arrow--prev" data-scroll="-1" disabled aria-label="Previous">&larr;</button>
-    <button type="button" class="rail__arrow rail__arrow--next" data-scroll="1" aria-label="Next">&rarr;</button>
-  </section>
-
-  <section class="promises" aria-label="How we work">
-    <div class="promise">
-      <span class="promise__frame"><img src="/img/brandbook/timber-room.jpg" alt="A timber room with a deep linen sofa" loading="lazy"></span>
-      <div class="promise__body">
-        <h2 class="promise__title">We take on very few.</h2>
-        <p class="promise__prose">Every house on the list is one we have walked through ourselves. When a house stops meeting the standard, it leaves the list.</p>
-        <a class="more" href="/houses">Discover the houses</a>
-      </div>
-    </div>
-
-    <div class="promise">
-      <span class="promise__frame"><img src="/img/places/antigua-plaza-1000.jpg" srcset="/img/places/antigua-plaza-1000.jpg 1000w, /img/places/antigua-plaza.jpg 2000w" sizes="(max-width: 860px) 100vw, 50vw" alt="The cathedral square in Antigua at dawn, with Agua volcano behind it" loading="lazy"></span>
-      <div class="promise__body">
-        <h2 class="promise__title">One person, all the way through.</h2>
-        <p class="promise__prose">From the first note to the last morning, the same name answers. Nothing is handed between departments, because there are none.</p>
-        <a class="more" href="/standard">Discover the Ladanta Standard</a>
-      </div>
-    </div>
-
-    <div class="promise">
-      <span class="promise__frame"><img src="/img/places/atitlan-boat-1000.jpg" srcset="/img/places/atitlan-boat-1000.jpg 1000w, /img/places/atitlan-boat.jpg 2000w" sizes="(max-width: 860px) 100vw, 50vw" alt="A single boat crossing Lake Atitlán below the volcano" loading="lazy"></span>
-      <div class="promise__body">
-        <h2 class="promise__title">Whatever the house cannot do for itself.</h2>
-        <p class="promise__prose">A chef for the evening, a boat at first light, a guide who has walked the trail since he was a boy. Arranged quietly, priced plainly.</p>
-        <a class="more" href="/experiences">Discover experiences</a>
       </div>
     </div>
   </section>
 
-  <section class="band">
-    <h2 class="band__title">A few of the days we arrange.</h2>
-
-    <div class="experiences">
-      <article class="experience">
-        <a class="experience__frame" href="/experiences/antigua" tabindex="-1" aria-hidden="true"><img src="/img/coffee.jpg" alt="" loading="lazy"></a>
-        <p class="caption__label">Antigua</p>
-        <h3 class="caption__title"><a href="/experiences/antigua">Coffee before the city wakes</a></h3>
-        <p class="caption__prose">A finca on the slope, picked at first light, cupped at a table under the volcano.</p>
-      </article>
-
-      <article class="experience">
-        <a class="experience__frame" href="/experiences/atitlan" tabindex="-1" aria-hidden="true"><img src="/img/lake.jpg" alt="" loading="lazy"></a>
-        <p class="caption__label">Lake Atitl&aacute;n</p>
-        <h3 class="caption__title"><a href="/experiences/atitlan">The lake while it is still glass</a></h3>
-        <p class="caption__prose">Out on the water before the wind arrives, and a Tz&rsquo;utujil kitchen in Santiago after.</p>
-      </article>
-
-      <article class="experience">
-        <a class="experience__frame" href="/experiences/rio-dulce" tabindex="-1" aria-hidden="true"><img src="/img/rio-dulce.jpg" alt="" loading="lazy"></a>
-        <p class="caption__label">R&iacute;o Dulce</p>
-        <h3 class="caption__title"><a href="/experiences/rio-dulce">Downriver, under the canopy</a></h3>
-        <p class="caption__prose">The gorge at the hour the herons move, and the Caribbean waiting at the end of it.</p>
-      </article>
+  <section class="days" aria-labelledby="days-title">
+    <div class="days__head">
+      <h2 class="title" id="days-title">A few of the days we arrange</h2>
+      <p class="serif">A chef for the evening, a boat at first light, a guide who has walked the trail since he was a boy. Arranged quietly, priced plainly.</p>
+      <a class="cta" href="/experiences">Discover experiences</a>
     </div>
-  </section>
 
-  <section class="partners-line">
-    <p class="partners-line__lede">Six decades of receiving travellers in this country.</p>
-    <ul class="partners-line__names">
-      <li>Carma Group</li>
-      <li>Hertz Guatemala</li>
-      <li>Trasla</li>
-      <li>Maya Trails</li>
-      <li>Trip18</li>
+    <ul class="days__gallery">
+      <li class="day">
+        <a class="day__link" href="/experiences/antigua">
+          <span class="day__frame"><img src="/img/coffee.jpg" alt="Ripe red coffee cherries on the branch" loading="lazy"></span>
+          <span class="day__name">Coffee before the city wakes</span>
+          <span class="day__place">Antigua</span>
+        </a>
+      </li>
+      <li class="day">
+        <a class="day__link" href="/experiences/atitlan">
+          <span class="day__frame"><img src="/img/lake.jpg" alt="Lake Atitlán under cloud" loading="lazy"></span>
+          <span class="day__name">The lake while it is still glass</span>
+          <span class="day__place">Lake Atitl&aacute;n</span>
+        </a>
+      </li>
+      <li class="day">
+        <a class="day__link" href="/experiences/rio-dulce">
+          <span class="day__frame"><img src="/img/rio-dulce.jpg" alt="The river opening into the lake, with houses on the far bank" loading="lazy"></span>
+          <span class="day__name">Downriver, under the canopy</span>
+          <span class="day__place">R&iacute;o Dulce</span>
+        </a>
+      </li>
     </ul>
   </section>
 
-  <section class="book" aria-labelledby="book-title">
-    <div class="book__field">
-      <img class="book__cover" src="/img/brand/book.webp" width="1300" height="1529" alt="The Ladanta book and its folder: a botanical plate in grey with The Art of Luxury Travel above and LADANTA across the foot" loading="lazy">
-    </div>
-    <div class="book__text">
-      <div class="folio" aria-hidden="true">
-        <span>Hospitality group<br>based in Guatemala</span>
-        <span>The book</span>
+  <section class="twin" aria-label="The book and the companies behind us">
+    <div class="twin__col twin__col--book">
+      <img class="twin__cover" src="/img/brand/book.webp" width="1300" height="1529" alt="The Ladanta book and its folder: a botanical plate in grey with The Art of Luxury Travel above and LADANTA across the foot" loading="lazy">
+      <div>
+        <h2 class="title title--sm">The book</h2>
+        <p class="serif">The art of luxury travel: the houses, the places and the people behind them, set down on paper.</p>
+        <a class="more" href="/about#contact">Ask about the book</a>
       </div>
-      <h2 class="book__title" id="book-title">The art of luxury travel</h2>
-      <p class="book__prose">The houses, the places and the people behind them, set down on paper.</p>
-      <a class="more" href="/about#contact">Ask about the book</a>
+    </div>
+    <div class="twin__col">
+      <h2 class="title title--sm">Six decades of receiving travellers</h2>
+      <p class="serif">Ladanta is a new name from an old group. The same companies have run the cars, the drivers, the guides and the journeys in this country for six decades.</p>
+      <ul class="twin__names">
+        <li>Carma Group</li>
+        <li>Hertz Guatemala</li>
+        <li>Trasla</li>
+        <li>Maya Trails</li>
+        <li>Trip18</li>
+      </ul>
     </div>
   </section>
 
   <section class="word" id="word">
-    <h2 class="word__title">Word from here, now and then.</h2>
-    <p class="word__prose">New houses before they are listed, and the occasional note from the road.</p>
+    <div class="word__text">
+      <h2 class="title title--sm">Word from here</h2>
+      <p class="serif">New houses before they are listed, and the occasional note from the road.</p>
+    </div>
     <div class="word__side">
       <form class="signup" data-enquire data-subject="Subscribe">
-        <label class="signup__label" for="signup-email">Email address</label>
-        <input class="signup__input" id="signup-email" name="email" type="email" autocomplete="email" placeholder="Email address" required>
+        <label class="sr-only" for="signup-email">Email address</label>
+        <input class="signup__input" id="signup-email" name="email" type="email" autocomplete="email" placeholder="Your email address" required>
         <button type="submit" class="signup__submit">Sign up</button>
       </form>
       <p class="signup__legal">By signing up you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>. This opens your email client; nothing is stored here.</p>

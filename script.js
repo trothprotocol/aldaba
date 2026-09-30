@@ -551,3 +551,69 @@
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
   });
 })();
+
+/* Our houses. Four filters over the same four cards; the ones that stay
+   visible fade in so the change reads as a change. */
+
+(function () {
+  var filters = document.querySelectorAll('.homes__filter');
+  var homes = document.querySelectorAll('.home');
+  if (!filters.length || !homes.length) return;
+
+  filters.forEach(function (filter) {
+    filter.addEventListener('click', function () {
+      var key = filter.dataset.filter;
+      filters.forEach(function (other) {
+        other.setAttribute('aria-pressed', other === filter ? 'true' : 'false');
+      });
+      homes.forEach(function (home) {
+        var show = key === 'all' || (' ' + home.dataset.tags + ' ').indexOf(' ' + key + ' ') > -1;
+        home.hidden = !show;
+        home.classList.remove('is-entering');
+        if (show) {
+          void home.offsetWidth;
+          home.classList.add('is-entering');
+        }
+      });
+    });
+  });
+})();
+
+/* Hero dates. The fields read Arriving and Leaving until a date is set,
+   open the calendar on a click anywhere in them, and leaving can never
+   come before arriving. */
+
+(function () {
+  var dates = document.querySelectorAll('.search__date');
+  if (!dates.length) return;
+
+  var from = document.getElementById('search-from');
+  var to = document.getElementById('search-to');
+
+  function mark(label) {
+    var input = label.querySelector('input');
+    label.classList.toggle('has-value', !!input.value);
+  }
+
+  dates.forEach(function (label) {
+    var input = label.querySelector('input');
+    input.addEventListener('input', function () { mark(label); });
+    input.addEventListener('change', function () { mark(label); });
+    label.addEventListener('click', function () {
+      if (typeof input.showPicker === 'function') {
+        try { input.showPicker(); } catch (e) {}
+      }
+    });
+    mark(label);
+  });
+
+  if (from && to) {
+    from.addEventListener('change', function () {
+      to.min = from.value;
+      if (to.value && from.value && to.value < from.value) {
+        to.value = '';
+        mark(to.closest('.search__date'));
+      }
+    });
+  }
+})();
