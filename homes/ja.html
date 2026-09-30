@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap">
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/editorial.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 </head>
 <body>
 
@@ -100,10 +101,16 @@
         <li class="stat"><span class="stat__value">8</span><span class="stat__label">Guests</span></li>
       </ul>
 
-      <div class="house__cta">
-        <a class="btn btn--inline" href="#enquire">Enquire about Ja&rsquo;</a>
-        <a class="house__ask" href="mailto:hello@ladantajourneys.com?subject=Ja'">Ask a question</a>
-      </div>
+      <form class="booking" data-book>
+        <p class="booking__rate">Rates on request</p>
+        <div class="booking__fields">
+          <label class="booking__field"><span>Arriving</span><input type="date" name="from"></label>
+          <label class="booking__field"><span>Leaving</span><input type="date" name="to"></label>
+          <label class="booking__field booking__field--guests"><span>Guests</span><input type="number" name="guests" min="1" max="8" inputmode="numeric" placeholder="8 max"></label>
+        </div>
+        <button type="submit" class="btn">Check dates</button>
+        <a class="house__ask" href="mailto:hello@ladantajourneys.com?subject=Ja">Ask a question</a>
+      </form>
     </div>
 
     <ul class="stack">
@@ -160,7 +167,40 @@
   </section>
 
   <section class="house-section wrap">
-    <h2 class="house-section__title">Practical</h2>
+    <h2 class="house-section__title">The stay</h2>
+    <div class="house-section__body stay">
+      <div>
+        <p class="stay__head">Included</p>
+        <ul class="stay__list">
+          <li>Our car and driver from the airport, and back again</li>
+          <li>A cook and a housekeeper on weekdays. Weekends by arrangement</li>
+          <li>One person to call at any hour, from the first note to the last morning</li>
+          <li>The house walked through and made ready before you arrive</li>
+        </ul>
+      </div>
+      <div>
+        <p class="stay__head">On request</p>
+        <ul class="stay__list">
+          <li>A chef for an evening, or for the week</li>
+          <li>Guides for the day, and <a href="/journeys">journeys</a> across the country</li>
+          <li>A car and driver for the length of the stay</li>
+          <li>The kitchen stocked before you land</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="house-section wrap">
+    <h2 class="house-section__title">Where it is</h2>
+    <div class="house-section__body">
+      <p class="where__line">In Antigua, eight minutes on foot from the plaza.</p>
+      <div class="where__map" data-map-point data-lat="14.5540" data-lng="-90.7290" data-label="Ja'" role="img" aria-label="Map of the area around Ja'. The pin shows the area, not the address."></div>
+      <p class="where__note">The exact address comes with the booking.</p>
+    </div>
+  </section>
+
+  <section class="house-section wrap">
+    <h2 class="house-section__title">Good to know</h2>
     <div class="house-section__body">
       <ul class="specs">
         <li class="spec"><span class="spec__label">Arrival</span><span class="spec__value">An hour from the airport by road. The car is ours, and it is waiting.</span></li>
@@ -215,6 +255,32 @@
       <p class="form__note">This opens your email with the message written. Nothing is stored on this site.</p>
     </form>
   </section>
+
+  <section class="others wrap" aria-labelledby="others-title">
+    <h2 class="title" id="others-title">Other homes</h2>
+    <div class="others__grid">
+      <a class="card" href="/homes/choq">
+        <span class="card__frame card__frame--blank"><span>Home 2</span></span>
+        <span class="card__name">Choq&rsquo;</span>
+        <span class="card__meta">Lake Atitl&aacute;n &middot; 3 bedrooms &middot; 6 guests</span>
+      </a>
+      <a class="card" href="/homes/ki">
+        <span class="card__frame card__frame--blank"><span>Home 3</span></span>
+        <span class="card__name">Ki&rsquo;</span>
+        <span class="card__meta">R&iacute;o Dulce &middot; 6 bedrooms &middot; 12 guests</span>
+      </a>
+      <a class="card" href="/homes/tinamit">
+        <span class="card__frame card__frame--blank"><span>Home 4</span></span>
+        <span class="card__name">Tinamit</span>
+        <span class="card__meta">Guatemala City &middot; 2 bedrooms &middot; 4 guests</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="bookbar" data-bookbar hidden>
+    <p class="bookbar__name">Ja&rsquo; <span>Antigua &middot; 8 guests</span></p>
+    <a class="btn btn--inline" href="#enquire">Check dates</a>
+  </div>
 
 </main>
 
@@ -319,6 +385,7 @@
 
 <a class="wa-float" href="https://wa.me/502XXXXXXXX" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"></a>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="/script.js"></script>
 </body>
 </html>

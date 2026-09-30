@@ -683,3 +683,74 @@
   sync();
   window.addEventListener('resize', function () { map.invalidateSize(); });
 })();
+
+/* Home pages. The booking box takes dates from the search, hands them to
+   the enquiry form, and a slim bar keeps the way to it in reach. */
+
+(function () {
+  var book = document.querySelector('[data-book]');
+  if (!book) return;
+
+  var params = new URLSearchParams(window.location.search);
+  ['from', 'to', 'guests'].forEach(function (key) {
+    var field = book.querySelector('[name="' + key + '"]');
+    if (field && params.get(key)) field.value = params.get(key);
+  });
+
+  var from = book.querySelector('[name="from"]');
+  var to = book.querySelector('[name="to"]');
+  from.addEventListener('change', function () {
+    to.min = from.value;
+    if (to.value && to.value < from.value) to.value = '';
+  });
+
+  book.addEventListener('submit', function (event) {
+    event.preventDefault();
+    ['from', 'to', 'guests'].forEach(function (key) {
+      var source = book.querySelector('[name="' + key + '"]');
+      var target = document.getElementById('enq-' + key);
+      if (source && target && source.value) target.value = source.value;
+    });
+    var enquire = document.getElementById('enquire');
+    if (enquire) {
+      enquire.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var name = document.getElementById('enq-name');
+      if (name) setTimeout(function () { name.focus({ preventScroll: true }); }, 500);
+    }
+  });
+
+  var bar = document.querySelector('[data-bookbar]');
+  var enquire = document.getElementById('enquire');
+  if (!bar) return;
+
+  function update() {
+    var gone = book.getBoundingClientRect().bottom < 0;
+    var reached = enquire ? enquire.getBoundingClientRect().top < window.innerHeight * 0.85 : false;
+    var show = gone && !reached;
+    bar.hidden = !show;
+    document.documentElement.classList.toggle('has-bookbar', show);
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+/* One pin on a small map, near the home but never on it. */
+
+(function () {
+  var el = document.querySelector('[data-map-point]');
+  if (!el || !window.L) return;
+  var point = [Number(el.dataset.lat), Number(el.dataset.lng)];
+  var map = L.map(el, { scrollWheelZoom: false, dragging: !L.Browser.mobile, attributionControl: true }).setView(point, 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 14,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+  L.circle(point, { radius: 900, color: '#944636', weight: 1, fillColor: '#944636', fillOpacity: 0.12 }).addTo(map);
+  L.marker(point, {
+    icon: L.divIcon({ className: 'pin', html: '<span>' + el.dataset.label + '</span>', iconSize: null }),
+    keyboard: false,
+    interactive: false
+  }).addTo(map);
+})();

@@ -1283,3 +1283,206 @@ body::after { display: none; }
 @media (max-width: 560px) {
   .browse .grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Home pages -------------------------------------------------------- */
+
+/* The booking box, in the column that stays beside the pictures. */
+
+.booking {
+  margin-top: 28px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.booking__rate {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--ink);
+}
+
+.booking__fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--line);
+  margin-bottom: 12px;
+}
+
+.booking__field {
+  display: block;
+  min-width: 0;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.booking__field + .booking__field { border-left: 1px solid var(--line); }
+
+.booking__field--guests {
+  grid-column: 1 / -1;
+  border-left: 0 !important;
+  border-top: 1px solid var(--line);
+}
+
+.booking__field span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.booking__field input {
+  width: 100%;
+  min-width: 0;
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+.booking__field input::-webkit-inner-spin-button,
+.booking__field input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.booking__field input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+
+.booking__field:focus-within { background: var(--panel); }
+
+.booking .btn { margin-top: 0; }
+
+.booking .house__ask {
+  display: block;
+  margin-top: 14px;
+  text-align: center;
+}
+
+/* Included and on request, side by side. */
+
+.stay {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+}
+
+.stay__head {
+  margin: 0 0 14px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.stay__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stay__list li {
+  padding: 12px 0;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--text-2);
+  border-top: 1px solid var(--line);
+}
+
+.stay__list a { color: inherit; }
+
+/* Where it is. */
+
+.where__line {
+  margin: 0 0 18px;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--text-2);
+}
+
+.where__map {
+  height: 360px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  z-index: 0;
+}
+
+.where__map .leaflet-tile-pane { filter: grayscale(1) sepia(0.12) contrast(0.92) brightness(1.04); }
+.where__map .leaflet-control-attribution { font-size: 10px; background: rgba(255, 255, 255, 0.8); }
+.where__map .leaflet-bar { border-radius: 0; border: 1px solid var(--line); box-shadow: none; }
+.where__map .leaflet-bar a { color: var(--ink); border-radius: 0; }
+
+.where__note {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+/* Other homes at the foot of the page. */
+
+.others {
+  padding-top: 96px;
+  padding-bottom: 112px;
+  text-align: center;
+}
+
+.others__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 36px;
+  text-align: left;
+}
+
+/* The slim bar that keeps the enquiry in reach. */
+
+.bookbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 32px;
+  background: rgba(var(--paper-rgb), 0.97);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -6px 20px rgba(var(--ink-rgb), 0.05);
+}
+
+.bookbar[hidden] { display: none; }
+
+.bookbar__name {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.bookbar__name span {
+  margin-left: 12px;
+  font-family: var(--font-serif);
+  font-size: 15px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-2);
+}
+
+.bookbar .btn { width: auto; margin: 0; padding: 12px 24px; }
+
+html.has-bookbar .wa-float { bottom: 84px; }
+
+@media (max-width: 860px) {
+  .stay { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .others__grid { grid-template-columns: minmax(0, 1fr); }
+  .bookbar { padding: 10px 16px; }
+  .bookbar__name span { display: none; }
+  .where__map { height: 280px; }
+  .booking__field input { font-size: 13px; }
+}
