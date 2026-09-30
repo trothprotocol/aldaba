@@ -452,7 +452,7 @@
     });
 
     if (count) {
-      count.textContent = (words[shown] || shown) + (shown === 1 ? ' house' : ' houses') +
+      count.textContent = (words[shown] || shown) + (shown === 1 ? ' home' : ' homes') +
         (label ? ' in ' + label : '') +
         (guests ? ' for ' + (words[guests] ? words[guests].toLowerCase() : guests) : '');
     }

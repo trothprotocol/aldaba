@@ -41,6 +41,16 @@
       "source": "/experiences/:path*",
       "destination": "/journeys/:path*",
       "permanent": true
+    },
+    {
+      "source": "/houses",
+      "destination": "/homes",
+      "permanent": true
+    },
+    {
+      "source": "/houses/:path*",
+      "destination": "/homes/:path*",
+      "permanent": true
     }
   ]
 }
