@@ -1486,3 +1486,19 @@ html.has-bookbar .wa-float { bottom: 84px; }
   .where__map { height: 280px; }
   .booking__field input { font-size: 13px; }
 }
+
+/* The partners' own marks, all in one quiet brown. */
+
+.twin__names--logos {
+  align-items: center;
+  gap: 18px 34px;
+  margin-top: 28px;
+}
+
+.twin__logo {
+  height: var(--size);
+  aspect-ratio: var(--w) / var(--h);
+  background: var(--text-2);
+  -webkit-mask: var(--logo) center / contain no-repeat;
+  mask: var(--logo) center / contain no-repeat;
+}
