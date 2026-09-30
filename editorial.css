@@ -882,6 +882,7 @@ body::after { display: none; }
 .footer {
   --paper: #E9E7DA;
   --paper-rgb: 233, 231, 218;
+  background: var(--ink);
 }
 
 /* Tablet ---------------------------------------------------------------- */
