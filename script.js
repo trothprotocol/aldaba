@@ -754,3 +754,22 @@
     interactive: false
   }).addTo(map);
 })();
+
+/* The privacy note shows once. Either button closes it for good. */
+
+(function () {
+  var box = document.querySelector('[data-consent]');
+  if (!box) return;
+  var key = 'ladanta.consent';
+  var seen = null;
+  try { seen = localStorage.getItem(key); } catch (e) {}
+  if (seen) return;
+  box.hidden = false;
+  box.querySelectorAll('[data-consent-close]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      try { localStorage.setItem(key, button.textContent.trim().toLowerCase()); } catch (e) {}
+      box.classList.add('is-leaving');
+      setTimeout(function () { box.hidden = true; }, 200);
+    });
+  });
+})();
