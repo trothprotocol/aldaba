@@ -1502,3 +1502,11 @@ html.has-bookbar .wa-float { bottom: 84px; }
   -webkit-mask: var(--logo) center / contain no-repeat;
   mask: var(--logo) center / contain no-repeat;
 }
+
+.partners-line__names.twin__names--logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
