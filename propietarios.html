@@ -84,38 +84,96 @@
 
 <main id="main">
 
-  <div class="wrap">
-    <div class="essay essay--narrow">
-      <h1 class="essay__lede">For owners.</h1>
-
-      <div class="prose">
-        <p>Ladanta represents a small number of private homes in Guatemala and arranges the stays in them. If you own a house you think belongs on this list, we would like to see it.</p>
-        <p>Write to us with where it is and, if it is listed anywhere, a link. We will look, and reply within two days.</p>
-        <p><a href="mailto:hello@ladantajourneys.com?subject=A%20house">hello@ladantajourneys.com</a></p>
+  <section class="owners-hero">
+    <div class="owners-hero__copy">
+      <h1 class="owners-hero__title"><span class="hero__small">For owners</span> <span class="hero__big">Well kept</span></h1>
+      <p class="owners-hero__sub">Ladanta represents a small number of private homes in Guatemala and looks after every stay in them.</p>
+      <div class="owners-hero__actions">
+        <a class="cta" href="#submit">Submit your home</a>
+        <a class="cta cta--outline" href="mailto:hello@ladantajourneys.com?subject=A%20home">Write to us</a>
       </div>
-
-      <form class="form" data-enquire data-subject="A house">
-        <div class="form__row">
-          <div>
-            <label class="input-label" for="own-name">Name</label>
-            <input class="input" id="own-name" name="name" type="text" autocomplete="name" required>
-          </div>
-          <div>
-            <label class="input-label" for="own-email">Email</label>
-            <input class="input" id="own-email" name="email" type="email" autocomplete="email" required>
-          </div>
-        </div>
-        <label class="input-label" for="own-where">Where the house is</label>
-        <input class="input" id="own-where" name="where" type="text" required>
-        <label class="input-label" for="own-link">A link, if it is listed</label>
-        <input class="input" id="own-link" name="link" type="url" placeholder="https://" inputmode="url">
-        <button type="submit" class="btn">Send</button>
-        <p class="form__note">This opens your email with the message written. Nothing is stored on this site.</p>
-      </form>
-
-      <div class="essay__end"></div>
     </div>
-  </div>
+  </section>
+
+  <section class="season owners-row" aria-labelledby="own-1">
+    <div class="season__media"><img src="/img/brandbook/timber-room.jpg" alt="A timber room with a deep linen sofa" loading="lazy"></div>
+    <div class="season__text">
+      <h2 class="title" id="own-1">A short list, by design</h2>
+      <p class="serif">We take on very few homes, and only ones we have walked through ourselves. A home stays on the list for as long as it meets the standard, which keeps every one of them in good company.</p>
+    </div>
+  </section>
+
+  <section class="season owners-row owners-row--flip" aria-labelledby="own-2">
+    <div class="season__media"><img src="/img/brandbook/antigua-arches.jpg" alt="A yellow arcade over the old washing basins in Antigua" loading="lazy"></div>
+    <div class="season__text">
+      <h2 class="title" id="own-2">A relationship, not a listing</h2>
+      <p class="serif">You deal with one person, not a department. Together we set a plan for the home: its seasons, its rate, and the kind of guest it suits.</p>
+      <a class="more" href="/standard">The Ladanta Standard</a>
+    </div>
+  </section>
+
+  <section class="season owners-row" aria-labelledby="own-3">
+    <div class="season__media"><img src="/img/brandbook/clay-shelf.jpg" alt="A carved head and clay vessels on a plastered shelf, lit low from the side" loading="lazy"></div>
+    <div class="season__text">
+      <h2 class="title" id="own-3">Your home in good hands</h2>
+      <p class="serif">We know who is coming before they arrive. The home is walked through before and after every stay, and our own people are close by the whole time.</p>
+    </div>
+  </section>
+
+  <section class="pillars" aria-label="How we work with owners">
+    <div class="pillar">
+      <h3 class="pillar__title"><span class="pillar__big">One</span> <span class="pillar__label">person for you</span></h3>
+      <p class="pillar__text">A single name who knows the home and answers for it, from the first visit onward.</p>
+    </div>
+    <div class="pillar">
+      <h3 class="pillar__title"><span class="pillar__big">A plan</span> <span class="pillar__label">for the home</span></h3>
+      <p class="pillar__text">Rates and seasons set for this home and this place, not copied from the street.</p>
+    </div>
+    <div class="pillar">
+      <h3 class="pillar__title"><span class="pillar__big">Local</span> <span class="pillar__label">care</span></h3>
+      <p class="pillar__text">A house team we trust, and a car and driver of our own for every arrival.</p>
+    </div>
+  </section>
+
+  <section class="steps" aria-labelledby="steps-title">
+    <h2 class="title" id="steps-title">Nothing for you to handle</h2>
+    <ol class="steps__list">
+      <li class="step"><span class="step__n">1</span><h3 class="step__name">The guests</h3><p class="serif">Enquiries, bookings and every message before, during and after the stay.</p></li>
+      <li class="step"><span class="step__n">2</span><h3 class="step__name">The paperwork</h3><p class="serif">Payments, agreements and the accounts, set out plainly each month.</p></li>
+      <li class="step"><span class="step__n">3</span><h3 class="step__name">The house</h3><p class="serif">Made ready before each arrival, looked after during it, and checked after.</p></li>
+    </ol>
+    <a class="cta" href="#submit">Submit your home</a>
+  </section>
+
+  <section class="plan owners-form" id="submit" aria-labelledby="submit-title">
+    <div class="plan__inner">
+      <div class="plan__media"><img src="/img/brandbook/bougainvillea.jpg" alt="Bougainvillea over a whitewashed wall" loading="lazy"></div>
+      <div class="owners-form__body">
+        <h2 class="title" id="submit-title">Tell us about your home</h2>
+        <p class="serif">Where it is and, if it is listed anywhere, a link. We will look, and reply within two days.</p>
+        <form class="form" data-enquire data-subject="A home">
+          <div class="form__row">
+            <div>
+              <label class="input-label" for="own-name">Name</label>
+              <input class="input" id="own-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div>
+              <label class="input-label" for="own-email">Email</label>
+              <input class="input" id="own-email" name="email" type="email" autocomplete="email" required>
+            </div>
+          </div>
+          <label class="input-label" for="own-where">Where the home is</label>
+          <input class="input" id="own-where" name="where" type="text" required>
+          <label class="input-label" for="own-link">A link, if it is listed</label>
+          <input class="input" id="own-link" name="link" type="url" placeholder="https://" inputmode="url">
+          <label class="input-label" for="own-message">Anything else about it</label>
+          <textarea class="input input--area" id="own-message" name="message" rows="3"></textarea>
+          <button type="submit" class="btn">Send</button>
+          <p class="form__note">This opens your email with the message written. Nothing is stored on this site.</p>
+        </form>
+      </div>
+    </div>
+  </section>
 
 </main>
 
