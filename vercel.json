@@ -30,5 +30,17 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/experiences",
+      "destination": "/journeys",
+      "permanent": true
+    },
+    {
+      "source": "/experiences/:path*",
+      "destination": "/journeys/:path*",
+      "permanent": true
+    }
   ]
 }
