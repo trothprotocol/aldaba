@@ -1144,3 +1144,26 @@ body::after { display: none; }
 .footer__icon--fb { --icon: url("/img/brand/facebook.png"); }
 
 .footer__icon:hover { color: var(--ink); }
+
+/* A tapir inside the bowl of the D, in the wordmark's own colour. The
+   percentages come from the wordmark's drawing (303.7 by 49.5). */
+
+.footer__markwrap {
+  position: relative;
+  width: min(100%, 980px);
+  margin: 0 auto;
+}
+
+.footer__markwrap .wordmark--footer { width: 100%; }
+
+.footer__tapir {
+  position: absolute;
+  left: 29.6%;
+  top: 30.5%;
+  width: 7.2%;
+  aspect-ratio: 720 / 629;
+  background: var(--terracotta);
+  -webkit-mask: url("/img/brand/tapir-ink.png") center / contain no-repeat;
+  mask: url("/img/brand/tapir-ink.png") center / contain no-repeat;
+  pointer-events: none;
+}
