@@ -2056,7 +2056,7 @@ select.compact__input {
 .signup__legal a:hover { color: var(--ink); }
 
 @media (max-width: 860px) {
-  :root { --gutter: 12px; }
+  :root { --gutter: 16px; }
   .feature__frame { aspect-ratio: 4 / 3; }
   .caption { padding-left: 4px; padding-right: 4px; }
   .pair { grid-template-columns: minmax(0, 1fr); gap: 72px; padding-top: 88px; }
@@ -2118,6 +2118,18 @@ select.compact__input {
   letter-spacing: 0;
   text-transform: none;
 }
+
+/* Where the opening is a title (the Standard), it takes the display face. */
+.essay__lede--display {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  letter-spacing: 0.03em;
+}
+
+.prose p,
+.promise__prose,
+.caption__prose,
+.essay__intro { text-wrap: pretty; }
 
 /* The place follows the house name as a quiet line, not a label above it. */
 .house__place { margin: 0 0 18px; }
@@ -2181,6 +2193,9 @@ select.compact__input {
 }
 
 .menu-toggle:active span { transform: scaleX(0.85); }
+@media (hover: hover) and (pointer: fine) {
+  .menu-toggle:hover span:last-child { transform: scaleX(0.7); transform-origin: right; }
+}
 .header.is-over .menu-toggle { color: var(--paper); }
 
 .header.is-scrolled .header__right > :not(.menu-toggle) { display: none; }
@@ -2189,7 +2204,8 @@ select.compact__input {
 .menu {
   position: fixed;
   inset: 0;
-  z-index: 20;
+  z-index: 40;
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .menu__scrim {
@@ -2197,7 +2213,7 @@ select.compact__input {
   inset: 0;
   background: rgba(0, 0, 0, 0.28);
   opacity: 0;
-  transition: opacity 0.35s var(--ease);
+  transition: opacity 0.2s ease-out;
 }
 
 .menu__panel {
@@ -2213,11 +2229,11 @@ select.compact__input {
   color: var(--ink);
   overflow-y: auto;
   transform: translateX(100%);
-  transition: transform 0.45s var(--ease);
+  transition: transform 0.22s var(--ease-drawer);
 }
 
-.menu.is-open .menu__scrim { opacity: 1; }
-.menu.is-open .menu__panel { transform: none; }
+.menu.is-open .menu__scrim { opacity: 1; transition-duration: 0.3s; }
+.menu.is-open .menu__panel { transform: none; transition-duration: 0.36s; }
 
 .menu__close {
   position: absolute;
@@ -2289,7 +2305,8 @@ html.is-locked { overflow: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .menu__panel, .menu__scrim { transition-duration: 0.01s; }
+  .menu__panel { transform: none; opacity: 0; transition: opacity 0.2s ease-out; }
+  .menu.is-open .menu__panel { opacity: 1; }
 }
 
 /* How we work: three turns, image and text alternating sides. */

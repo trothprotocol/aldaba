@@ -65,7 +65,8 @@
 
   function step() {
     var card = rail.querySelector('.card');
-    return card ? card.getBoundingClientRect().width + 24 : rail.clientWidth * 0.8;
+    var gap = parseFloat(getComputedStyle(rail).columnGap) || 0;
+    return card ? card.getBoundingClientRect().width + gap : rail.clientWidth * 0.8;
   }
 
   function sync() {
@@ -539,6 +540,14 @@
     else if (event.target.closest('[data-open], a')) close(false);
   });
   document.addEventListener('keydown', function (event) {
+    if (menu.hidden) return;
     if (event.key === 'Escape') close(true);
+    if (event.key !== 'Tab') return;
+    // Keep focus inside the open panel.
+    var stops = panel.querySelectorAll('a[href], button');
+    var first = stops[0];
+    var last = stops[stops.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
   });
 })();

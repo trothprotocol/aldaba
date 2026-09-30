@@ -50,14 +50,36 @@
     <span class="util-sep" aria-hidden="true">|</span>
     <button type="button" class="util" data-open="prefs" data-pref-label="currency" aria-label="Currency: US dollars">$</button>
     <button type="button" class="util util--boxed" data-open="signin">Sign in</button>
+    <button type="button" class="menu-toggle" aria-label="Menu" aria-controls="menu" aria-expanded="false"><span></span><span></span></button>
   </nav>
 </header>
+
+<div class="menu" id="menu" hidden>
+  <div class="menu__scrim" data-menu-close></div>
+  <div class="menu__panel" role="dialog" aria-modal="true" aria-label="Menu">
+    <button type="button" class="menu__close" data-menu-close aria-label="Close menu">&times;</button>
+    <nav class="menu__nav" aria-label="Sections">
+      <a href="/houses">Houses</a>
+      <a href="/experiences">Experiences</a>
+      <a href="/about">About us</a>
+      <a href="/standard">The Ladanta Standard</a>
+      <a href="/#word">Journal</a>
+      <a href="/about#contact">Contact</a>
+    </nav>
+    <div class="menu__utils">
+      <button type="button" class="menu__util" data-open="signin" data-signin-label>Sign in</button>
+      <button type="button" class="menu__util" data-open="prefs" data-pref-label="language">Language</button>
+      <button type="button" class="menu__util" data-open="prefs" data-pref-label="currency">Currency</button>
+    </div>
+    <a class="menu__owners" href="/propietarios" rel="nofollow">Property owners</a>
+  </div>
+</div>
 
 <main id="main">
 
   <div class="wrap">
-    <h1 class="essay__lede">The Ladanta Standard. What we promise, and how we keep it.</h1>
-    <p class="essay__intro">Most rentals hand you a key and a phone number. We hand you a person, a house we know by heart, and a country arranged around your stay.</p>
+    <h1 class="essay__lede essay__lede--display">The Ladanta Standard.</h1>
+    <p class="essay__intro">What we promise, and how we keep it. Most rentals hand you a key and a phone number. We hand you a person, a house we know by heart, and a country arranged around your stay.</p>
 
     <section class="essay__block">
       <h2 class="essay__title">Very few houses</h2>
@@ -90,7 +112,7 @@
     <section class="essay__block">
       <h2 class="essay__title">The companies behind us</h2>
       <div class="essay__body prose">
-        <p>Ladanta is a new name from an old group. For six decades the same companies have been receiving travellers in this country, and between them they run the cars, the drivers, the guides and the journeys.</p>
+        <p>Ladanta is a new name from an old group. The same companies have been at this for generations, and between them they run the cars, the drivers, the guides and the journeys.</p>
         <p>It is why we can say a car will be at the door at midnight and mean it. It is our car, and our driver.</p>
       </div>
     </section>
