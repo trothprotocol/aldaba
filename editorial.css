@@ -1184,9 +1184,19 @@ body::after { display: none; }
   color: var(--text-3);
 }
 
-/* Listing soon sits on terracotta. */
-.card--soon .card__frame { background: var(--terracotta); }
-.card--soon .card__frame span { color: #F4F1EA; }
+/* Listing soon wears the same quiet frame as the other placeholders. */
+.card--soon .card__frame {
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.card--soon .card__frame span {
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
 
 /* Where a home's own photograph will go. */
 .stack__blank {
@@ -2040,15 +2050,16 @@ html.has-bookbar .wa-float { bottom: 84px; }
   align-items: center;
   justify-content: center;
   aspect-ratio: 4 / 3;
-  background: var(--terracotta);
+  background: var(--panel);
+  border: 1px solid var(--line);
 }
 
 .soon-card__frame span {
-  font-family: var(--font-condensed);
-  font-size: 22px;
-  letter-spacing: 0.06em;
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #F4F1EA;
+  color: var(--text-3);
 }
 
 .soon-card__name {
