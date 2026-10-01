@@ -902,16 +902,25 @@
     map.flyToBounds(bounds, options);
   }
 
-  if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) go(Number(entry.target.dataset.day));
-      });
-    }, { rootMargin: '-45% 0px -45% 0px' });
-    steps.forEach(function (step) { observer.observe(step); });
-  } else {
-    lines.forEach(function (legs) { legs.forEach(function (line) { draw(line, false); }); });
+  // The day whose box crosses the middle of the screen is the day on the map.
+  function pick() {
+    var middle = window.innerHeight / 2;
+    var chosen = -1;
+    steps.forEach(function (step) {
+      var box = step.getBoundingClientRect();
+      if (box.top <= middle && box.bottom >= middle) chosen = Number(step.dataset.day);
+    });
+    if (chosen < 0) {
+      var first = steps[0] && steps[0].getBoundingClientRect();
+      if (first && first.top > middle) return;
+      chosen = steps.length - 1;
+    }
+    go(chosen);
   }
+
+  window.addEventListener('scroll', pick, { passive: true });
+  window.addEventListener('resize', pick);
+  pick();
 
   window.addEventListener('resize', function () { map.invalidateSize(); });
 })();
