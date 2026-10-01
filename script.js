@@ -392,7 +392,8 @@
     '.essay__lede, .essay__intro, .essay__block, .pull, .split, ' +
     '.spread, .duo, .feature, .pair__item, .band__title, .mosaic, .book, .letterpress, .partners-line, .word' + ', ' +
     '.homes__head, .home, .homes__foot, .pillar, .season__text, .season__media, .tiers > .title, .tiers__intro, .tier, .tiers > .cta, ' +
-    '.plan__media, .plan__text, .days__head, .day, .twin__col, .word__text, .word__side, .step, .others__grid .card'
+    '.plan__media, .plan__text, .days__head, .day, .twin__col, .word__text, .word__side, .step, .others__grid .card' + ', ' +
+    '.journey-feature, .soon-card, .trip-intro, .trip-notes__grid > div'
   );
 
   var observer = new IntersectionObserver(function (entries) {
@@ -404,7 +405,7 @@
   }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
 
   // Cards in a row arrive one after another, 90ms apart.
-  var groups = '.home, .pillar, .tier, .day, .twin__col, .step, .others__grid .card';
+  var groups = '.home, .pillar, .tier, .day, .twin__col, .step, .others__grid .card, .soon-card, .trip-notes__grid > div';
   targets.forEach(function (el) {
     el.classList.add('reveal');
     if (el.matches(groups)) {
@@ -780,4 +781,137 @@
       setTimeout(function () { box.hidden = true; }, 200);
     });
   });
+})();
+
+/* Journey route. As each day reaches the middle of the screen, the map
+   flies to it and draws that day's part of the line. Earlier days stay
+   drawn; later ones wait. A faint dotted line shows the whole way. */
+
+(function () {
+  var el = document.querySelector('[data-route-map]');
+  var source = document.getElementById('route-data');
+  if (!el || !source || !window.L) return;
+
+  var data;
+  try { data = JSON.parse(source.textContent); } catch (e) { return; }
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var steps = document.querySelectorAll('.route-day');
+
+  var map = L.map(el, {
+    scrollWheelZoom: false,
+    zoomSnap: 0.25,
+    zoomControl: true,
+    attributionControl: true
+  });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 15,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+
+  var everything = [];
+  data.days.forEach(function (day) {
+    day.legs.forEach(function (leg) {
+      everything = everything.concat(leg.points);
+      L.polyline(leg.points, { className: 'leg leg--ghost', interactive: false }).addTo(map);
+    });
+  });
+  map.fitBounds(L.latLngBounds(everything), { padding: [40, 40] });
+
+  data.stops.forEach(function (stop) {
+    L.marker([stop.lat, stop.lng], {
+      icon: L.divIcon({
+        className: 'pin' + (stop.kind ? ' pin--' + stop.kind : ''),
+        html: '<span>' + stop.name + '</span>',
+        iconSize: null
+      }),
+      keyboard: false,
+      interactive: false
+    }).addTo(map);
+  });
+
+  var lines = data.days.map(function (day) {
+    return day.legs.map(function (leg) {
+      return L.polyline(leg.points, { className: 'leg leg--' + leg.mode, interactive: false });
+    });
+  });
+
+  function draw(line, animate) {
+    if (map.hasLayer(line)) return;
+    line.addTo(map);
+    var path = line.getElement && line.getElement();
+    if (!path || !animate || reduced) return;
+    var dashed = /leg--(boat|home)/.test(path.getAttribute('class'));
+    if (dashed) {
+      path.style.opacity = '0';
+      path.getBoundingClientRect();
+      path.style.transition = 'opacity 0.8s ease-out';
+      path.style.opacity = '';
+      return;
+    }
+    var length = path.getTotalLength();
+    path.style.transition = 'none';
+    path.style.strokeDasharray = length + ' ' + length;
+    path.style.strokeDashoffset = String(length);
+    path.getBoundingClientRect();
+    path.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(0.23, 1, 0.32, 1)';
+    path.style.strokeDashoffset = '0';
+    // Once drawn, let the line behave normally when the map zooms.
+    setTimeout(function () {
+      path.style.transition = '';
+      path.style.strokeDasharray = '';
+      path.style.strokeDashoffset = '';
+    }, 1700);
+  }
+
+  var current = -1;
+  function go(index) {
+    if (index === current) return;
+    current = index;
+
+    steps.forEach(function (step) {
+      step.classList.toggle('is-active', Number(step.dataset.day) === index);
+    });
+
+    lines.forEach(function (legs, i) {
+      legs.forEach(function (line) {
+        if (i < index) draw(line, false);
+        if (i > index && map.hasLayer(line)) map.removeLayer(line);
+      });
+    });
+
+    var day = data.days[index];
+    var bounds = L.latLngBounds(day.view);
+    var options = { padding: [56, 56], maxZoom: day.zoom || 12 };
+    var done = false;
+    function reveal() {
+      if (done || current !== index) return;
+      done = true;
+      lines[index].forEach(function (line, n) {
+        setTimeout(function () { if (current === index) draw(line, true); }, n * 500);
+      });
+    }
+
+    if (reduced) {
+      map.fitBounds(bounds, options);
+      reveal();
+      return;
+    }
+    map.once('moveend', reveal);
+    setTimeout(reveal, 1500);
+    options.duration = 1.1;
+    map.flyToBounds(bounds, options);
+  }
+
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) go(Number(entry.target.dataset.day));
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    steps.forEach(function (step) { observer.observe(step); });
+  } else {
+    lines.forEach(function (legs) { legs.forEach(function (line) { draw(line, false); }); });
+  }
+
+  window.addEventListener('resize', function () { map.invalidateSize(); });
 })();
