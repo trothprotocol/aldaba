@@ -2196,3 +2196,5 @@ html.has-bookbar .wa-float { bottom: 84px; }
 
 .journeys-list { padding-top: 104px; }
 .journeys-list .journey-feature { margin-top: 0; }
+
+.leg--walk { stroke-width: 3; }
