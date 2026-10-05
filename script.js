@@ -98,7 +98,7 @@
 
   // The poster is already on screen. A very slow or metered connection
   // keeps it, and so does anyone who has asked for less motion. A middling
-  // one gets the small file and the first clip on a loop.
+  // one gets the small files, still all three in turn.
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var connection = navigator.connection || {};
   var type = connection.effectiveType || '';
@@ -111,7 +111,7 @@
     return;
   }
 
-  if (modest || clips.length < 2 || layers.length < 2) {
+  if (clips.length < 2 || layers.length < 2) {
     layers[0].src = hd ? clips[0].hd : clips[0].sd;
     var single = layers[0].play();
     if (single && single.catch) single.catch(function () {});
@@ -164,7 +164,8 @@
     layer.addEventListener('timeupdate', function () {
       if (layer !== layers[current] || !layer.duration) return;
       var left = layer.duration - layer.currentTime;
-      if (left < 4) prepare();
+      // Fetch the next clip early so it is ready when this one ends.
+      if (layer.currentTime > 1) prepare();
       if (left < 1.2 && prepared) advance();
     });
     layer.addEventListener('ended', function () {
