@@ -2673,10 +2673,3 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 @media (hover: hover) and (pointer: fine) {
   .wa-float:hover { background: var(--tapir-brown); }
 }
-
-/* Homes page: no box, the words sit straight on the weave. */
-.homes--film .soon-plate--glass {
-  background: none;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-}
