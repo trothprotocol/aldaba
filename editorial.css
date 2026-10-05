@@ -2653,4 +2653,4 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 @media (max-width: 640px) {
   .word.weave { padding: 56px 16px 64px; }
 }
-.word.weave { min-height: 100svh; align-content: center; }
+.word--full { min-height: 100svh; align-content: center; }
