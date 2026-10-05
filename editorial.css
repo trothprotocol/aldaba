@@ -2489,3 +2489,14 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   }
   .about-hero__media figcaption { top: 16px; bottom: auto; right: 16px; }
 }
+
+/* The About picture runs up under the header, which goes clear over it. */
+.about-hero {
+  margin-top: calc(-1 * var(--header-h));
+  min-height: clamp(600px, 100svh, 980px);
+}
+.about-hero__text { padding-top: calc(var(--header-h) + 48px); }
+@media (max-width: 860px) {
+  .about-hero { min-height: 100svh; }
+  .about-hero__media figcaption { top: calc(var(--header-h) + 12px); }
+}
