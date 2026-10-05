@@ -2542,3 +2542,5 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   background-color: var(--panel);
   background-image: url("/img/brand/weave-panel.png");
 }
+.pillars.weave--panel,
+.plan.weave--panel { background-color: var(--panel); background-image: url("/img/brand/weave-panel.png"); background-size: 124px 123px; }
