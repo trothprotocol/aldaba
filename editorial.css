@@ -2634,3 +2634,4 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 @media (hover: hover) and (pointer: fine) {
   .soon-plate.weave--terracotta .cta:hover { color: var(--paper); background: var(--ink); border-color: var(--ink); }
 }
+.pull-strip .pull { color: #A5AC9A; }
