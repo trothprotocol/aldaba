@@ -2620,3 +2620,17 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   padding: clamp(72px, 9vw, 128px) 24px;
 }
 .pull-strip .pull { margin: 0 auto; padding: 0; }
+
+.weave--terracotta {
+  background-color: var(--terracotta);
+  background-image: url("/img/brand/weave-terracotta.png");
+}
+.soon-plate.weave--terracotta { border-color: transparent; color: var(--paper); }
+.soon-plate.weave--terracotta .title { color: var(--paper); }
+.soon-plate.weave--terracotta .soon-plate__text { color: rgba(var(--paper-rgb), 0.92); }
+.soon-plate.weave--terracotta .soon-plate__places { color: rgba(var(--paper-rgb), 0.82); }
+.soon-plate.weave--terracotta .cta { color: var(--terracotta); background: var(--paper); border-color: var(--paper); }
+.soon-plate.weave--terracotta a:not(.cta) { color: var(--paper); }
+@media (hover: hover) and (pointer: fine) {
+  .soon-plate.weave--terracotta .cta:hover { color: var(--paper); background: var(--ink); border-color: var(--ink); }
+}
