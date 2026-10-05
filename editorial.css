@@ -2544,3 +2544,15 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 }
 .pillars.weave--panel,
 .plan.weave--panel { background-color: var(--panel); background-image: url("/img/brand/weave-panel.png"); background-size: 124px 123px; }
+
+/* About, Write to us: the form sits in a woven sage box. */
+.essay__block--box {
+  padding: clamp(40px, 5vw, 72px);
+  margin-bottom: 96px;
+  border-top: 0;
+}
+.essay__block--box .input,
+.essay__block--box textarea { background: var(--paper); }
+@media (max-width: 860px) {
+  .essay__block--box { padding: 40px 20px; margin-bottom: 64px; }
+}
