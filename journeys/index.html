@@ -15,9 +15,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/fonts/Montserrat-Light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/img/video/jungle-poster.jpg" as="image" fetchpriority="high">
+<link rel="preload" href="/fonts/Memoir.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap"></noscript>
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/editorial.css">
 </head>
@@ -84,9 +87,7 @@
 <main id="main">
 
   <section class="hero hero--video hero--page" data-clips='[{"sd": "/img/video/jungle-540.mp4", "hd": "/img/video/jungle-720.mp4", "poster": "/img/video/jungle-poster.jpg"}]'>
-    <video class="hero__video is-on" autoplay muted loop playsinline preload="auto" poster="/img/video/jungle-poster.jpg" aria-hidden="true" tabindex="-1">
-      <source src="/img/video/jungle-540.mp4" type="video/mp4">
-    </video>
+    <video class="hero__video is-on" autoplay muted loop playsinline preload="auto" poster="/img/video/jungle-poster.jpg" aria-hidden="true" tabindex="-1"></video>
     <div class="hero__scrim" aria-hidden="true"></div>
     <h1 class="hero__title"><span class="hero__big">Journeys</span></h1>
     <p class="hero__sub">A few nights in one of our homes, and the country around it by day.</p>
@@ -130,14 +131,14 @@
     <p class="serif days-add__intro">A few hours, added to any stay.</p>
     <div class="experiences">
       <article class="experience">
-        <a class="experience__frame" href="/journeys/antigua" tabindex="-1" aria-hidden="true"><img src="/img/coffee.jpg" alt="" loading="lazy"></a>
+        <a class="experience__frame" href="/journeys/antigua" tabindex="-1" aria-hidden="true"><img src="/img/coffee-1000.jpg" srcset="/img/coffee-1000.jpg 1000w, /img/coffee.jpg 1500w" sizes="(max-width: 860px) 90vw, 40vw" alt="" loading="lazy"></a>
         <h3 class="experience__title"><a href="/journeys/antigua">Coffee before the city wakes</a></h3>
         <p class="experience__place">Antigua</p>
         <p class="experience__prose">A finca on the slope, picked at first light, cupped at a table under the volcano.</p>
       </article>
 
       <article class="experience">
-        <a class="experience__frame" href="/journeys/atitlan" tabindex="-1" aria-hidden="true"><img src="/img/lake.jpg" alt="" loading="lazy"></a>
+        <a class="experience__frame" href="/journeys/atitlan" tabindex="-1" aria-hidden="true"><img src="/img/lake-1000.jpg" srcset="/img/lake-1000.jpg 1000w, /img/lake.jpg 1500w" sizes="(max-width: 860px) 90vw, 40vw" alt="" loading="lazy"></a>
         <h3 class="experience__title"><a href="/journeys/atitlan">The lake while it is still glass</a></h3>
         <p class="experience__place">Lake Atitl&aacute;n</p>
         <p class="experience__prose">Out on the water before the wind arrives, and a Tz&rsquo;utujil kitchen in Santiago after.</p>
@@ -270,5 +271,6 @@
 </div>
 
 <script src="/script.js"></script>
+<script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
 </body>
 </html>

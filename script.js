@@ -1,4 +1,4 @@
-/* Prototype only. Dialogs, the collection rail and grid, and the enquiry forms. */
+/* Prototype only. Dialogs, the header, the films, and the enquiry forms. */
 
 /* Dialogs. Focus moves in on open and back to the trigger on close. */
 
@@ -54,74 +54,6 @@
   });
 })();
 
-/* Collection rail. Arrows scroll the whole track, intro panel included. */
-
-(function () {
-  var rail = document.getElementById('rail');
-  if (!rail) return;
-
-  var arrows = document.querySelectorAll('[data-scroll]');
-  var animation = null;
-
-  function step() {
-    var card = rail.querySelector('.card');
-    var gap = parseFloat(getComputedStyle(rail).columnGap) || 0;
-    return card ? card.getBoundingClientRect().width + gap : rail.clientWidth * 0.8;
-  }
-
-  function sync() {
-    var max = rail.scrollWidth - rail.clientWidth;
-    var atStart = rail.scrollLeft <= 8;
-    var atEnd = rail.scrollLeft >= max - 8;
-    arrows.forEach(function (arrow) {
-      arrow.disabled = arrow.dataset.scroll === '1' ? atEnd : atStart;
-    });
-  }
-
-  // Animate by hand. behavior:"smooth" is unreliable next to scroll snapping.
-  function glide(to) {
-    var from = rail.scrollLeft;
-    var max = rail.scrollWidth - rail.clientWidth;
-    var target = Math.max(0, Math.min(to, max));
-    var startedAt = null;
-    var duration = 640;
-
-    if (animation) cancelAnimationFrame(animation);
-
-    function frame(now) {
-      if (startedAt === null) startedAt = now;
-      var t = Math.min((now - startedAt) / duration, 1);
-      var eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-      rail.scrollLeft = from + (target - from) * eased;
-      if (t < 1) {
-        animation = requestAnimationFrame(frame);
-      } else {
-        animation = null;
-        sync();
-      }
-    }
-
-    animation = requestAnimationFrame(frame);
-  }
-
-  arrows.forEach(function (arrow) {
-    arrow.addEventListener('click', function () {
-      glide(rail.scrollLeft + step() * Number(arrow.dataset.scroll));
-    });
-  });
-
-  rail.addEventListener('scroll', sync);
-  window.addEventListener('resize', sync);
-
-  // Defeat the browser restoring a scroll position on reload.
-  rail.scrollLeft = 0;
-  sync();
-  window.addEventListener('load', function () {
-    rail.scrollLeft = 0;
-    sync();
-  });
-})();
-
 /* Header. Translucent once the page moves, transparent over the video hero,
    and it takes the search from the hero on the way past. */
 
@@ -163,20 +95,23 @@
   var clips = [];
   try { clips = JSON.parse(hero.dataset.clips || '[]'); } catch (e) {}
 
+  // The poster is already on screen. A very slow or metered connection
+  // keeps it, and so does anyone who has asked for less motion. A middling
+  // one gets the small file and the first clip on a loop.
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var saveData = navigator.connection && navigator.connection.saveData;
-  var hd = window.innerWidth >= 1280 && !saveData;
+  var connection = navigator.connection || {};
+  var type = connection.effectiveType || '';
+  var slow = connection.saveData || /2g$/.test(type);
+  var modest = type === '3g';
+  var hd = window.matchMedia('(min-width: 1280px)').matches && !modest;
 
-  if (reduced || saveData) {
-    layers.forEach(function (layer) {
-      layer.removeAttribute('autoplay');
-      layer.pause();
-    });
+  if (reduced || slow || !clips.length) {
+    layers.forEach(function (layer) { layer.removeAttribute('autoplay'); });
     return;
   }
 
-  if (clips.length < 2 || layers.length < 2) {
-    if (hd && clips[0]) layers[0].src = clips[0].hd;
+  if (modest || clips.length < 2 || layers.length < 2) {
+    layers[0].src = hd ? clips[0].hd : clips[0].sd;
     var single = layers[0].play();
     if (single && single.catch) single.catch(function () {});
     return;
@@ -244,16 +179,34 @@
   if (first && first.catch) first.catch(function () {});
 })();
 
+/* Pictures arrive softly. A lazy picture that is not ready yet waits on its
+   frame's colour and fades in when it lands; cached ones show at once. */
+
+(function () {
+  document.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
+    if (img.complete || img.matches('.split__inset, .split__main')) return;
+    img.classList.add('is-loading');
+    function arrive() {
+      img.classList.remove('is-loading');
+      img.classList.add('is-arriving');
+    }
+    img.addEventListener('load', arrive, { once: true });
+    img.addEventListener('error', arrive, { once: true });
+  });
+})();
+
 /* Ambient video elsewhere. Loads when it is in view, pauses when it is not. */
 
 (function () {
   var videos = document.querySelectorAll('video[data-src]');
   if (!videos.length) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (navigator.connection && navigator.connection.saveData) return;
+  var connection = navigator.connection || {};
+  if (connection.saveData || /2g$/.test(connection.effectiveType || '')) return;
+  var small = window.matchMedia('(max-width: 800px)').matches || connection.effectiveType === '3g';
 
   function start(video) {
-    if (!video.src) video.src = video.dataset.src;
+    if (!video.src) video.src = (small && video.dataset.srcSd) || video.dataset.src;
     var playing = video.play();
     if (playing && playing.catch) playing.catch(function () {});
   }
@@ -416,76 +369,51 @@
   });
 })();
 
-/* Collection grid. One filter, by place, mirrored into the address bar. */
+/* A search that lands before any home is listed becomes a note to us,
+   with the place, the dates and the party already written in. */
 
 (function () {
-  var grid = document.querySelector('[data-grid]');
-  if (!grid) return;
+  var plate = document.querySelector('[data-soon]');
+  if (!plate) return;
 
-  var filters = document.querySelectorAll('[data-filters] .filter');
-  var count = document.querySelector('[data-count]');
-  var clear = document.querySelector('[data-clear]');
-  var empty = document.querySelector('[data-empty]');
-  var cards = grid.querySelectorAll('.card');
-  var words = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
-
-  // Everything the search sent along, besides the place, rides through to the house.
   var params = new URLSearchParams(window.location.search);
+  var places = { antigua: 'Antigua', atitlan: 'Lake Atitlán', 'rio-dulce': 'Río Dulce', ciudad: 'Guatemala City' };
+  var place = places[params.get('place')] || '';
+  var from = params.get('from');
+  var to = params.get('to');
   var guests = parseInt(params.get('guests'), 10) || 0;
-  var carried = new URLSearchParams();
-  ['from', 'to', 'guests'].forEach(function (key) {
-    if (params.get(key)) carried.set(key, params.get(key));
-  });
-  var carry = carried.toString();
-  if (carry) {
-    cards.forEach(function (card) {
-      if (card.href) card.href += (card.href.indexOf('?') < 0 ? '?' : '&') + carry;
-    });
+  if (!place && !from && !to && !guests) return;
+
+  function day(value) {
+    var date = new Date(value + 'T12:00:00');
+    return isNaN(date) ? '' : date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
   }
 
-  function apply(place, pushState) {
-    var shown = 0;
-    var label = '';
+  var parts = [];
+  if (place) parts.push(place);
+  if (day(from) && day(to)) parts.push(day(from) + ' to ' + day(to));
+  else if (day(from)) parts.push('from ' + day(from));
+  if (guests) parts.push(guests + (guests === 1 ? ' guest' : ' guests'));
+  if (!parts.length) return;
+  var summary = parts.join(', ');
 
-    filters.forEach(function (button) {
-      var active = button.dataset.place === place;
-      button.setAttribute('aria-pressed', active ? 'true' : 'false');
-      if (active && place) label = button.textContent;
-    });
+  var note = document.createElement('p');
+  note.className = 'soon-plate__search';
+  note.textContent = 'You searched for ' + summary + '. Nothing is listed yet, but we can still arrange the stay.';
+  plate.querySelector('.soon-plate__text').insertAdjacentElement('afterend', note);
 
-    cards.forEach(function (card) {
-      var fits = !guests || Number(card.dataset.guests || 0) >= guests;
-      var match = (!place || card.dataset.place === place) && fits;
-      card.hidden = !match;
-      if (match) shown += 1;
-    });
+  var send = document.createElement('a');
+  send.className = 'cta';
+  send.href = 'mailto:hello@ladantajourneys.com?subject=' + encodeURIComponent('A stay: ' + summary) +
+    '&body=' + encodeURIComponent('Hello,\n\nWe are looking at ' + summary + '. What could you arrange?\n');
+  send.textContent = 'Send us these dates';
 
-    if (count) {
-      count.textContent = (words[shown] || shown) + (shown === 1 ? ' home' : ' homes') +
-        (label ? ' in ' + label : '') +
-        (guests ? ' for ' + (words[guests] ? words[guests].toLowerCase() : guests) : '');
-    }
-    if (clear) clear.hidden = !carry;
-    if (empty) empty.hidden = shown > 0;
-
-    if (pushState && window.history.replaceState) {
-      if (place) params.set('place', place); else params.delete('place');
-      var query = params.toString();
-      window.history.replaceState(null, '', query ? '?' + query : window.location.pathname);
-    }
-  }
-
-  filters.forEach(function (button) {
-    button.addEventListener('click', function () {
-      apply(button.dataset.place, true);
-    });
-  });
-
-  var initial = params.get('place') || '';
-  var known = Array.prototype.some.call(filters, function (button) {
-    return button.dataset.place === initial;
-  });
-  apply(known ? initial : '', false);
+  var actions = plate.querySelector('.soon-plate__actions');
+  var hear = actions.querySelector('.cta');
+  hear.className = 'more';
+  hear.textContent = 'Or hear first';
+  actions.querySelectorAll('.more').forEach(function (link) { if (link !== hear) link.remove(); });
+  actions.insertBefore(send, actions.firstChild);
 })();
 
 /* Enquiries. No backend yet: the form writes the email and hands it over. */
@@ -561,33 +489,6 @@
   });
 })();
 
-/* Our houses. Four filters over the same four cards; the ones that stay
-   visible fade in so the change reads as a change. */
-
-(function () {
-  var filters = document.querySelectorAll('.homes__filter');
-  var homes = document.querySelectorAll('.home');
-  if (!filters.length || !homes.length) return;
-
-  filters.forEach(function (filter) {
-    filter.addEventListener('click', function () {
-      var key = filter.dataset.filter;
-      filters.forEach(function (other) {
-        other.setAttribute('aria-pressed', other === filter ? 'true' : 'false');
-      });
-      homes.forEach(function (home) {
-        var show = key === 'all' || (' ' + home.dataset.tags + ' ').indexOf(' ' + key + ' ') > -1;
-        home.hidden = !show;
-        home.classList.remove('is-entering');
-        if (show) {
-          void home.offsetWidth;
-          home.classList.add('is-entering');
-        }
-      });
-    });
-  });
-})();
-
 /* Hero dates. The fields read Arriving and Leaving until a date is set,
    open the calendar on a click anywhere in them, and leaving can never
    come before arriving. */
@@ -625,143 +526,6 @@
       }
     });
   }
-})();
-
-/* Homes map. Pins sit near each home's town, never on the address, and
-   follow the filters. Hovering a card lifts its pin and the other way round. */
-
-(function () {
-  var el = document.querySelector('[data-map]');
-  if (!el || !window.L) return;
-
-  var cards = Array.prototype.filter.call(document.querySelectorAll('[data-grid] .card'), function (card) {
-    return card.dataset.lat;
-  });
-
-  var map = L.map(el, { scrollWheelZoom: false, zoomControl: true, attributionControl: true });
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 16,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-  }).addTo(map);
-
-  var pins = cards.map(function (card) {
-    var name = card.querySelector('.card__name').textContent;
-    var soon = card.classList.contains('card--soon');
-    var icon = L.divIcon({
-      className: 'pin' + (soon ? ' pin--soon' : ''),
-      html: '<span>' + (soon ? 'Soon' : name) + '</span>',
-      iconSize: null
-    });
-    var marker = L.marker([Number(card.dataset.lat), Number(card.dataset.lng)], { icon: icon, keyboard: false, title: name });
-    marker.on('mouseover', function () { card.classList.add('is-hot'); });
-    marker.on('mouseout', function () { card.classList.remove('is-hot'); });
-    marker.on('click', function () {
-      if (card.href) window.location.href = card.href;
-      else card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-    card.addEventListener('mouseenter', function () {
-      var node = marker.getElement();
-      if (node) node.classList.add('is-hot');
-      marker.setZIndexOffset(1000);
-    });
-    card.addEventListener('mouseleave', function () {
-      var node = marker.getElement();
-      if (node) node.classList.remove('is-hot');
-      marker.setZIndexOffset(0);
-    });
-    return { card: card, marker: marker };
-  });
-
-  function sync() {
-    var shown = [];
-    pins.forEach(function (pin) {
-      if (pin.card.hidden) {
-        map.removeLayer(pin.marker);
-      } else {
-        pin.marker.addTo(map);
-        shown.push(pin.marker.getLatLng());
-      }
-    });
-    if (!shown.length) return;
-    if (shown.length === 1) map.setView(shown[0], 11);
-    else map.fitBounds(L.latLngBounds(shown), { padding: [48, 48], maxZoom: 11 });
-  }
-
-  var observer = new MutationObserver(sync);
-  cards.forEach(function (card) { observer.observe(card, { attributes: true, attributeFilter: ['hidden'] }); });
-  sync();
-  window.addEventListener('resize', function () { map.invalidateSize(); });
-})();
-
-/* Home pages. The booking box takes dates from the search, hands them to
-   the enquiry form, and a slim bar keeps the way to it in reach. */
-
-(function () {
-  var book = document.querySelector('[data-book]');
-  if (!book) return;
-
-  var params = new URLSearchParams(window.location.search);
-  ['from', 'to', 'guests'].forEach(function (key) {
-    var field = book.querySelector('[name="' + key + '"]');
-    if (field && params.get(key)) field.value = params.get(key);
-  });
-
-  var from = book.querySelector('[name="from"]');
-  var to = book.querySelector('[name="to"]');
-  from.addEventListener('change', function () {
-    to.min = from.value;
-    if (to.value && to.value < from.value) to.value = '';
-  });
-
-  book.addEventListener('submit', function (event) {
-    event.preventDefault();
-    ['from', 'to', 'guests'].forEach(function (key) {
-      var source = book.querySelector('[name="' + key + '"]');
-      var target = document.getElementById('enq-' + key);
-      if (source && target && source.value) target.value = source.value;
-    });
-    var enquire = document.getElementById('enquire');
-    if (enquire) {
-      enquire.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      var name = document.getElementById('enq-name');
-      if (name) setTimeout(function () { name.focus({ preventScroll: true }); }, 500);
-    }
-  });
-
-  var bar = document.querySelector('[data-bookbar]');
-  var enquire = document.getElementById('enquire');
-  if (!bar) return;
-
-  function update() {
-    var gone = book.getBoundingClientRect().bottom < 0;
-    var reached = enquire ? enquire.getBoundingClientRect().top < window.innerHeight * 0.85 : false;
-    var show = gone && !reached;
-    bar.hidden = !show;
-    document.documentElement.classList.toggle('has-bookbar', show);
-  }
-
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update);
-  update();
-})();
-
-/* One pin on a small map, near the home but never on it. */
-
-(function () {
-  var el = document.querySelector('[data-map-point]');
-  if (!el || !window.L) return;
-  var point = [Number(el.dataset.lat), Number(el.dataset.lng)];
-  var map = L.map(el, { scrollWheelZoom: false, dragging: !L.Browser.mobile, attributionControl: true }).setView(point, 12);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 14,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-  }).addTo(map);
-  L.circle(point, { radius: 900, color: '#944636', weight: 1, fillColor: '#944636', fillOpacity: 0.12 }).addTo(map);
-  L.marker(point, {
-    icon: L.divIcon({ className: 'pin', html: '<span>' + el.dataset.label + '</span>', iconSize: null }),
-    keyboard: false,
-    interactive: false
-  }).addTo(map);
 })();
 
 /* The privacy note shows once. Either button closes it for good. */

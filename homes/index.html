@@ -17,7 +17,8 @@
 <link rel="preload" href="/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap"></noscript>
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/editorial.css">
 </head>
@@ -84,7 +85,7 @@
 <main id="main">
 
   <section class="homes homes--page" aria-labelledby="homes-title">
-    <div class="soon-plate">
+    <div class="soon-plate" data-soon>
       <h1 class="title" id="homes-title">Our homes are coming soon</h1>
       <p class="serif soon-plate__text">We are choosing the first Ladanta homes one at a time, and walking through every room before any of them is listed. Leave your email and you will see them first.</p>
       <ul class="soon-plate__places" aria-label="Where the first homes will be">
@@ -228,5 +229,6 @@
 </div>
 
 <script src="/script.js"></script>
+<script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
 </body>
 </html>

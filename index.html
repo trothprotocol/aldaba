@@ -15,9 +15,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/fonts/Montserrat-Light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/img/hero-fuego-poster.jpg" as="image" fetchpriority="high">
+<link rel="preload" href="/fonts/Memoir.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap"></noscript>
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/editorial.css">
 </head>
@@ -88,9 +91,7 @@
     {"sd": "/img/video/lake-sunrise-540.mp4", "hd": "/img/video/lake-sunrise-1080.mp4", "poster": "/img/video/lake-sunrise-poster.jpg"},
     {"sd": "/img/video/antigua-cathedral-540.mp4", "hd": "/img/video/antigua-cathedral-1080.mp4", "poster": "/img/video/antigua-cathedral-poster.jpg"}
   ]'>
-    <video class="hero__video is-on" autoplay muted loop playsinline preload="auto" poster="/img/hero-fuego-poster.jpg" aria-hidden="true" tabindex="-1">
-      <source src="/img/video/hero-fuego-540.mp4" type="video/mp4">
-    </video>
+    <video class="hero__video is-on" autoplay muted loop playsinline preload="auto" poster="/img/hero-fuego-poster.jpg" aria-hidden="true" tabindex="-1"></video>
     <video class="hero__video" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
     <div class="hero__scrim" aria-hidden="true"></div>
 
@@ -202,10 +203,10 @@
       </div>
       <div class="plan__text">
         <h2 class="title" id="plan-title">Let us plan your stay</h2>
-        <p class="serif">Tell us where and when, and how many of you there are. We reply the same day, with the homes that fit and what we would arrange around them.</p>
+        <p class="serif">Tell us where and when, and how many of you there are. We reply the same day, with what we would arrange around your dates.</p>
         <div class="plan__actions">
           <a class="cta" href="/about#contact">Write to us</a>
-          <a class="cta cta--outline" href="mailto:hello@ladantajourneys.com">Email us</a>
+          <a class="more" href="mailto:hello@ladantajourneys.com">Or email us</a>
         </div>
       </div>
     </div>
@@ -221,14 +222,14 @@
     <ul class="days__gallery">
       <li class="day">
         <a class="day__link" href="/journeys/antigua">
-          <span class="day__frame"><img src="/img/coffee.jpg" alt="Ripe red coffee cherries on the branch" loading="lazy"></span>
+          <span class="day__frame"><img src="/img/coffee-1000.jpg" srcset="/img/coffee-1000.jpg 1000w, /img/coffee.jpg 1500w" sizes="(max-width: 860px) 90vw, 40vw" alt="Ripe red coffee cherries on the branch" loading="lazy"></span>
           <span class="day__name">Coffee before the city wakes</span>
           <span class="day__place">Antigua</span>
         </a>
       </li>
       <li class="day">
         <a class="day__link" href="/journeys/atitlan">
-          <span class="day__frame"><img src="/img/lake.jpg" alt="Lake Atitlán under cloud" loading="lazy"></span>
+          <span class="day__frame"><img src="/img/lake-1000.jpg" srcset="/img/lake-1000.jpg 1000w, /img/lake.jpg 1500w" sizes="(max-width: 860px) 90vw, 40vw" alt="Lake Atitlán under cloud" loading="lazy"></span>
           <span class="day__name">The lake while it is still glass</span>
           <span class="day__place">Lake Atitl&aacute;n</span>
         </a>
@@ -392,5 +393,6 @@
 </div>
 
 <script src="/script.js"></script>
+<script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
 </body>
 </html>

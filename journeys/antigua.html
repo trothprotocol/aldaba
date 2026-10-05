@@ -15,9 +15,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/fonts/Montserrat-Light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/img/video/antigua-cathedral-poster.jpg" as="image" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap"></noscript>
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/editorial.css">
 </head>
@@ -89,8 +91,8 @@
 
   <section class="split split--top">
     <figure class="split__media">
-      <video class="split__main" muted loop playsinline preload="none" poster="/img/video/antigua-cathedral-poster.jpg" data-src="/img/video/antigua-cathedral-720.mp4" aria-hidden="true" tabindex="-1"></video><span class="sr-only">The carved facade of La Merced church in Antigua</span>
-      <img class="split__inset" src="/img/coffee.jpg" alt="Ripe red coffee cherries on the branch" loading="lazy">
+      <video class="split__main" muted loop playsinline preload="none" poster="/img/video/antigua-cathedral-poster.jpg" data-src-sd="/img/video/antigua-cathedral-540.mp4" data-src="/img/video/antigua-cathedral-720.mp4" aria-hidden="true" tabindex="-1"></video><span class="sr-only">The carved facade of La Merced church in Antigua</span>
+      <img class="split__inset" src="/img/coffee-1000.jpg" srcset="/img/coffee-1000.jpg 1000w, /img/coffee.jpg 1500w" sizes="(max-width: 860px) 45vw, 22vw" alt="Ripe red coffee cherries on the branch" loading="lazy">
     </figure>
     <div class="split__body">
       <p class="split__place">Antigua</p>
@@ -292,5 +294,6 @@
 </div>
 
 <script src="/script.js"></script>
+<script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
 </body>
 </html>

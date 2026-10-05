@@ -15,9 +15,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/fonts/Montserrat-Light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/img/hero-fuego-poster.jpg" as="image" fetchpriority="high">
+<link rel="preload" href="/fonts/Memoir.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap"></noscript>
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/editorial.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
@@ -85,9 +88,7 @@
 <main id="main">
 
   <section class="hero hero--video hero--page" data-clips='[{"sd": "/img/video/hero-fuego-540.mp4", "hd": "/img/hero-fuego-1080.mp4", "poster": "/img/hero-fuego-poster.jpg"}]'>
-    <video class="hero__video is-on" autoplay muted loop playsinline preload="auto" poster="/img/hero-fuego-poster.jpg" aria-hidden="true" tabindex="-1">
-      <source src="/img/video/hero-fuego-540.mp4" type="video/mp4">
-    </video>
+    <video class="hero__video is-on" autoplay muted loop playsinline preload="auto" poster="/img/hero-fuego-poster.jpg" aria-hidden="true" tabindex="-1"></video>
     <div class="hero__scrim" aria-hidden="true"></div>
     <h1 class="hero__title"><span class="hero__big">The Volcano Line</span></h1>
     <p class="hero__sub">Six days from one home in Antigua: Fuego from the roof, Acatenango by night, Pacaya on foot.</p>
@@ -116,13 +117,13 @@
     <h2 class="sr-only" id="route-title">Day by day</h2>
     <ol class="route__days">
       <li class="route-day" data-day="0">
-        <span class="route-day__frame"><img src="/img/antigua-arch.jpg" alt="The yellow arch of Santa Catalina with Agua behind it" loading="lazy"></span>
+        <span class="route-day__frame"><img src="/img/antigua-arch-1000.jpg" srcset="/img/antigua-arch-1000.jpg 1000w, /img/antigua-arch.jpg 2000w" sizes="(max-width: 860px) 90vw, 40vw" alt="The yellow arch of Santa Catalina with Agua behind it" loading="lazy"></span>
         <h3 class="route-day__title"><span class="route-day__n">Day 1</span> Into Antigua</h3>
         <p class="serif">Our car meets you at the airport, and an hour later you are inside the walls of Antigua. The afternoon is yours: the arch, the plaza, a long dinner. The house is home for the week, with Agua standing over the town.</p>
         <dl class="route-day__meta"><div><dt>Drive</dt><dd>About an hour</dd></div><div><dt>Night</dt><dd>Our home</dd></div></dl>
       </li>
       <li class="route-day" data-day="1">
-        <span class="route-day__frame"><img src="/img/coffee.jpg" alt="Ripe red coffee cherries on the branch" loading="lazy"></span>
+        <span class="route-day__frame"><img src="/img/coffee-1000.jpg" srcset="/img/coffee-1000.jpg 1000w, /img/coffee.jpg 1500w" sizes="(max-width: 860px) 90vw, 40vw" alt="Ripe red coffee cherries on the branch" loading="lazy"></span>
         <h3 class="route-day__title"><span class="route-day__n">Day 2</span> Coffee before the city wakes</h3>
         <p class="serif">A finca on the slope above town, picked at first light and cupped under the trees. In the afternoon we check your boots. On a clear evening, go up to the roof and watch Fuego glow across the valley, then bed early: tomorrow starts at midnight.</p>
         <dl class="route-day__meta"><div><dt>Morning</dt><dd>The finca</dd></div><div><dt>Night</dt><dd>Our home</dd></div></dl>
@@ -352,5 +353,6 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="/script.js"></script>
+<script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
 </body>
 </html>

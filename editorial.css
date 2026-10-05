@@ -25,7 +25,7 @@
   --line: #E7E3DA;
   --wash: var(--panel);
   --font-serif: "Newsreader", "Iowan Old Style", Georgia, serif;
-  --font-condensed: "Memoir", "Instrument Serif", "Newsreader", Georgia, serif;
+  --font-condensed: "Memoir", "Newsreader", Georgia, serif;
   --measure: 1240px;
 }
 
@@ -393,7 +393,7 @@ body::after { display: none; }
   max-width: 720px;
   border: 0;
   background: var(--paper);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 12px 32px rgba(var(--ink-rgb), 0.18);
 }
 
 .hero--video .search__field {
@@ -1723,19 +1723,19 @@ html.has-bookbar .wa-float { bottom: 84px; }
 .hero--video .hero__sub,
 .hero--video .search,
 .hero--video .hero__hint {
-  animation: rise-in 0.9s cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation: rise-in 0.7s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
-.hero--video .hero__small { animation-delay: 0.15s; }
-.hero--video .hero__big { animation-delay: 0.25s; }
-.hero--video .hero__sub { animation-delay: 0.45s; }
-.hero--video .search { animation-delay: 0.6s; }
-.hero--video .hero__hint { animation-delay: 0.75s; }
+.hero--video .hero__small { animation-delay: 0.08s; }
+.hero--video .hero__big { animation-delay: 0.14s; }
+.hero--video .hero__sub { animation-delay: 0.26s; }
+.hero--video .search { animation-delay: 0.34s; }
+.hero--video .hero__hint { animation-delay: 0.42s; }
 
 /* Sections rise a little less than before, and a touch quicker. */
 .reveal {
-  transform: translateY(20px);
-  transition-duration: 0.8s;
+  transform: translateY(16px);
+  transition-duration: 0.6s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1784,10 +1784,10 @@ html.has-bookbar .wa-float { bottom: 84px; }
 .hero--image .hero__small,
 .hero--image .hero__big,
 .hero--image .hero__sub {
-  animation: rise-in 0.9s cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation: rise-in 0.7s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
-.hero--image .hero__big { animation-delay: 0.2s; }
-.hero--image .hero__sub { animation-delay: 0.4s; }
+.hero--image .hero__big { animation-delay: 0.12s; }
+.hero--image .hero__sub { animation-delay: 0.24s; }
 
 @media (prefers-reduced-motion: reduce) {
   .hero--image .hero__big,
@@ -2257,4 +2257,80 @@ html.has-bookbar .wa-float { bottom: 84px; }
   .homes { padding-left: 16px; padding-right: 16px; }
   .soon-plate { padding: 52px 24px; }
   .soon-plate__places { gap: 10px 20px; }
+}
+
+
+/* Cleanup pass, 2026-10-05 ------------------------------------------------ */
+
+/* Links without a style of their own take the text they sit in, never the
+   browser's blue. */
+a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+.serif a,
+.spec__label a,
+.soon-plate a:not(.cta) { color: var(--ink); }
+
+/* Reading text is set in the serif everywhere, including the notes beside
+   the enquiry forms and the short lists of other days. */
+.house__email,
+.specs--single .spec__value {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.55;
+}
+
+/* Lines over the films keep their footing on a bright frame, and never
+   leave one word alone on the last line. */
+.hero__sub { text-wrap: balance; text-shadow: 0 1px 14px rgba(var(--ink-rgb), 0.45); }
+
+/* Text links are easier to hit than they look. */
+.more,
+.split__more { position: relative; }
+.more::after,
+.split__more::after { content: ""; position: absolute; inset: -12px -6px; }
+
+/* Plan your stay: one button, and the email as a quieter second way. */
+.plan__actions .more { align-self: center; margin-top: 12px; }
+
+/* Coming soon: a search that lands here says what it asked for. */
+.soon-plate__search {
+  max-width: 46ch;
+  margin: 18px auto 0;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+@media (max-width: 640px) {
+  /* Three blank frames stacked at 4:3 filled a phone with nothing. */
+  .soon-card__frame { aspect-ratio: 5 / 2; }
+}
+
+/* Fuego sits three kilometres from Acatenango, so its label hangs below
+   the point and the two never stack on a phone. */
+.pin--fire span,
+.pin--fire.is-hot span { transform: translate(-50%, 8px); }
+.pin--fire:hover span { transform: translate(-50%, 8px) scale(1.08); }
+
+@media (max-width: 960px) {
+  .days-add { padding-left: 16px; padding-right: 16px; }
+}
+
+@media (max-width: 640px) {
+  .twin__names--logos { gap: 16px 24px; }
+}
+
+/* Pictures fade in as they land, over the frame's own colour. */
+img.is-loading { opacity: 0; }
+img.is-arriving { animation: img-in 0.5s var(--ease) both; }
+@keyframes img-in { from { opacity: 0; } }
+.journey-feature__frame { background: var(--panel); }
+
+/* The page films are brighter through the middle, where the line sits. */
+.hero--video.hero--page .hero__scrim {
+  background: linear-gradient(to bottom, rgba(var(--ink-rgb), 0.4), rgba(var(--ink-rgb), 0.3) 45%, rgba(var(--ink-rgb), 0.5));
 }
