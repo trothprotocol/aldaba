@@ -2654,3 +2654,19 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   .word.weave { padding: 56px 16px 64px; }
 }
 .word--full { min-height: 100svh; align-content: center; }
+
+/* Buttons warm to the gold of the footer mark on hover, not terracotta. */
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover,
+  .btn:hover,
+  .consent__btn:hover,
+  .journey-feature:hover .cta,
+  .header.is-scrolled:not(.is-over) .util--boxed:hover {
+    background: var(--tapir-brown);
+    border-color: var(--tapir-brown);
+    color: var(--paper);
+  }
+  .search__submit:hover,
+  .compact__submit:hover,
+  .signup__submit:hover { background: var(--tapir-brown); }
+}
