@@ -73,6 +73,7 @@
   function sync() {
     var h = header.offsetHeight;
     var heroBottom = hero ? hero.getBoundingClientRect().bottom : 0;
+    document.documentElement.style.setProperty('--header-now', h + 'px');
     header.classList.toggle('is-scrolled', window.scrollY > 8);
     header.classList.toggle('is-over', overVideo && heroBottom > h);
     if (hero) header.classList.toggle('is-compact', heroBottom < h);

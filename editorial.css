@@ -2334,3 +2334,125 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 .hero--video.hero--page .hero__scrim {
   background: linear-gradient(to bottom, rgba(var(--ink-rgb), 0.4), rgba(var(--ink-rgb), 0.3) 45%, rgba(var(--ink-rgb), 0.5));
 }
+
+/* A link to a part of a page lands that part just below the sticky header,
+   never underneath it. The script keeps --header-now to the header's
+   height as it changes. */
+[id] { scroll-margin-top: var(--header-now, 80px); }
+
+/* About: the opening sentence set large beside the temple. ---------------- */
+
+.about-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: clamp(560px, calc(100svh - var(--header-now, 77px)), 900px);
+  background: var(--panel);
+}
+
+.about-hero__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 72px clamp(32px, 5vw, 80px) clamp(56px, 7vw, 96px);
+}
+
+.about-hero__title {
+  margin: 0;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.about-hero__big {
+  display: block;
+  max-width: 13ch;
+  font-family: var(--font-condensed);
+  font-size: clamp(44px, 5vw, 80px);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.about-hero__then {
+  display: block;
+  max-width: 30ch;
+  margin-top: 28px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.about-hero__intro {
+  max-width: 44ch;
+  margin: 28px 0 0;
+  padding-top: 28px;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--text-2);
+  border-top: 1px solid var(--line);
+}
+
+.about-hero__media {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--stone);
+}
+
+.about-hero__media img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.about-hero__media figcaption {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 20px;
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--paper);
+  text-shadow: 0 1px 10px rgba(var(--ink-rgb), 0.55);
+}
+
+.about-hero__big,
+.about-hero__then,
+.about-hero__intro { animation: rise-in 0.7s cubic-bezier(0.23, 1, 0.32, 1) both; }
+.about-hero__big { animation-delay: 0.08s; }
+.about-hero__then { animation-delay: 0.2s; }
+.about-hero__intro { animation-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .about-hero__big,
+  .about-hero__then,
+  .about-hero__intro { animation: none; }
+}
+
+@media (max-width: 860px) {
+  .about-hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .about-hero__media { order: -1; aspect-ratio: 4 / 5; }
+  .about-hero__text { padding: 40px 24px 56px; }
+  .about-hero__then { font-size: 13px; }
+}
+
+/* A low shade so the caption reads over the pale stone. */
+.about-hero__media::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 32%;
+  background: linear-gradient(to top, rgba(var(--ink-rgb), 0.55), rgba(var(--ink-rgb), 0));
+  pointer-events: none;
+}
+.about-hero__media figcaption { z-index: 1; }

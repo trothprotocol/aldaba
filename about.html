@@ -16,6 +16,7 @@
 <link rel="preload" href="/fonts/Montserrat-Light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Memoir.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" as="image" href="/img/places/tikal-1000.jpg" imagesrcset="/img/places/tikal-1000.jpg 666w, /img/places/tikal.jpg 1066w, /img/places/tikal-1500.jpg 1500w" imagesizes="(max-width: 860px) 100vw, 50vw" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap" media="print" onload="this.media='all'">
@@ -70,7 +71,6 @@
       <a href="/homes">Homes</a>
       <a href="/journeys">Journeys</a>
       <a href="/standard">The Ladanta Standard</a>
-      <a href="/#word">Journal</a>
       <a href="/about">About us</a>
       <a href="/about#contact">Contact</a>
     </nav>
@@ -85,9 +85,18 @@
 
 <main id="main">
 
+  <section class="about-hero">
+    <div class="about-hero__text">
+      <h1 class="about-hero__title"><span class="about-hero__big">We wanted the kind of stay we could not find here.</span> <span class="about-hero__then">So we built the company that would arrange it.</span></h1>
+      <p class="about-hero__intro">Ladanta represents a small number of private homes in Guatemala and arranges everything around a stay in them.</p>
+    </div>
+    <figure class="about-hero__media">
+      <img src="/img/places/tikal-1000.jpg" srcset="/img/places/tikal-1000.jpg 666w, /img/places/tikal.jpg 1066w, /img/places/tikal-1500.jpg 1500w" sizes="(max-width: 860px) 100vw, 50vw" alt="Temple I rising over the Great Plaza at Tikal, under a grey sky" fetchpriority="high">
+      <figcaption>Temple I at Tikal. La Danta, at El Mirador to the north, is larger still.</figcaption>
+    </figure>
+  </section>
+
   <div class="wrap">
-    <h1 class="essay__lede">We wanted the kind of stay we could not find here. So we built the company that would arrange it.</h1>
-    <p class="essay__intro">Ladanta represents a small number of private homes in Guatemala and arranges everything around a stay in them.</p>
 
     <section class="essay__block">
       <h2 class="essay__title">The idea</h2>
@@ -119,7 +128,7 @@
   <section class="split split--flip">
     <figure class="split__media">
       <video class="split__main" muted loop playsinline preload="none" poster="/img/video/clouds-poster.jpg" data-src="/img/video/clouds-720.mp4" aria-hidden="true" tabindex="-1"></video><span class="sr-only">Cloud parting over a lake and a volcano ridge, from the air</span>
-      <img class="split__inset" src="/img/places/tikal-1000.jpg" alt="A Maya temple rising above the forest at Tikal" loading="lazy">
+      <img class="split__inset" src="/img/places/atitlan-boat-1000.jpg" alt="A single boat crossing Lake Atitlán below the volcano" loading="lazy">
     </figure>
     <div class="split__body">
       <h2 class="split__title">Four places we know well, and the road between them.</h2>
@@ -182,7 +191,6 @@
         <p class="footer__heading">Ladanta</p>
         <a href="/standard">The Ladanta Standard</a>
         <a href="/journeys">Journeys</a>
-        <a href="/#word">Journal</a>
         <a href="/about">About us</a>
         <a href="/about#contact">Contact</a>
       </div>
