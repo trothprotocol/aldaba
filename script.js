@@ -104,7 +104,8 @@
   var type = connection.effectiveType || '';
   var slow = connection.saveData || /2g$/.test(type);
   var modest = type === '3g';
-  var hd = window.matchMedia('(min-width: 1280px)').matches && !modest;
+  // Every screen gets the 1080 files; quality is not traded for size.
+  var hd = true;
 
   if (reduced || slow || !clips.length) {
     layers.forEach(function (layer) { layer.removeAttribute('autoplay'); });
