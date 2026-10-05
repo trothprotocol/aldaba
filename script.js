@@ -61,8 +61,8 @@
   var header = document.getElementById('header');
   if (!header) return;
 
-  var hero = document.querySelector('.hero, .about-hero');
-  var overVideo = !!document.querySelector('.hero--video, .hero--image, .about-hero');
+  var hero = document.querySelector('.hero, .about-hero, .homes--film');
+  var overVideo = !!document.querySelector('.hero--video, .hero--image, .about-hero, .homes--film');
 
   // The hero slides under the header by this much.
   function measure() {

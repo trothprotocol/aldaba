@@ -2598,3 +2598,18 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 @media (max-width: 640px) {
   .homes--film { padding: 56px 16px; }
 }
+
+/* The film runs up under the header, which goes clear over it. */
+.homes--film {
+  margin-top: calc(-1 * var(--header-h));
+  min-height: 100svh;
+  padding-top: calc(var(--header-h) + 48px);
+}
+.homes--film::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom, rgba(var(--ink-rgb), 0.45), rgba(var(--ink-rgb), 0.12) 30%, rgba(var(--ink-rgb), 0.12) 70%, rgba(var(--ink-rgb), 0.35));
+  pointer-events: none;
+}
