@@ -2556,3 +2556,45 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 @media (max-width: 860px) {
   .essay__block--box { padding: 40px 20px; margin-bottom: 64px; }
 }
+
+/* Homes page: the coming-soon note as the hero's frosted glass, over the
+   Atitlán sunrise film. */
+.homes--film {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: none;
+  min-height: calc(100svh - var(--header-now, 77px));
+  padding: 96px 32px;
+  background: var(--ink);
+}
+.homes__film {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.homes--film .soon-plate { width: 100%; }
+.soon-plate--glass {
+  color: var(--paper);
+  background: rgba(var(--ink-rgb), 0.42);
+  border: 0;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.soon-plate--glass .title,
+.soon-plate--glass .soon-plate__search { color: var(--paper); }
+.soon-plate--glass .soon-plate__text { color: rgba(var(--paper-rgb), 0.9); }
+.soon-plate--glass .soon-plate__places { color: rgba(var(--paper-rgb), 0.8); }
+.soon-plate--glass .cta { color: var(--paper); background: rgba(var(--paper-rgb), 0.16); border-color: transparent; }
+.soon-plate--glass a:not(.cta) { color: var(--paper); }
+@media (hover: hover) and (pointer: fine) {
+  .soon-plate--glass .cta:hover { background: rgba(var(--paper-rgb), 0.3); border-color: transparent; }
+}
+@media (max-width: 640px) {
+  .homes--film { padding: 56px 16px; }
+}
