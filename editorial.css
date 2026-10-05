@@ -2209,3 +2209,52 @@ html.has-bookbar .wa-float { bottom: 84px; }
 .journeys-list .journey-feature { margin-top: 0; }
 
 .leg--walk { stroke-width: 3; }
+
+/* Coming soon: one quiet plate where the homes will be, in the same panel
+   and rule as the other placeholders. */
+
+.soon-plate {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 72px 48px;
+  text-align: center;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.soon-plate__text {
+  max-width: 50ch;
+  margin: 20px auto 0;
+}
+
+.soon-plate__places {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 28px;
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.soon-plate__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 18px 32px;
+  margin-top: 40px;
+}
+
+.homes--page { padding-top: 64px; }
+
+@media (max-width: 640px) {
+  .homes { padding-left: 16px; padding-right: 16px; }
+  .soon-plate { padding: 52px 24px; }
+  .soon-plate__places { gap: 10px 20px; }
+}

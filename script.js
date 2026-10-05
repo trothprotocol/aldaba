@@ -393,7 +393,7 @@
     '.spread, .duo, .feature, .pair__item, .band__title, .mosaic, .book, .letterpress, .partners-line, .word' + ', ' +
     '.homes__head, .home, .homes__foot, .pillar, .season__text, .season__media, .tiers > .title, .tiers__intro, .tier, .tiers > .cta, ' +
     '.plan__media, .plan__text, .days__head, .day, .twin__col, .word__text, .word__side, .step, .others__grid .card' + ', ' +
-    '.journey-feature, .soon-card, .trip-intro, .trip-notes__grid > div'
+    '.journey-feature, .soon-card, .soon-plate, .trip-intro, .trip-notes__grid > div'
   );
 
   var observer = new IntersectionObserver(function (entries) {

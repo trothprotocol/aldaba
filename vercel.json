@@ -51,6 +51,11 @@
       "source": "/houses/:path*",
       "destination": "/homes/:path*",
       "permanent": true
+    },
+    {
+      "source": "/homes/:slug",
+      "destination": "/homes",
+      "permanent": false
     }
   ]
 }

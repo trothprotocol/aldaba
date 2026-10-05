@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The homes · Ladanta</title>
-<meta name="description" content="A short list of private homes in Guatemala, each one known personally, with the whole stay arranged around it.">
+<meta name="description" content="The first Ladanta homes in Guatemala are coming soon. Leave your email and see them before they are listed.">
 <link rel="icon" href="/img/brand/favicon-tapir.png" type="image/png">
 <link rel="apple-touch-icon" href="/img/brand/apple-touch-icon.png">
 <meta name="theme-color" content="#E9E7DA">
 <meta property="og:site_name" content="Ladanta">
-<meta property="og:title" content="The houses · Ladanta">
-<meta property="og:description" content="A short list of private homes in Guatemala, each one known personally, with the whole stay arranged around it.">
+<meta property="og:title" content="The homes · Ladanta">
+<meta property="og:description" content="The first Ladanta homes in Guatemala are coming soon. Leave your email and see them before they are listed.">
 <meta property="og:image" content="https://ladantajourneys.com/img/brandbook/letterpress.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/fonts/Montserrat-Light.woff2" as="font" type="font/woff2" crossorigin>
@@ -20,7 +20,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap">
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/editorial.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 </head>
 <body>
 
@@ -84,61 +83,35 @@
 
 <main id="main">
 
-  <h1 class="sr-only">The homes</h1>
-
-  <section class="section section--collection">
-    <div class="wrap wrap--flush">
-      <div class="filters" data-filters>
-        <div class="filters__group" role="group" aria-label="Filter by place">
-          <button type="button" class="filter" data-place="" aria-pressed="true">All</button>
-        <button type="button" class="filter" data-place="antigua" aria-pressed="false">Antigua</button>
-        <button type="button" class="filter" data-place="atitlan" aria-pressed="false">Lake Atitl&aacute;n</button>
-        <button type="button" class="filter" data-place="rio-dulce" aria-pressed="false">R&iacute;o Dulce</button>
-        <button type="button" class="filter" data-place="ciudad" aria-pressed="false">Guatemala City</button>
-        </div>
-        <div class="filters__meta">
-          <p class="filters__count" aria-live="polite" data-count>Five homes</p>
-          <a class="filters__clear" href="/homes" data-clear hidden>Clear</a>
-        </div>
+  <section class="homes homes--page" aria-labelledby="homes-title">
+    <div class="soon-plate">
+      <h1 class="title" id="homes-title">Our homes are coming soon</h1>
+      <p class="serif soon-plate__text">We are choosing the first Ladanta homes one at a time, and walking through every room before any of them is listed. Leave your email and you will see them first.</p>
+      <ul class="soon-plate__places" aria-label="Where the first homes will be">
+        <li>Antigua</li>
+        <li>Lake Atitl&aacute;n</li>
+        <li>R&iacute;o Dulce</li>
+        <li>Guatemala City</li>
+      </ul>
+      <div class="soon-plate__actions">
+        <a class="cta" href="#word">Hear first</a>
+        <a class="more" href="/about#contact">Or write to us</a>
       </div>
+    </div>
+  </section>
 
-      <div class="browse">
-      <div class="grid" data-grid>
-<a class="card" data-lat="14.5540" data-lng="-90.7290" href="/homes/ja" data-place="antigua" data-guests="8">
-  <span class="card__frame card__frame--blank"><span>Home 1</span></span>
-  <span class="card__name">Ja&rsquo;</span>
-  <span class="card__meta">Antigua &middot; 4 bedrooms &middot; 8 guests</span>
-</a>
-
-<a class="card" data-lat="14.7440" data-lng="-91.2060" href="/homes/choq" data-place="atitlan" data-guests="6">
-  <span class="card__frame card__frame--blank"><span>Home 2</span></span>
-  <span class="card__name">Choq&rsquo;</span>
-  <span class="card__meta">Lake Atitl&aacute;n &middot; 3 bedrooms &middot; 6 guests</span>
-</a>
-
-<a class="card" data-lat="15.6660" data-lng="-88.9910" href="/homes/ki" data-place="rio-dulce" data-guests="12">
-  <span class="card__frame card__frame--blank"><span>Home 3</span></span>
-  <span class="card__name">Ki&rsquo;</span>
-  <span class="card__meta">R&iacute;o Dulce &middot; 6 bedrooms &middot; 12 guests</span>
-</a>
-
-<a class="card" data-lat="14.5800" data-lng="-90.5050" href="/homes/tinamit" data-place="ciudad" data-guests="4">
-  <span class="card__frame card__frame--blank"><span>Home 4</span></span>
-  <span class="card__name">Tinamit</span>
-  <span class="card__meta">Guatemala City &middot; 2 bedrooms &middot; 4 guests</span>
-</a>
-
-<div class="card card--soon" data-place="antigua" data-lat="14.5620" data-lng="-90.7380">
-  <span class="card__frame"><span>Listing soon</span></span>
-  <span class="card__name">A second house in Antigua</span>
-  <span class="card__meta">Antigua &middot; 5 bedrooms &middot; 10 guests</span>
-</div>
-      </div>
-
-      <div class="browse__map" data-map role="region" aria-label="Map of the homes. Pins show the area, not the address."></div>
-      </div>
-
-      <p class="grid__empty" data-empty hidden>Nothing here yet. <a href="/about#contact">Tell us where you want to go</a> and we will say what we know.</p>
+  <section class="word" id="word">
+    <div class="word__text">
+      <h2 class="title title--sm">Word from here, now and then.</h2>
+      <p class="serif">New homes before they are listed, and the occasional note from the road.</p>
+    </div>
+    <div class="word__side">
+      <form class="signup" data-enquire data-subject="Subscribe">
+        <label class="sr-only" for="signup-email">Email address</label>
+        <input class="signup__input" id="signup-email" name="email" type="email" autocomplete="email" placeholder="Your email address" required>
+        <button type="submit" class="signup__submit">Sign up</button>
+      </form>
+      <p class="signup__legal">By signing up you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>. This opens your email client; nothing is stored here.</p>
     </div>
   </section>
 
@@ -245,7 +218,6 @@
 
 <a class="wa-float" href="https://wa.me/502XXXXXXXX" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"></a>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <div class="consent" data-consent hidden role="region" aria-label="Cookies">
   <p class="consent__title">Your privacy</p>
   <p class="consent__text">This site uses no tracking or advertising cookies. We keep only your language and currency choices in this browser. <a href="/privacy">Privacy policy</a></p>
