@@ -2544,3 +2544,34 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 }
 .pillars.weave--panel,
 .plan.weave--panel { background-color: var(--panel); background-image: url("/img/brand/weave-panel.png"); background-size: 124px 123px; }
+
+/* Coming soon: the hero's frosted glass, over a picture of the lake. */
+.homes--glass {
+  max-width: none;
+  padding: 120px 32px;
+  background: var(--ink) url("/img/video/atitlan-sunrise-poster.jpg") center / cover no-repeat;
+}
+.homes--page.homes--glass { padding-top: 140px; }
+.soon-plate--glass {
+  color: var(--paper);
+  background: rgba(var(--ink-rgb), 0.52);
+  border: 0;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.soon-plate--glass .title,
+.soon-plate--glass .soon-plate__search { color: var(--paper); }
+.soon-plate--glass .soon-plate__text { color: rgba(var(--paper-rgb), 0.9); }
+.soon-plate--glass .soon-plate__places { color: rgba(var(--paper-rgb), 0.78); }
+.soon-plate--glass .cta {
+  color: var(--paper);
+  background: rgba(var(--paper-rgb), 0.16);
+  border-color: transparent;
+}
+.soon-plate--glass a:not(.cta) { color: var(--paper); }
+@media (hover: hover) and (pointer: fine) {
+  .soon-plate--glass .cta:hover { background: rgba(var(--paper-rgb), 0.3); border-color: transparent; }
+}
+@media (max-width: 640px) {
+  .homes--glass { padding: 72px 16px; }
+}
