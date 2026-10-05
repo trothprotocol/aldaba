@@ -2456,3 +2456,36 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   pointer-events: none;
 }
 .about-hero__media figcaption { z-index: 1; }
+
+/* About hero, text over the picture. ------------------------------------ */
+.about-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  grid-template-columns: none;
+  isolation: isolate;
+  background: var(--ink);
+}
+.about-hero__media { position: absolute; inset: 0; z-index: -1; order: 0; aspect-ratio: auto; }
+.about-hero__media::after {
+  height: auto;
+  inset: 0;
+  background: linear-gradient(to right, rgba(var(--ink-rgb), 0.62), rgba(var(--ink-rgb), 0.25) 55%, rgba(var(--ink-rgb), 0.05)),
+              linear-gradient(to top, rgba(var(--ink-rgb), 0.45), rgba(var(--ink-rgb), 0) 45%);
+}
+.about-hero__media img { object-position: 60% 40%; }
+.about-hero__media figcaption { left: auto; right: 24px; text-align: right; max-width: 40ch; }
+.about-hero__text { position: relative; z-index: 1; max-width: 760px; }
+.about-hero__title,
+.about-hero__then { color: var(--paper); }
+.about-hero__intro { color: rgba(var(--paper-rgb), 0.9); border-top-color: rgba(var(--paper-rgb), 0.35); }
+
+@media (max-width: 860px) {
+  .about-hero { min-height: calc(100svh - var(--header-now, 69px)); }
+  .about-hero__media { aspect-ratio: auto; }
+  .about-hero__media img { object-position: 55% 40%; }
+  .about-hero__media::after {
+    background: linear-gradient(to top, rgba(var(--ink-rgb), 0.78), rgba(var(--ink-rgb), 0.35) 55%, rgba(var(--ink-rgb), 0.1));
+  }
+  .about-hero__media figcaption { top: 16px; bottom: auto; right: 16px; }
+}
