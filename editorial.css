@@ -2410,7 +2410,7 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 35%;
+  object-position: 50% 40%;
 }
 
 .about-hero__media figcaption {
