@@ -690,23 +690,3 @@
 
   window.addEventListener('resize', function () { map.invalidateSize(); });
 })();
-
-/* The arched line over the hero walks through the places, then home to
-   Guatemala. Each word fades out, changes, and fades back in. */
-
-(function () {
-  var text = document.querySelector('[data-places]');
-  if (!text) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var path = text.querySelector('textPath');
-  var places = text.dataset.places.split('|');
-  var i = 0;
-  setInterval(function () {
-    text.classList.add('is-swapping');
-    setTimeout(function () {
-      i = (i + 1) % places.length;
-      path.textContent = places[i];
-      text.classList.remove('is-swapping');
-    }, 360);
-  }, 3200);
-})();

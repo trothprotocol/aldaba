@@ -2522,6 +2522,3 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   -webkit-mask-image: url("/img/brand/tapir-2.png");
   mask-image: url("/img/brand/tapir-2.png");
 }
-
-.hero__small--arch text { transition: opacity 0.36s var(--ease), filter 0.36s var(--ease); }
-.hero__small--arch text.is-swapping { opacity: 0; filter: blur(3px); }
