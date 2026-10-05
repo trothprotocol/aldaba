@@ -2642,3 +2642,14 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 
 /* Journeys: as tall as the Standard's hero. */
 .hero--video.hero--tall { min-height: clamp(600px, 92vh, 880px); }
+
+/* Word from here: a full-width woven sage band. */
+.word.weave {
+  max-width: none;
+  padding: 72px max(32px, calc((100% - 1116px) / 2)) 80px;
+  border-top: 0;
+}
+.word.weave .signup__input { background: var(--paper); }
+@media (max-width: 640px) {
+  .word.weave { padding: 56px 16px 64px; }
+}
