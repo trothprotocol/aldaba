@@ -2613,3 +2613,10 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   background: linear-gradient(to bottom, rgba(var(--ink-rgb), 0.45), rgba(var(--ink-rgb), 0.12) 30%, rgba(var(--ink-rgb), 0.12) 70%, rgba(var(--ink-rgb), 0.35));
   pointer-events: none;
 }
+
+/* "A stay should be worth the trip." on a full-width woven sage strip. */
+.pull-strip {
+  margin: 72px 0 0;
+  padding: clamp(72px, 9vw, 128px) 24px;
+}
+.pull-strip .pull { margin: 0 auto; padding: 0; }
