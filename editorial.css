@@ -2522,3 +2522,17 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   -webkit-mask-image: url("/img/brand/tapir-2.png");
   mask-image: url("/img/brand/tapir-2.png");
 }
+
+/* The woven sage ground from the brand boards, for places that read too plain. */
+.weave {
+  background-color: #D1DAC7;
+  background-image: url("/img/brand/weave-light.png");
+  background-size: 124px 123px;
+}
+.weave--dark {
+  background-color: #A5AC9A;
+  background-image: url("/img/brand/weave-dark.png");
+}
+
+.soon-plate.weave { border-color: transparent; }
+.soon-plate.weave .soon-plate__places { color: var(--text-2); }
