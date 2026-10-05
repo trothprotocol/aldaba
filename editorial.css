@@ -2639,3 +2639,6 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 /* Homes page: the full-screen ground is the terracotta weave now. */
 .homes--film.weave--terracotta::before { background: linear-gradient(to bottom, rgba(var(--ink-rgb), 0.25), rgba(var(--ink-rgb), 0) 25%); }
 .homes--film.weave--terracotta .soon-plate--glass { background: rgba(var(--ink-rgb), 0.28); }
+
+/* Journeys: as tall as the Standard's hero. */
+.hero--video.hero--tall { min-height: clamp(600px, 92vh, 880px); }
