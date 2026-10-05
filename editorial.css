@@ -2670,3 +2670,6 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   .compact__submit:hover,
   .signup__submit:hover { background: var(--tapir-brown); }
 }
+@media (hover: hover) and (pointer: fine) {
+  .wa-float:hover { background: var(--tapir-brown); }
+}
