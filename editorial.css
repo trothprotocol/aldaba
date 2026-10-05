@@ -2535,4 +2535,10 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 }
 
 .soon-plate.weave { border-color: transparent; }
+.soon-plate.weave--panel { border-color: var(--line); }
 .soon-plate.weave .soon-plate__places { color: var(--text-2); }
+
+.weave--panel {
+  background-color: var(--panel);
+  background-image: url("/img/brand/weave-panel.png");
+}
