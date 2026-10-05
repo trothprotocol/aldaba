@@ -2511,3 +2511,14 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   letter-spacing: 0.28em;
   text-transform: uppercase;
 }
+
+/* Footer wordmark and its animal in the brown of the new tapir mark. */
+:root { --tapir-brown: #8C6430; }
+.wordmark--footer { color: var(--tapir-brown); }
+.wordmark--footer:hover { color: color-mix(in srgb, var(--tapir-brown) 82%, var(--paper)); }
+.footer__tapir {
+  aspect-ratio: 621 / 542;
+  background: var(--tapir-brown);
+  -webkit-mask-image: url("/img/brand/tapir-2.png");
+  mask-image: url("/img/brand/tapir-2.png");
+}
