@@ -2752,3 +2752,8 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 
 /* Home: Almost there sits straight on the white page, no box. */
 .soon-plate--bare { background: none; border: 0; }
+.homes:has(.soon-plate--bare) { padding-top: 64px; padding-bottom: 72px; }
+.soon-plate--bare { padding-top: 0; padding-bottom: 0; }
+@media (max-width: 640px) {
+  .homes:has(.soon-plate--bare) { padding-top: 48px; padding-bottom: 56px; }
+}
