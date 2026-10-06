@@ -2706,3 +2706,10 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 }
 .trip-notes.weave { background-color: #D1DAC7; }
 .owners-form.weave--panel { background-color: var(--panel); background-image: url("/img/brand/weave-panel.png"); background-size: 124px 123px; }
+
+/* Something else in mind: a full-width cream woven band. */
+.section--band {
+  max-width: none;
+  margin: 0;
+  padding: clamp(80px, 10vw, 140px) max(24px, calc((100% - 760px) / 2));
+}
