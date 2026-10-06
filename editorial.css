@@ -2802,3 +2802,10 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   .soon-plate__side--right { grid-row: 3; }
   .soon-plate__head .title { margin-bottom: 8px; }
 }
+
+/* The same heavier weight as Almost there on the home page's titles. */
+#season-title,
+#tiers-title,
+#plan-title,
+#days-title,
+.word .title { font-weight: 500; }
