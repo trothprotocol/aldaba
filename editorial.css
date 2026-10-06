@@ -2760,3 +2760,45 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 
 /* Home: Almost there, same size, heavier weight. */
 .soon-plate--bare .title { font-weight: 500; }
+
+/* Home: the places flank the heading, two each side, as Le Collectionist
+   sets its filters around OUR HOUSES. */
+.soon-plate--bare { max-width: var(--measure); }
+.soon-plate__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: 40px;
+}
+.soon-plate__side {
+  display: flex;
+  gap: 36px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text-3);
+}
+.soon-plate__side--left { justify-content: flex-start; }
+.soon-plate__side--right { justify-content: flex-end; }
+.soon-plate--bare .soon-plate__text { margin-top: 24px; }
+@media (max-width: 900px) {
+  .soon-plate__head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); row-gap: 20px; }
+  .soon-plate__head .title { grid-column: 1 / -1; grid-row: 1; }
+  .soon-plate__side { gap: 20px; font-size: 11px; }
+  .soon-plate__side--left { justify-content: flex-end; }
+  .soon-plate__side--right { justify-content: flex-start; }
+}
+@media (max-width: 900px) {
+  .soon-plate__head { grid-template-columns: minmax(0, 1fr); row-gap: 10px; }
+  .soon-plate__side,
+  .soon-plate__side--left,
+  .soon-plate__side--right { justify-content: center; flex-wrap: wrap; gap: 8px 22px; }
+  .soon-plate__side--left { grid-row: 2; }
+  .soon-plate__side--right { grid-row: 3; }
+  .soon-plate__head .title { margin-bottom: 8px; }
+}
