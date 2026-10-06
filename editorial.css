@@ -2704,3 +2704,4 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 @media (max-width: 860px) {
   .house-section--box { padding: 40px 20px; margin-bottom: 64px; }
 }
+.trip-notes.weave { background-color: #D1DAC7; }
