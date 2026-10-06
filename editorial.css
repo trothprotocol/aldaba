@@ -2690,3 +2690,17 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   letter-spacing: 0.01em;
   text-transform: uppercase;
 }
+
+/* Ask about this day: wrapped in the warm woven box. */
+.house-section--box {
+  padding: clamp(40px, 5vw, 72px);
+  margin-bottom: 96px;
+  border-top: 0;
+}
+.house-section--box .input,
+.house-section--box textarea,
+.house-section--box input,
+.house-section--box select { background: var(--paper); }
+@media (max-width: 860px) {
+  .house-section--box { padding: 40px 20px; margin-bottom: 64px; }
+}
