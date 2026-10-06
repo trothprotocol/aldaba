@@ -2540,10 +2540,10 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 
 .weave--panel {
   background-color: var(--panel);
-  background-image: url("/img/brand/weave-panel.png");
+  background-image: url("/img/brand/weave-panel.png?v=2");
 }
 .pillars.weave--panel,
-.plan.weave--panel { background-color: var(--panel); background-image: url("/img/brand/weave-panel.png"); background-size: 124px 123px; }
+.plan.weave--panel { background-color: var(--panel); background-image: url("/img/brand/weave-panel.png?v=2"); background-size: 124px 123px; }
 
 /* About, Write to us: the form sits in a woven sage box. */
 .essay__block--box {
@@ -2705,7 +2705,7 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   .house-section--box { padding: 40px 20px; margin-bottom: 64px; }
 }
 .trip-notes.weave { background-color: #D1DAC7; }
-.owners-form.weave--panel { background-color: var(--panel); background-image: url("/img/brand/weave-panel.png"); background-size: 124px 123px; }
+.owners-form.weave--panel { background-color: var(--panel); background-image: url("/img/brand/weave-panel.png?v=2"); background-size: 124px 123px; }
 
 /* Something else in mind: a full-width cream woven band. */
 .section--band {
