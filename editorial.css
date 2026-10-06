@@ -2809,3 +2809,11 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 #plan-title,
 #days-title,
 .word .title { font-weight: 500; }
+#next-title,
+#mornings-title,
+#notes-title,
+#more-title,
+#homes-title,
+.section--band .section__line,
+.essay__block--box .essay__title,
+.house-section--box .house-section__title { font-weight: 500; }
