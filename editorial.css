@@ -2749,3 +2749,6 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
 @media (max-width: 860px), (pointer: coarse) {
   .search__ph { font-size: 16px; }
 }
+
+/* Home: Almost there sits straight on the white page, no box. */
+.soon-plate--bare { background: none; border: 0; }
