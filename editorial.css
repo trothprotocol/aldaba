@@ -2705,3 +2705,4 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   .house-section--box { padding: 40px 20px; margin-bottom: 64px; }
 }
 .trip-notes.weave { background-color: #D1DAC7; }
+.owners-form.weave--panel { background-color: var(--panel); background-image: url("/img/brand/weave-panel.png"); background-size: 124px 123px; }
