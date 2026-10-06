@@ -2713,3 +2713,39 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   margin: 0;
   padding: clamp(80px, 10vw, 140px) max(24px, calc((100% - 760px) / 2));
 }
+
+/* Check pass, 2026-10-05 -------------------------------------------------- */
+
+/* Day pages: with the back link gone, the picture meets the header. */
+.split.split--top { margin-top: 0; }
+
+/* A closed menu never catches a tap, even before it is fully hidden. */
+.menu:not(.is-open) { pointer-events: none; }
+
+/* About: the form box ends the page like the other boxes do. */
+.essay__block--box { margin-bottom: 0; }
+@media (max-width: 860px) {
+  .essay__block--box { margin-bottom: 0; }
+}
+
+/* The quote on the sage strip: still tone on tone, one step deeper and a
+   little larger so it reads at a glance (3:1 against the weave). */
+.pull-strip .pull {
+  color: #6F7964;
+  font-size: clamp(28px, 3.6vw, 46px);
+}
+
+/* The small print under the signup keeps 4.5:1 on the sage band. */
+.word.weave .signup__legal,
+.word.weave .signup__legal a { color: var(--text-2); }
+
+/* Phones zoom the page into any field set under 16px and leave it there.
+   On touch screens and narrow widths every field reads at 16px. */
+@media (max-width: 860px), (pointer: coarse) {
+  input,
+  select,
+  textarea { font-size: 16px !important; }
+}
+@media (max-width: 860px), (pointer: coarse) {
+  .search__ph { font-size: 16px; }
+}

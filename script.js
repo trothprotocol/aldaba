@@ -467,10 +467,15 @@
     menu.classList.remove('is-open');
     toggle.setAttribute('aria-expanded', 'false');
     document.documentElement.classList.remove('is-locked');
-    panel.addEventListener('transitionend', function done() {
+    // Hide it once the panel has slid away. The timer covers the case where
+    // no transition runs, so a closed menu can never sit over the page.
+    function done() {
       panel.removeEventListener('transitionend', done);
+      clearTimeout(fallback);
       if (!menu.classList.contains('is-open')) menu.hidden = true;
-    });
+    }
+    var fallback = setTimeout(done, 500);
+    panel.addEventListener('transitionend', done);
     if (returnFocus) toggle.focus();
   }
 
