@@ -2758,10 +2758,5 @@ img.is-arriving { animation: img-in 0.5s var(--ease) both; }
   .homes:has(.soon-plate--bare) { padding-top: 48px; padding-bottom: 56px; }
 }
 
-/* Home: Almost there set large in Memoir. */
-.soon-plate--bare .title {
-  font-family: var(--font-condensed);
-  font-size: clamp(44px, 5.4vw, 76px);
-  line-height: 0.95;
-  letter-spacing: 0.01em;
-}
+/* Home: Almost there, same size, heavier weight. */
+.soon-plate--bare .title { font-weight: 500; }
